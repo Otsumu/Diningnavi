@@ -10,6 +10,37 @@ use App\Models\Review;
 
 class UserController extends Controller {
     
+    public function registerForm() {
+        return view('user.register');
+    }
+
+    public function register(UserRequest $request) {
+        $validated = $request->validated();
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+            'role' => 'user', 
+        ]);
+
+        Auth::login($user);
+        return redirect()->route('user.my_page')->with('success', 'アカウントが作成されました');
+    }
+
+    public function loginForm() {
+        return view('user.login');
+    }
+
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('user.my_page');
+        }
+        return redirect()->back()->withErrors('ログインできません');
+    }
+
     public function index() {
         $user = Auth::user();
         if ($user) {
@@ -17,9 +48,9 @@ class UserController extends Controller {
             $favorites = $user->favorites;
             $reviews = $user->reviews;
 
-            return view('user.index', compact('bookings', 'favorites', 'reviews'));
+            return view('user.users.my_page', compact('bookings', 'favorites', 'reviews'));
         } else {
-            return redirect()->route('login')->withErrors('ログインしてください');
+            return redirect()->route('user.login')->withErrors('ログインしてください');
         }
     }
 
@@ -28,7 +59,7 @@ class UserController extends Controller {
         $booking = $user->bookings()->findOrFail($id);
         $booking->delete();
 
-        return redirect()->route('user.index')->with('success', '予約がキャンセルされました');
+        return redirect()->route('user.my_page')->with('success', '予約がキャンセルされました');
     }
 
     public function updateBooking(Request $request, $id) {
@@ -36,6 +67,6 @@ class UserController extends Controller {
         $booking = $user->bookings()->findOrFail($id);
         $booking->update($request->all());
 
-        return redirect()->route('user.index')->with('success', '予約内容が変更されました');
+        return redirect()->route('user.my_page')->with('success', '予約内容が変更されました');
     }
 }
