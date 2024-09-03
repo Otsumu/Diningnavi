@@ -11,8 +11,8 @@ class Shop extends Model
 
     protected $fillable = [
         'name',
-        'image',
-        'url',
+        'image_url',
+        'intro',
         'genre_id',
         'area_id',
     ];
@@ -35,6 +35,27 @@ class Shop extends Model
 
     public function reviews() {
         return $this->hasMany(Review::class);
+    }
+
+    public function scopeGenre($query, $genreId) {
+        if ($genreId) {
+            return $query->where('genre_id', $genreId);
+        }
+        return $query;
+    }
+
+    public function scopeArea($query, $areaId) {
+        if ($areaId) {
+            return $query->where('area_id', $areaId);
+        }
+        return $query;
+    }
+
+    public function scopeKeyword($query, $keyword) {
+        if ($keyword) {
+            return $query->where('name', 'like', "%{$keyword}%");
+        }
+        return $query;
     }
 
 }

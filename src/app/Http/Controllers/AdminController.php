@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,7 @@ class AdminController extends Controller
     public function __construct() {
         $this->middleware(function ($request, $next) {
             if (!Auth::check() || !Auth::user()->isAdmin()) {
-                return redirect('admin.register')->withErrors('権限がありません');
+                return redirect('admin.login')->withErrors('権限がありません');
             }
             return $next($request);
         });
@@ -21,12 +22,8 @@ class AdminController extends Controller
         return view('admin.register');
     }
 
-    public function adminRegister(Request $request) {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+    public function adminRegister(RegisterRequest $request) {
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $validated['name'],
@@ -43,35 +40,36 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function adminLogin(Request $request) {
+    public function adminLogin(LoginRequest $request) {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials) && Auth::user()->isAdmin()) {
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.shop_owners.index');
         }
         return redirect()->back()->withErrors('ログインできません');
     }
 
-    public function usersIndex() {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+    public function shopOwnersIndex() {
+        $shopOwners = User::where('role', 'shop_owner')->get();
+        return view('admin.shop_owners.index', compact('shopOwners'));
     }
-
-    public function usersEdit($id) {
-        $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+    
+    public function shopOwnersEdit($id) {
+        $shopOwner = User::findOrFail($id);
+        return view('admin.shop_owners.form', compact('shopOwner'));
     }
-
-    public function usersUpdate(Request $request, $id) {
+    
+    public function shopOwnersUpdate(Request $request, $id) {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'role' => 'required|in:admin,shop_owner,regular_user',
         ]);
-
-        $user = User::findOrFail($id);
-        $user->update($validated);
-
-        return redirect()->route('admin.users.index')->with('success', 'ユーザー情報を更新しました');
+    
+        $shopOwner = User::findOrFail($id);
+        $shopOwner->update($validated);
+    
+        return redirect()->route('admin.shop_owners.index')->with('success', 'ショップオーナーの情報を更新しました');
     }
+    
 }

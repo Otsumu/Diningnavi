@@ -10,64 +10,26 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function index() {
-        $bookings = Auth::user()->bookings;
-        return view('bookings.index', compact('bookings'));
-    }
-
     public function create() {
-        $shops = Shop::all(); 
-        return view('bookings.create', compact('shops'));
-    }
-
-    public function store(BookingRequest $request) {
-        $validated = $request->validated();
-
-        $booking = new Booking();
-        $booking->user_id = Auth::id();
-        $booking->shop_id = $validated['shop_id'];
-        $booking->booking_date = $validated['booking_date'];
-        $booking->number = $validated['number'];
-        $booking->save();
-
-        return redirect()->route('bookings.index')->with('success', '予約が完了しました');
-    }
-
-    public function edit($id) {
-        $booking = Booking::findOrFail($id);
-
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('home')->withErrors('該当する予約がありません');
-        }
-
         $shops = Shop::all();
-        return view('bookings.edit', compact('booking', 'shops'));
+        return view('booking.form', compact('shops'));
     }
 
-    public function update(BookingRequest $request, $id) {
-        $validated = $request->validated();
+    public function confirm(Request $request) {
+        $request->session()->put('booking_datetime', $request->all());
 
-        $booking = Booking::findOrFail($id);
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('home')->withErrors('該当する予約がありません');
-        }
-
-        $booking->shop_id = $validated['shop_id'];
-        $booking->booking_date = $validated['booking_date'];
-        $booking->number = $validated['number'];
-        $booking->save();
-
-        return redirect()->route('bookings.index')->with('success', '予約が更新されました');
+        return view('booking.confirm', [
+            'booking' => $request->all()
+        ]);
     }
 
-    public function destroy($id) {
-        $booking = Booking::findOrFail($id);
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('home')->withErrors('権限がありません');
-        }
-        
-        $booking->delete();
+    public function store(Request $request) {
+        $bookingDateTime = $request->session()->get('booking_datetime');
 
-        return redirect()->route('bookings.index')->with('success', '予約が削除されました');
+        Booking::create($bookingDateTime + ['user_id' => Auth::id()]);
+
+        $request->session()->forget('booking_datetime');
+
+        return redirect()->route('booking.done');
     }
 }

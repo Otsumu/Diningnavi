@@ -17,12 +17,8 @@ class Review extends Model
         'rating',
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function shop() {
-        return $this->belongsTo(Shop::class);
+    public function booking() {
+    return $this->belongsTo(Booking::class);
     }
 
 }

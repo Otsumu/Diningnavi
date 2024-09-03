@@ -10,12 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function index() {
-        $favorites = Auth::user()->favorites()->with('shop')->get();
-        return view('favorites.index', compact('favorites'));
-    }
-
-    public function store(Request $request, $shopId) {
+   public function store(Request $request, $shopId) {
         $exists = Auth::user()->favorites()->where('shop_id', $shopId)->exists();
 
         if (!$exists) {

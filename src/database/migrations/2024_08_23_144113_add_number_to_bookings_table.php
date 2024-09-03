@@ -14,7 +14,7 @@ class AddNumberToBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->integer('number')->after('booking_date'); 
+            $table->integer('number')->after('booking_datetime'); 
         });
     }
 
