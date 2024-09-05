@@ -44,7 +44,28 @@
       </div>
     </div>
 </form>
-
 @endsection
 
 @section('content')
+<div class="homepage">
+    <div class="shop__list">
+      @foreach($shops as $shop)
+      <div class="shop__item">
+        <div class="shop__image">
+          <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop__img">
+        </div>
+        <div class="shop__content">
+          <h2>{{ $shop->name }}</h2>
+          <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+        </div>
+        <div class="shop__buttons">
+          <a href="/detail/{{ $shop->id }}">詳しくみる</a>
+          <button class="favorite-shop" type="button">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+        </div>
+      </div>
+      @endforeach
+    </div>
+</div>
+@endsection
