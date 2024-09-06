@@ -22,7 +22,18 @@ class ShopController extends Controller {
 
     public function show($shop_id) {
         $shop = Shop::findOrFail($shop_id);
-        return view('shop.detail', compact('shop'));
+        $backRoute = route('home');
+        $bookingData = session('booking_data', []);
+    
+        return view('shop.detail', compact('shop', 'backRoute', 'bookingData'));
+    }
+
+    public function createBooking(BookingRequest $request) {
+
+        $data = $request->only(['shop_id', 'booking_date', 'booking_time', 'number']);
+        $request->session()->put('booking_data', $data);
+
+        return redirect()->route('booking.done');
     }
 
     public function create() {
