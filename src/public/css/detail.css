@@ -112,7 +112,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .booking_confirm {
-    background-color: #6695eb; 
+    background-color: #4981f1; 
     border-radius: 5px;
     font-size: 12px;
     max-width: 470px;
@@ -126,7 +126,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .booking_detail {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 5px;
+    gap: 8px;
     align-items: left;
     padding: 10px;
     max-width: 300px;

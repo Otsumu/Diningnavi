@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller {
     
     public function index() {
-        return view('register');
+        return view('user.register');
     }
 
     public function register(RegisterRequest $request) {

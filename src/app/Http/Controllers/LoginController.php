@@ -10,7 +10,7 @@ use App\Models\User;
 
 class LoginController extends Controller {
     public function index() {
-        return view('login');
+        return view('user.login');
     }
 
     public function login(LoginRequest $request) {
@@ -32,7 +32,7 @@ class LoginController extends Controller {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/user/login');
     }
     
 }

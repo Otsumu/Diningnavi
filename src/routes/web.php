@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\registerController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
@@ -15,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ShopController::class, 'index']);
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/detail/{shop_id}',[ShopController::class,'show']);
+
+Route::get('/user/register', [RegisterController::class, 'index'])->name('user.register');
+Route::post('/user/register', [RegisterController::class, 'register']);
+Route::get('/user/login', [LoginController::class, 'index'])->name('user.login');
+Route::post('/user/login', [LoginController::class, 'login']);
+
 Route::middleware('auth')->group(function () {
 Route::post('/shop/{shop}/booking', [ShopController::class, 'createBooking'])->name('shop.booking');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking');
