@@ -17,7 +17,8 @@
     white-space: nowrap; 
 }
 
-.login-btn {
+.login-btn,
+.back-btn {
     background-color: rgb(73, 99, 246);
     color: #ffffff;
     padding: 8px 16px; 

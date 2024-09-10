@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,7 @@
 <body>
     <header>
         <div class="header__left">
-            <div class="close-icon"></div>
-                <span></span></label>
-            </div>
+            <div class="close-icon" id="closeButton"></div>
         </div>
     </header>
 
@@ -30,3 +28,19 @@
     </nav>
   </div>
 </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const closeButton = document.getElementById('closeButton');
+        const menu = document.querySelector('.nav__content');
+        
+        if (closeButton && menu) {
+            closeButton.addEventListener('click', function() {
+                menu.classList.add('hidden');
+                window.location.href = '/';
+            });
+        }
+    });
+  </script>
+</body>
+</html>

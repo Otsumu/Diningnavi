@@ -40,20 +40,45 @@
                     </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Date</div>
-                        <div class="booking_item booking_value">{{ $bookingData['booking_date'] ?? '未設定' }}</div>
+                        <div class="booking_item booking_value" data-type="date">{{ $bookingData['booking_date'] ?? '未設定' }}</div>
                     </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Time</div>
-                        <div class="booking_item booking_value">{{ $bookingData['booking_time'] ?? '未設定' }}</div>
+                        <div class="booking_item booking_value" data-type="time">{{ $bookingData['booking_time'] ?? '未設定' }}</div>
                     </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Number</div>
-                        <div class="booking_item booking_value">{{ $bookingData['number'] ?? '未設定' }}</div>
+                        <div class="booking_item booking_value" data-type="number">{{ $bookingData['number'] ?? '未設定' }}</div>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-booking">予約する</button>
-        </form>
-    </div>   
+                <button type="submit" class="btn btn-booking">予約する</button>
+            </form>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookingDateInput = document.getElementById('booking_date');
+        const bookingTimeInput = document.getElementById('booking_time');
+        const numberInput = document.getElementById('number');
+        
+        const bookingDateValue = document.querySelector('.booking_value[data-type="date"]');
+        const bookingTimeValue = document.querySelector('.booking_value[data-type="time"]');
+        const numberValue = document.querySelector('.booking_value[data-type="number"]');
+        
+        function updateBookingDetails() {
+            bookingDateValue.textContent = bookingDateInput.value || '未設定';
+            bookingTimeValue.textContent = bookingTimeInput.value || '未設定';
+            numberValue.textContent = numberInput.value || '未設定';
+        }
+        
+        bookingDateInput.addEventListener('input', updateBookingDetails);
+        bookingTimeInput.addEventListener('input', updateBookingDetails);
+        numberInput.addEventListener('input', updateBookingDetails);
+        
+        // 初期表示の更新
+        updateBookingDetails();
+    });
+</script>
 @endsection

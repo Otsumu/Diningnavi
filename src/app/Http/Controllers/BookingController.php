@@ -10,18 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function store(BookingRequest $request) {
+  public function store(BookingRequest $request) {
     if (!Auth::check()) {
-        return redirect()->route('register')->with('message', '会員登録をお願いします');
+      return redirect()->route('login');
     }
-    $data = $request->only(['shop_id', 'booking_date', 'booking_time', 'number']);
-    $data['user_id'] = Auth::id(); 
+      
+      $data = $request->only(['shop_id', 'booking_date', 'booking_time', 'number']);
+      $data['user_id'] = Auth::id();
 
-    Booking::create($data);
+      Booking::create($data);
 
-    $request->session()->forget(['booking_date', 'booking_time']);
+      $request->session()->forget(['booking_date', 'booking_time', 'number']);
 
-    return redirect()->route('booking.done');
+      return redirect()->route('booking.done');
+    }
+
+  public function done() {
+    return view('booking.done');
   }
-
 }
