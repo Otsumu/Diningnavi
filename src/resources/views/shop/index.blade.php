@@ -57,12 +57,12 @@
         <div class="shop__content">
           <h2>{{ $shop->name }}</h2>
           <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-        </div>
-        <div class="shop__buttons">
-          <a href="/detail/{{ $shop->id }}">詳しくみる</a>
-          <button class="favorite-shop" type="button">
+          <div class="shop__buttons">
+            <a href="/detail/{{ $shop->id }}">詳しくみる</a>
+            <button class="favorite-shop" type="button">
             <i class="fa-solid fa-heart"></i>
-          </button>
+            </button>
+          </div>  
         </div>
       </div>
       @endforeach

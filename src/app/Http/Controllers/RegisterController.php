@@ -15,19 +15,39 @@ class RegisterController extends Controller {
     }
 
     public function register(RegisterRequest $request) {
-        $validated = $request->validated();
-        
+        $request->session()->put('register_data', $request->validated());
+        return redirect()->route('user.confirm');
+    }
+
+    public function confirm() {
+        $registerData = session('register_data');
+    
+        if (!$registerData) {
+            return redirect()->route('user.register');
+        }
+    
+        return view('user.confirm', ['data' => $registerData]);
+    }
+
+    public function store(Request $request) {
+        $registerData = session('register_data');
+
+        if (!$registerData) {
+            return redirect()->route('user.register');
+        }
+
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'name' => $registerData['name'],
+            'email' => $registerData['email'],
+            'password' => Hash::make($registerData['password']),
         ]);
 
         auth()->login($user);
-
         event(new Registered($user));
 
-        return redirect()->route('auth.verify-email')->with('resent', true);
-    }
+        $request->session()->forget('register_data');
 
+        return redirect()->route('user.thanks');
+    }
 }
+

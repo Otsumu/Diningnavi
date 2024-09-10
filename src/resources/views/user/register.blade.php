@@ -20,27 +20,27 @@
           </div> 
       </div>
 
-      <div class="input-group">  
+      <div class="input-group">
         <i class="fa-solid fa-envelope"></i>
         <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
           <div class="error-message">
-            @error('email') 
+            @error('email')
             <p class="auth-form__error-message">{{ $message }}</p>
             @enderror
-          </div>  
+          </div>
       </div>
-      
-      <div class="input-group">  
+
+      <div class="input-group">
         <i class="fa-solid fa-lock"></i>
         <input type="password" id="password" name="password" placeholder="Password">
           <div class="error-message">
-            @error('password') 
+            @error('password')
             <p class="auth-form__error-message">{{ $message }}</p>
             @enderror
-          </div> 
+          </div>
       </div>
-      
-      <button class="auth-btn" type="submit">登録</button>
+
+      <button class="register-btn" type="submit">確認</button>
     </div>
   </form>
 </main>

@@ -16,12 +16,34 @@
         <div class="header__left">
             <div class="header__icon">
                 <input id="drawer__input" class="drawer__hidden" type="checkbox">
-                <label for="drawer__input" class="drawer__open"><span></span></label>
+                <label for="drawer__input" class="drawer__open menuToggle" id="menuToggle">
+                <span></span></label>
             </div>
             <div class="header__logo">Rese</div>
         </div>
         @yield('header')
     </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const drawerInput = document.getElementById('drawer__input');
+
+    if (!menuToggle || !drawerInput) {
+        console.error('Menu toggle or drawer input not found.');
+        return;
+    }
+
+    menuToggle.addEventListener('click', function() {
+        console.log('Menu toggle clicked. Checked:', drawerInput.checked);
+        if (drawerInput.checked) {
+            window.location.href = '/user/users/menu1';
+        } else {
+            window.location.href = '/user/menu2';
+        }
+      });  
+    });
+    </script>
     
     <main>
         @yield('content')
