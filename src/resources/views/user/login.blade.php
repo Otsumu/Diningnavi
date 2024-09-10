@@ -6,11 +6,6 @@
 
 @section('content')
 <main>
-  @if (session('status'))
-  <div class="alert alert-success">
-    {{ session('status') }}
-  </div>
-  @endif
   <form class="auth-form" action="{{ route('user.login') }}" method="post">
     @csrf
   <div class="auth-item">

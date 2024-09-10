@@ -49,5 +49,9 @@ class RegisterController extends Controller {
 
         return redirect()->route('user.thanks');
     }
+
+    public function thanks() {
+        return view('user.thanks');
+    }
 }
 

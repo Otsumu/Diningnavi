@@ -90,3 +90,11 @@ header {
     padding-left: 16px;
     font-weight: bold;
 }
+
+.menu {
+    display: none; /* 初期状態で非表示 */
+}
+
+.menu.show {
+    display: block; /* 表示 */
+}

@@ -25,6 +25,7 @@ Route::get('/user/menu2', function () {
 Route::get('/detail/{shop_id}', [ShopController::class, 'show']);
 Route::get('/user/register', [RegisterController::class, 'index'])->name('user.register');
 Route::post('/user/register', [RegisterController::class, 'register']);
+Route::get('/user/thanks', [RegisterController::class, 'thanks'])->name('user.thanks');
 Route::get('/user/confirm', [RegisterController::class, 'confirm'])->name('user.confirm');
 Route::post('/user/confirm', [RegisterController::class, 'store']);
 Route::get('/user/login', [LoginController::class, 'index'])->name('user.login');

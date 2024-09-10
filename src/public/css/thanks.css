@@ -1,0 +1,31 @@
+.auth-item {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: auto;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.thanks-message {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 100;
+    white-space: nowrap; 
+}
+
+.login-btn {
+    background-color: rgb(73, 99, 246);
+    color: #ffffff;
+    padding: 8px 16px; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; 
+    display: block; 
+    margin: 25px auto 0; 
+    font-size: 12px; 
+}
