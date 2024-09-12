@@ -55,7 +55,7 @@ class UserController extends Controller
     }
 
     public function myPage() {
-        $bookings = Booking::where('user_id', auth()->id())->get();
+        $bookings = Booking::where('user_id', auth()->id())->with('shop')->get();
         $favorites = Auth::user()->favorites()->with('shop')->get();
 
         return view('user.users.mypage', compact('bookings', 'favorites'));

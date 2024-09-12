@@ -35,6 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/booking', [BookingController::class, 'store'])->name('booking');
     Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::get('/user/users/mypage',[UserController::class,'myPage']);
+    Route::get('/user/users/booking/{id}/edit', [UserController::class, 'editBooking'])->name('booking.edit');
+    Route::put('/user/users/booking/{id}', [UserController::class, 'updateBooking'])->name('booking.update');
+    Route::delete('/user/users/booking/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
+    Route::get('/user/users/favorites', [UserController::class, 'indexFavorites'])->name('user.users.favorites');
 });
 
 
