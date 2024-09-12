@@ -12,10 +12,6 @@ use App\Http\Requests\BookingRequest;
 
 class UserController extends Controller
 {
-    public function showMenu2() {
-        return view('user.menu2');
-    }
-
     public function registerForm() {
         return view('user.register');
     }
@@ -45,6 +41,17 @@ class UserController extends Controller
             return redirect()->route('user.users.menu1');
         }
         return redirect()->back()->withErrors('ログインできません');
+    }
+
+    public function showMenu2() {
+        if(Auth::check()) {
+            return redirect()->route('user.users.menu1');
+        }
+        return view('user.menu2');
+    }
+
+    public function showMenu1() {
+        return view('user.users.menu1');
     }
 
     public function myPage() {

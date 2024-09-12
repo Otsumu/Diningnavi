@@ -13,6 +13,7 @@ class Booking extends Model
         'user_id',
         'shop_id',
         'booking_date',
+        'booking_time',
         'number',
     ];
 

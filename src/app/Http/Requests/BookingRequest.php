@@ -24,7 +24,6 @@ class BookingRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'shop_id' => 'required|exists:shops,id',
             'booking_date' => 'required|date',
             'booking_time' => 'required|date_format:H:i',
@@ -34,8 +33,6 @@ class BookingRequest extends FormRequest
 
     public function messages() {
         return [
-            'user_id.required' => 'IDを入力してください',
-            'user_id.exists' => '指定のユーザーは存在しません',
             'shop_id.required' => 'お店を指定してください',
             'shop_id.exists' => '指定のお店が見つかりません',
             'booking_date.required' => '予約日時を入力してください',

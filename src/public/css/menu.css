@@ -92,22 +92,29 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-.nav__item {
-    font-size: 32px;
-    font-weight: 100 !important; 
+.nav__item-link,
+.nav__item-link-button {
+    font-size: 30px;
+    font-weight: 100;
     text-align: center;
     padding-bottom: 12px;
-    display: block;
+    display: inline-block;
+    color: rgb(63, 90, 242);
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
-.nav__item:hover {
+.nav__item-link:hover,
+.nav__item-link-button:hover {
     opacity: 0.8;
 }
 
-.nav__item-link {
-    color: rgb(63, 90, 242);
-    text-decoration: none;
-    font-weight: bold;
+.nav__item {
+    line-height: 2;
 }

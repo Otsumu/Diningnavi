@@ -32,7 +32,9 @@ class LoginController extends Controller {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/user/login');
+        $request->session()->flash('success', 'ログアウトしました');
+
+        return redirect('/');
     }
     
 }

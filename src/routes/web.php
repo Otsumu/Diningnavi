@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ShopController::class, 'index'])->name('home');
-Route::get('/user/menu2', function () {
-        return view('user.menu2'); 
-    });
+Route::get('/user/menu2', [UserController::class, 'showMenu2'])->name('user.menu2');
 Route::get('/detail/{shop_id}', [ShopController::class, 'show']);
 Route::get('/user/register', [RegisterController::class, 'index'])->name('user.register');
 Route::post('/user/register', [RegisterController::class, 'register']);
@@ -32,13 +30,11 @@ Route::get('/user/login', [LoginController::class, 'index'])->name('user.login')
 Route::post('/user/login', [LoginController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/users/menu1', function () {
-        return view('user.users.menu1');
-    });
-
+    Route::get('/user/users/menu1', [UserController::class,'showMenu1'])->name('user.users.menu1');
     Route::post('/shop/{shop}/booking', [ShopController::class, 'createBooking'])->name('shop.booking');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking');
     Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
 
 

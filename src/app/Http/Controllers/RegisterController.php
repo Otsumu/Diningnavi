@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterConfirmMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -46,6 +48,8 @@ class RegisterController extends Controller {
         event(new Registered($user));
 
         $request->session()->forget('register_data');
+
+        Mail::to($user->email)->send(new RegisterConfirmMail($user));
 
         return redirect()->route('user.thanks');
     }

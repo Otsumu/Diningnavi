@@ -22,7 +22,14 @@
     <nav class="nav__content">
         <ul class="nav__list">
             <li class="nav__item" ><a class="nav__item-link" href="/">Home</a></li>
-            <li class="nav__item"><a class="nav__item-link" href="/user/users/logout">Logout</a></li>
+            <li class="nav__item">
+                <form action="{{ route('logout') }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    <button type="submit" class="nav__item-link nav__item-link-button">
+                        Logout
+                    </button>
+                </form>
+            </li>
             <li class="nav__item"><a class="nav__item-link" href="/user/users/mypage">Mypage</a></li>
         </ul>
     </nav>

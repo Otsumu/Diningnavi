@@ -48,6 +48,12 @@
 
 @section('content')
 <div class="homepage">
+  @if (session('success'))
+    <div style="background-color: #cce5ff; color: #004085; padding: 7px; font-size: 12px; border-radius: 5px; 
+    border: 1px solid #b8daff; margin-bottom: 5px;">
+        {{ session('success') }}
+    </div>
+  @endif
     <div class="shop__list">
       @foreach($shops as $shop)
       <div class="shop__item">
