@@ -25,7 +25,7 @@
 
     <div class="shop__right-content">
         <h2>予約</h2>
-        <form action="{{ route('booking') }}" method="POST">
+        <form action="{{ route('booking.store') }}" method="POST">
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">

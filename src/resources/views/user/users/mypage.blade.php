@@ -66,7 +66,7 @@
                                 <h2>{{ $shop->name }}</h2>
                                 <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
                                 <div class="shop__buttons">
-                                    <a href="{{ route('shop.show', $shop->id) }}" class="btn btn-details">詳しくみる</a>
+                                    <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
                                     <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="true">
                                         <i class="fa-solid fa-heart heart-icon active"></i>
                                     </button>

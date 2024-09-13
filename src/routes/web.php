@@ -31,21 +31,17 @@ Route::get('/user/login', [LoginController::class, 'index'])->name('user.login')
 Route::post('/user/login', [LoginController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    // ユーザー関連のルート
     Route::get('/user/users/menu1', [UserController::class, 'showMenu1'])->name('user.users.menu1');
-    Route::get('/shop/{shop}', [ShopController::class, 'show'])->name('shop.show');
-    Route::post('/shop/{shop}/booking', [UserController::class, 'createBooking'])->name('shop.booking');
-    Route::post('/booking', [UserController::class, 'storeBooking'])->name('booking');
-    Route::get('/booking/done', [UserController::class, 'doneBooking'])->name('booking.done');
+    Route::post('/shop/{shop}/booking', [BookingController::class, 'createBooking'])->name('shop.booking');
+    Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
+    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/user/users/mypage', [UserController::class, 'myPage'])->name('mypage');
     Route::get('/user/users/booking/{id}/edit', [UserController::class, 'editBooking'])->name('booking.edit');
     Route::patch('/user/users/booking/{id}', [UserController::class, 'updateBooking'])->name('booking.update');
     Route::delete('/user/users/booking/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
     Route::get('/user/users/favorites', [UserController::class, 'indexFavorites'])->name('user.users.favorites');
-    Route::post('/user/users/mypage/add/{shopId}', [UserController::class, 'addFavorite'])->name('favorites.add');
-    Route::delete('/user/users/mypage/remove/{shopId}', [UserController::class, 'removeFavorite'])->name('favorites.remove');
-    
-    // ログアウト
+    Route::post('/user/users/mypage/add/{shopId}', [FavoriteController::class, 'add'])->name('favorites.add');
+    Route::delete('/user/users/mypage/remove/{shopId}', [FavoriteController::class, 'remove'])->name('favorites.remove');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
 

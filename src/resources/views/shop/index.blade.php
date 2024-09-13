@@ -64,7 +64,7 @@
                 <h2>{{ $shop->name }}</h2>
                 <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
                 <div class="shop__buttons">
-                    <a href="/detail/{{ $shop->id }}">詳しくみる</a>
+                    <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
                     <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
                         <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
                     </button>
@@ -78,36 +78,36 @@
 
 @section('js')
 <script>
-  function changeColor(element) {
-      const heartIcon = element.querySelector('.fa-heart');
-      const isFavorited = heartIcon.classList.contains('active');
-      
-      if (isFavorited) {
-          heartIcon.classList.remove('active');
-          element.setAttribute('data-favorited', 'false');
-      } else {
-          heartIcon.classList.add('active');
-          element.setAttribute('data-favorited', 'true');
-      }
-
-      const shopId = element.getAttribute('data-shop-id');
-      const url = isFavorited ? `/user/users/mypage/remove/${shopId}` : `/user/users/mypage/add/${shopId}`;
-      const method = isFavorited ? 'DELETE' : 'POST';
-
-      fetch(url, {
-          method: method,
-          headers: {
-              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-              'Content-Type': 'application/json'
-          },
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (!data.success) {
-              console.error('Failed to update favorite status.');
-          }
-      })
-      .catch(error => console.error('Error:', error));
-  }
-</script>
+    function changeColor(element) {
+        const heartIcon = element.querySelector('.fa-heart');
+        const isFavorited = heartIcon.classList.contains('active');
+        
+        if (isFavorited) {
+            heartIcon.classList.remove('active');
+            element.setAttribute('data-favorited', 'false');
+        } else {
+            heartIcon.classList.add('active');
+            element.setAttribute('data-favorited', 'true');
+        }
+  
+        const shopId = element.getAttribute('data-shop-id');
+        const url = isFavorited ? `/user/users/mypage/remove/${shopId}` : `/user/users/mypage/add/${shopId}`;
+        const method = isFavorited ? 'DELETE' : 'POST';
+  
+        fetch(url, {
+            method: method,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                console.error('Failed to update favorite status.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
 @endsection
