@@ -5,6 +5,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -30,16 +31,22 @@ Route::get('/user/login', [LoginController::class, 'index'])->name('user.login')
 Route::post('/user/login', [LoginController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/users/menu1', [UserController::class,'showMenu1'])->name('user.users.menu1');
-    Route::post('/shop/{shop}/booking', [ShopController::class, 'createBooking'])->name('shop.booking');
-    Route::post('/booking', [BookingController::class, 'store'])->name('booking');
-    Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
-    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
-    Route::get('/user/users/mypage',[UserController::class,'myPage']);
+    // ユーザー関連のルート
+    Route::get('/user/users/menu1', [UserController::class, 'showMenu1'])->name('user.users.menu1');
+    Route::get('/shop/{shop}', [ShopController::class, 'show'])->name('shop.show');
+    Route::post('/shop/{shop}/booking', [UserController::class, 'createBooking'])->name('shop.booking');
+    Route::post('/booking', [UserController::class, 'storeBooking'])->name('booking');
+    Route::get('/booking/done', [UserController::class, 'doneBooking'])->name('booking.done');
+    Route::get('/user/users/mypage', [UserController::class, 'myPage'])->name('mypage');
     Route::get('/user/users/booking/{id}/edit', [UserController::class, 'editBooking'])->name('booking.edit');
-    Route::put('/user/users/booking/{id}', [UserController::class, 'updateBooking'])->name('booking.update');
+    Route::patch('/user/users/booking/{id}', [UserController::class, 'updateBooking'])->name('booking.update');
     Route::delete('/user/users/booking/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
     Route::get('/user/users/favorites', [UserController::class, 'indexFavorites'])->name('user.users.favorites');
+    Route::post('/user/users/mypage/add/{shopId}', [UserController::class, 'addFavorite'])->name('favorites.add');
+    Route::delete('/user/users/mypage/remove/{shopId}', [UserController::class, 'removeFavorite'])->name('favorites.remove');
+    
+    // ログアウト
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
 
 

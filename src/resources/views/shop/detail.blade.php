@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
+@section('js')
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
@@ -77,7 +78,6 @@
         bookingTimeInput.addEventListener('input', updateBookingDetails);
         numberInput.addEventListener('input', updateBookingDetails);
         
-        // 初期表示の更新
         updateBookingDetails();
     });
 </script>

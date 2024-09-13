@@ -10,22 +10,39 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-   public function store(Request $request, $shopId) {
-        $exists = Auth::user()->favorites()->where('shop_id', $shopId)->exists();
+    public function showMyPage() {
+        $user = Auth::user();
 
-        if (!$exists) {
-            Auth::user()->favorites()->create([
-                'shop_id' => $shopId,
-            ]);
-            return redirect()->back()->with('success', '店舗をお気に入りに追加しました');
-        }
+        $shops = Shop::whereHas('favorites', function($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->with('area', 'genre')
+        ->get();
 
-        return redirect()->back()->with('error', 'この店舗は既にお気に入りに追加されています');
+        return view('user.users.mypage', compact('shops'));
     }
 
-    public function destroy($shopId) {
-        Auth::user()->favorites()->where('shop_id', $shopId)->delete();
 
-        return redirect()->back()->with('success', '店舗をお気に入りから削除しました');
-    }
+    public function add(Request $request, $shopId) {
+      $user = Auth::user();
+      
+      Favorite::create([
+        'user_id' => $user->id,
+        'shop_id' => $shopId,
+      ]);
+      return response()->json([]);
+    } 
+
+    public function remove(Request $request, $shopId) {
+      $user = Auth::user();
+      $favorite = Favorite::where('user_id', $user->id)
+      ->where('shop_id', $shopId)
+      ->first();
+
+      if($favorite) {
+        $favorite->delete();
+      }
+
+      return response()->json(['success' => true]);
+   }
 }

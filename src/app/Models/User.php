@@ -48,15 +48,15 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
+
+    public function favorites()
+{
+    return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
+}
 
     public function isAdmin() {
         return $this->role === 'admin';

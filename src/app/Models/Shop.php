@@ -25,6 +25,10 @@ class Shop extends Model
         return $this->belongsTo(Area::class);
     }
 
+    public function users() {
+        return $this->belongsToMany(User::class, 'favorites', 'shop_id', 'user_id');
+    }
+
     public function bookings() {
         return $this->hasMany(Booking::class);
     }

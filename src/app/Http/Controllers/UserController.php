@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\Shop;
+use App\Models\Favorite;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\BookingRequest;
@@ -55,9 +56,10 @@ class UserController extends Controller
     }
 
     public function myPage() {
-        $bookings = Booking::where('user_id', auth()->id())->with('shop')->get();
-        $favorites = Auth::user()->favorites()->with('shop')->get();
-
+        $user = Auth::user();
+        $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
+        $favorites = $user->favorites; 
+    
         return view('user.users.mypage', compact('bookings', 'favorites'));
     }
 
@@ -96,9 +98,6 @@ class UserController extends Controller
         return redirect()->route('user.users.mypage')->with('success', '予約がキャンセルされました');
     }
 
-    public function indexFavorites() {
-        $favorites = Auth::user()->favorites()->with('shop')->get();
-        return view('user.users.favorite', compact('favorites'));
-    }
+    
 }
 
