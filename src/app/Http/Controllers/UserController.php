@@ -70,8 +70,9 @@ class UserController extends Controller
             return redirect()->route('user.users.mypage')->withErrors('該当する予約がありません');
         }
 
-        $shops = Shop::all();
-        return view('user.users.form', compact('booking', 'shops'));
+        $shop = Shop::findOrFail($booking->shop_id);
+
+        return view('user.users.form', compact('booking','shop'));
     }
 
     public function updateBooking(BookingRequest $request, $id) {
@@ -83,7 +84,7 @@ class UserController extends Controller
 
         $booking->update($request->validated());
 
-        return redirect()->route('user.users.mypage')->with('success', '予約が更新されました');
+        return redirect()->route('user.users.form')->with('success', '予約が更新されました');
     }
 
     public function destroyBooking($id) {

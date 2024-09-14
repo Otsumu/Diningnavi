@@ -13,7 +13,7 @@ class BookingController extends Controller
 {
   public function store(BookingRequest $request) {
     if (!Auth::check()) {
-      return redirect()->route('user.register');
+      return redirect()->route('user.menu2')->withErrors(['error' => '会員登録、もしくはログインしてください']);
     }
       
       $data = $request->only(['shop_id', 'booking_date', 'booking_time', 'number']);
@@ -24,7 +24,7 @@ class BookingController extends Controller
       $request->session()->forget(['booking_date', 'booking_time', 'number']);
 
       return redirect()->route('booking.done');
-    }
+  }
 
   public function done() {
       return view('booking.done');

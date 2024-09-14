@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,16 @@
         </div>
     </header>
 
-    <main>    
+    <main>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="menu">
             <nav class="nav__content">
                 <ul class="nav__list">
@@ -26,20 +35,20 @@
                 </ul>
             </nav>
         </div>
-    </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const closeButton = document.getElementById('closeButton');
-            const menu = document.querySelector('.nav__content');
-            
-            if (closeButton && menu) {
-                closeButton.addEventListener('click', function() {
-                    menu.classList.add('hidden');
-                    window.location.href = '/';
-                });
-            }
-        });
-    </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const closeButton = document.getElementById('closeButton');
+                const menu = document.querySelector('.nav__content');
+                
+                if (closeButton && menu) {
+                    closeButton.addEventListener('click', function() {
+                        menu.classList.add('hidden');
+                        window.location.href = '/';
+                    });
+                }
+            });
+        </script>
+    </main>
 </body>
 </html>

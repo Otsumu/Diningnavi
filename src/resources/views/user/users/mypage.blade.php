@@ -37,11 +37,11 @@
                                 <div class="booking_item booking_value" data-type="number">{{ $booking->number ?? '未設定' }}人</div>
                             </div>
                             <div class="booking_actions">
-                                <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">予約の変更</a>
+                                <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">変更</a>
                                 <form action="{{ route('booking.cancel', $booking->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">予約のキャンセル</button>
+                                    <button type="submit" class="btn btn-danger">キャンセル</button>
                                 </form>
                             </div>
                         </div>
