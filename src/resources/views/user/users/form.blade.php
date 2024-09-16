@@ -1,20 +1,29 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/form.css') }}">
 @endsection
 
 @section('content')
     <div class="booking-update-form">
-        <h2>ご予約の変更</h2>
-        <form action="{{ route('booking.update', $booking->id) }}" method="POST">
-            @csrf
-            <input type="hidden" name="shop_id" value="{{ $booking->shop_id }}">
-            <div class="form-group">
-                <input type="date" id="booking_date" name="booking_date" value="{{ $booking->booking_date }}" required>
-                <input type="time" id="booking_time" name="booking_time" value="{{ $booking->booking_time }}" required>
-                <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="100" required>
-            </div>
+        <div class="booking__left-content">
+            <h2 class="booking-change">ご予約の変更</h2>
+            <form action="{{ route('booking.update', $booking->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <input type="hidden" name="shop_id" value="{{ $booking->shop_id }}">
+                <div class="form-group">
+                    <span class="shop-name">{{ $shop->name }}</span>
+                    <div class="shop_image">
+                        <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
+                    </div>
+                    <input type="date" id="booking_date" name="booking_date" value="{{ $booking->booking_date }}" required>
+                    <input type="time" id="booking_time" name="booking_time" value="{{ $booking->booking_time }}" required>
+                    <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="100" required>
+                </div>
+        </div>
+
+        <div class="booking__right-content">
             <div class="booking_confirm">
                 <div class="booking_detail">
                     <div class="booking_row">
@@ -31,14 +40,20 @@
                     </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Number</div>
-                        <div class="booking_item booking_value" data-type="number">{{ $booking->booking_number ?? '未設定' }}</div>
+                        <div class="booking_item booking_value" data-type="number">{{ $booking->number ?? '未設定' }}</div>
                     </div>
                 </div>
+                <div class="change-comment">
+                    <p>上記の内容に変更でお間違えなければ<br>「変更する」ボタンを押してください</p>
+                </div>
+                <button type="submit" class="btn-booking">変更する</button>  
             </div>
-                <button type="submit" class="btn btn-booking">変更する</button>
-            </form>
-    </div>
+        </div>
+    </form>
+    </div>    
+@endsection
 
+@section('js')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const bookingDateInput = document.getElementById('booking_date');

@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
-@section('js')
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
@@ -49,7 +48,7 @@
                     </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Number</div>
-                        <div class="booking_item booking_value" data-type="number">{{ $bookingData['number'] ?? '未設定' }}</div>
+                        <div class="booking_item booking_value" data-type="number">{{ $bookingData['number'] ?? '未設定' }}人</div>
                     </div>
                 </div>
             </div>
@@ -57,7 +56,9 @@
             </form>
     </div>
 </div>
+@endsection
 
+@section('js')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const bookingDateInput = document.getElementById('booking_date');

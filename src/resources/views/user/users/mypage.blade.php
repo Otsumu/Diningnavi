@@ -10,11 +10,16 @@
     @endif
 
     <div class="mypage__content">
-        <!-- 予約状況 -->
+
         <div class="left-content">
             <h3 class="booking-title">予約状況</h3>
+            @if (session('success'))
+              <div class="alert alert-success">
+                {{ session('success') }}
+              </div>
+            @endif
             @if($bookings->isEmpty())
-                <p>現在ご予約はありません。</p>
+                <p style="font-size: 16px; padding: 5px;">現在ご予約はありません</p>
             @else
                 @foreach($bookings as $booking)
                     <div class="booking_confirm">
@@ -50,11 +55,10 @@
             @endif
         </div>
         
-        <!-- お気に入り店舗 -->
         <div class="right-content">
             <h3 class="favorites-title">お気に入り店舗</h3>
             @if($favorites->isEmpty())
-                <p>お気に入り登録店はありません。</p>
+                <p style="font-size: 16px; padding: 5px;">お気に入り登録店はありません</p>
             @else
                 <div class="shop__list">
                     @foreach($favorites as $shop)

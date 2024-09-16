@@ -1,0 +1,141 @@
+header {
+    height: 60px; 
+}
+
+.booking-update-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 20px; 
+}
+
+.booking__left-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.booking-change {
+    margin-top: 50px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.shop-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px; 
+}
+
+.shop__img {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.booking__right-content {
+    color: white;
+    margin-top: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px; 
+    flex-direction: column;
+    width: auto; 
+    max-width: 100%;
+    padding: 15px;
+}
+
+input[type="date"], 
+input[type="time"], 
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 30px; 
+    font-family: 'Arial', sans-serif;
+    font-size: 14px; 
+}
+
+input[type="time"], 
+input[type="number"] {
+    -webkit-appearance: none; 
+    appearance: none; 
+}
+
+input[type="date"] {
+    max-width: 33%; 
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="number"]::-webkit-inner-spin-button {
+    display: block;
+    color: gray;
+}
+
+.booking_confirm {
+    background-color: #4981f1; 
+    border-radius: 5px;
+    font-size: 16px;
+    max-width: 700px;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.booking_detail {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 50px;
+    gap: 8px;
+    align-items: left;
+    max-width: 300px;
+}
+
+.booking_row {
+    display: contents; 
+}
+
+
+.booking_label {
+    font-weight: bold;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.booking_value {
+    text-align: left;
+}
+
+.change-comment {
+    font-size: 14px;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+.btn-booking {
+    background-color: rgb(4, 21, 214); 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    height: 60px;
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.btn-booking:hover {
+    opacity: 0.7; 
+}

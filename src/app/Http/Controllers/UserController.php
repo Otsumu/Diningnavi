@@ -28,7 +28,7 @@ class UserController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect()->route('user.thanks')->with('success', 'アカウントが作成されました');
+        return redirect()->route('user.thanks');
     }
 
     public function loginForm() {
@@ -41,7 +41,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('user.users.menu1');
         }
-        return redirect()->back()->withErrors('ログインできません');
+        return redirect()->back();
     }
 
     public function showMenu2() {
@@ -58,47 +58,29 @@ class UserController extends Controller
     public function myPage() {
         $user = Auth::user();
         $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
-        $favorites = $user->favorites; 
+        $favorites = $user->favorites;
     
         return view('user.users.mypage', compact('bookings', 'favorites'));
     }
 
     public function editBooking($id) {
         $booking = Booking::findOrFail($id);
-
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('user.users.mypage')->withErrors('該当する予約がありません');
-        }
-
         $shop = Shop::findOrFail($booking->shop_id);
 
-        return view('user.users.form', compact('booking','shop'));
+        return view('user.users.form', compact('booking', 'shop'));
     }
 
     public function updateBooking(BookingRequest $request, $id) {
         $booking = Booking::findOrFail($id);
-
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('user.users.mypage')->withErrors('該当する予約がありません');
-        }
-
         $booking->update($request->validated());
 
-        return redirect()->route('user.users.form')->with('success', '予約が更新されました');
+        return redirect()->route('mypage')->with('success', '予約が更新されました');
     }
 
     public function destroyBooking($id) {
         $booking = Booking::findOrFail($id);
-
-        if (Auth::id() !== $booking->user_id) {
-            return redirect()->route('user.users.mypage')->withErrors('予約が見つかりません');
-        }
-
         $booking->delete();
 
-        return redirect()->route('user.users.mypage')->with('success', '予約がキャンセルされました');
+        return redirect()->route('mypage')->with('success', 'ご予約をキャンセルしました');
     }
-
-    
 }
-
