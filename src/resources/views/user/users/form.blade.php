@@ -6,51 +6,44 @@
 
 @section('content')
     <div class="booking-update-form">
-        <div class="booking__left-content">
+        <div class="booking-header">
             <h2 class="booking-change">ご予約の変更</h2>
-            <form action="{{ route('booking.update', $booking->id) }}" method="POST">
-                @csrf
-                @method('PATCH')
-                <input type="hidden" name="shop_id" value="{{ $booking->shop_id }}">
-                <div class="form-group">
-                    <span class="shop-name">{{ $shop->name }}</span>
-                    <div class="shop_image">
-                        <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
-                    </div>
-                    <input type="date" id="booking_date" name="booking_date" value="{{ $booking->booking_date }}" required>
-                    <input type="time" id="booking_time" name="booking_time" value="{{ $booking->booking_time }}" required>
-                    <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="100" required>
-                </div>
         </div>
+        <form action="{{ route('booking.update', $booking->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
+            <input type="hidden" name="shop_id" value="{{ $booking->shop_id }}">
 
-        <div class="booking__right-content">
-            <div class="booking_confirm">
-                <div class="booking_detail">
-                    <div class="booking_row">
-                        <div class="booking_item booking_label">Shop</div>
-                        <div class="booking_item booking_value">{{ $shop->name }}</div>
-                    </div>
-                    <div class="booking_row">
-                        <div class="booking_item booking_label">Date</div>
-                        <div class="booking_item booking_value" data-type="date">{{ $booking->booking_date ?? '未設定' }}</div>
-                    </div>
-                    <div class="booking_row">
-                        <div class="booking_item booking_label">Time</div>
-                        <div class="booking_item booking_value" data-type="time">{{ $booking->booking_time ?? '未設定' }}</div>
-                    </div>
-                    <div class="booking_row">
-                        <div class="booking_item booking_label">Number</div>
-                        <div class="booking_item booking_value" data-type="number">{{ $booking->number ?? '未設定' }}</div>
-                    </div>
-                </div>
-                <div class="change-comment">
-                    <p>上記の内容に変更でお間違えなければ<br>「変更する」ボタンを押してください</p>
-                </div>
-                <button type="submit" class="btn-booking">変更する</button>  
+            <div class="form-group">
+                <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
             </div>
-        </div>
-    </form>
-    </div>    
+
+            <div class="form-group">
+                <label for="shop_name">Shop</label>
+                <span>{{ $shop->name }}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="booking_date">Date</label>
+                <input type="date" id="booking_date" name="booking_date" value="{{ $booking->booking_date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="booking_time">Time</label>
+                <input type="time" id="booking_time" name="booking_time" value="{{ $booking->booking_time }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="number">Number</label>
+                <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <a href="{{ route('mypage') }}" class="btn-back">戻る</a>
+                <button type="submit" class="btn-booking">変更する</button>
+            </div>
+        </form>
+    </div>
 @endsection
 
 @section('js')

@@ -92,9 +92,9 @@ header {
 }
 
 .menu {
-    display: none; /* 初期状態で非表示 */
+    display: none;
 }
 
 .menu.show {
-    display: block; /* 表示 */
+    display: block;
 }
