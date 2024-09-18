@@ -56,40 +56,79 @@
 
 .auth-form__error-message {
     color: red;
-    font-size: 12px;
-    margin-bottom: 5px;
-    margin-left: 35px;
+    margin-top: 5px;
+    margin-left: 20px;
+    text-align: left; 
+    font-size: 14px;
 }
 
-.register-btn {
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    margin-right: 25px;
+}
+
+.register-btn, .btn-back {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.register-admin-btn {
     background-color: rgb(73, 99, 246);
     color: #ffffff;
-    padding: 4px 10px; 
+    padding: 5px 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-align: center; 
     display: block;
     margin-left: 80%;
-    margin-top: 20px;
-    font-size: 12px; 
+    margin-top: 25px;
+    font-size: 12px;
+}
+
+.register-btn {
+    background-color: rgb(73, 99, 246);
+    color: #ffffff;
+}
+
+.register-btn:hover {
+    opacity: 0.7;
+}
+
+.btn-back {
+    background-color: rgb(200, 200, 200);
+    color: black;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    opacity: 0.7;
 }
 
 .login-btn {
     background-color: rgb(73, 99, 246);
     color: #ffffff;
-    padding: 3px 6px; 
+    padding: 4px 8px; 
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-align: center; 
     display: block;
-    margin-left: 75%;
+    margin-left: 76%;
     margin-top: 25px;
     font-size: 12px; 
 }
 
-.register-btn:hover,.login-btn:hover {
-    opacity: 0.7;
+.confirm-message {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #333;
 }
-

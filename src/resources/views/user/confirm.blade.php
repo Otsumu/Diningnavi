@@ -10,6 +10,7 @@
     @csrf
   <div class="auth-item">
     <h2 class="auth-title">Admin</h2>
+    <p class="confirm-message">この内容で登録してよろしいですか？</p> 
       <div class="input-group">
         <i class="fa-solid fa-user"></i>
         <input type="text" id="name" name="name" value="{{ $data['name'] }}" readonly>
@@ -25,9 +26,11 @@
         <input type="password" id="password" name="password" placeholder="Password" readonly>
       </div>
       
-      <button class="register-btn" type="submit">登録</button>
-      <a href="{{ route('user.register') }}" class="back-btn">戻る</a>
-    </div>
+      <div class="button-group">
+          <a href="{{ route('user.register') }}" class="btn-back">戻る</a>
+          <button class="register-btn" type="submit">登録</button>
+      </div> 
+  </div>
   </form>
 </main>
 @endsection

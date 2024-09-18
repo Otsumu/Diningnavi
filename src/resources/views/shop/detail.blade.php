@@ -28,7 +28,7 @@
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">
-                <input type="date" id="booking_date" name="booking_date" required>
+                <input type="date" id="booking_date" name="booking_date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"  required>
                 <input type="time" id="booking_time" name="booking_time" required>
                 <input type="number" id="number" name="number" min="1" max="100" required>
             </div>
@@ -45,7 +45,6 @@
                     <div class="booking_row">
                         <div class="booking_item booking_label">Time</div>
                         <div class="booking_item booking_value" data-type="time">{{ $bookingData['booking_time'] ?? '未設定' }}</div>
-                    </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Number</div>
                         <div class="booking_item booking_value" data-type="number">{{ $bookingData['number'] ?? '未設定' }}人</div>

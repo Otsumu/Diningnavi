@@ -18,7 +18,7 @@ class LoginController extends Controller {
     
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/user/users/menu1');
+            return redirect()->route('home');
         }
 
         return back()->withErrors([

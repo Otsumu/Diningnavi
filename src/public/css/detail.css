@@ -93,7 +93,7 @@ input[type="number"] {
     box-sizing: border-box;
     height: 30px;
     font-family: 'Arial', sans-serif;
-    font-size: 12px; 
+    font-size: 14px; 
 }
 
 input[type="time"], 
@@ -113,7 +113,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .booking_confirm {
-    font-size: 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
     max-width: 100%; 
     padding: 0 15px;
     margin-top: 8px;
@@ -131,6 +132,7 @@ input[type="number"]::-webkit-inner-spin-button {
     gap: 8px;
     align-items: start;
     width: 100%;
+    padding: 10px;
 }
 
 .booking_row {
@@ -160,7 +162,9 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 50px;
     box-sizing: border-box;
     position: absolute; 
-    bottom: 0px;
+    bottom: 0;
+    left: 0; /* 左から0 */
+    margin: 0; 
     transition: opacity 0.3s ease;
 }
 

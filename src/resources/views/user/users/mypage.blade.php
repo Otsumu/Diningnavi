@@ -35,7 +35,8 @@
                             </div>
                             <div class="booking_row">
                                 <div class="booking_item booking_label">Time</div>
-                                <div class="booking_item booking_value" data-type="time">{{ $booking->booking_time ?? '未設定' }}</div>
+                                <div class="booking_item booking_value" data-type="time">
+                                    {{ \Carbon\Carbon::parse($booking->booking_time)->format('H:i') ?? '未設定' }}</div>
                             </div>
                             <div class="booking_row">
                                 <div class="booking_item booking_label">Number</div>
