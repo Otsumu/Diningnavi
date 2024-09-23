@@ -82,42 +82,81 @@
                 </div>
             @endif
         </div>
+    
+        <div class="review-content">
+            <h3 class="reviews-title">レビュー一覧</h3>
+            @if($bookings->isEmpty())
+                <p style="font-size: 16px; padding: 5px;">ご利用がないとレビューは投稿できません</p>
+            @else
+                <a href="{{ route('review.create', ['bookingId' => $bookings->first()->id]) }}" class="btn-review">レビューを書く</a>
+            @endif
+
+            @if($reviews->isEmpty())
+                <p style="font-size: 16px; padding: 5px; ">現在レビューの投稿はありません</p>
+            @else
+                <div class="review__list">
+                    @foreach($reviews as $review)
+                        <div class="review__content">
+                            <h2>{{ $review->shop->name }}</h2>
+                            <p>#{{ $review->shop->area->name }} #{{ $review->shop->genre->name }}</p>
+                                <div class="review__rating">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= $review->rating)
+                                            <span class="star filled">★</span>
+                                        @else
+                                            <span class="star">☆</span>
+                                        @endif
+                                    @endfor
+                                </div>
+                            <p>{{ $review->review }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif    
+        </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.favorite-shop').forEach(function(button) {
-                button.addEventListener('click', function() {
-                    const shopId = this.getAttribute('data-shop-id');
-                    const isFavorited = this.getAttribute('data-favorited') === 'true';
-                    const url = isFavorited ? `/favorite/remove/${shopId}` : `/favorite/add/${shopId}`;
-                    const method = isFavorited ? 'DELETE' : 'POST';
-
-                    fetch(url, {
-                        method: method,
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json'
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            const heartIcon = this.querySelector('.heart-icon');
-                            if (isFavorited) {
-                                heartIcon.classList.remove('active');
-                                this.setAttribute('data-favorited', 'false');
-                            } else {
-                                heartIcon.classList.add('active');
-                                this.setAttribute('data-favorited', 'true');
-                            }
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.favorite-shop').forEach(button => {
+            button.addEventListener('click', function() {
+                const shopId = this.getAttribute('data-shop-id');
+                const isFavorited = this.getAttribute('data-favorited') === 'true';
+            
+            if (isFavorited) {
+                fetch(`/user/users/mypage/remove/${shopId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        const shopItem = this.closest('.shop__item');
+                        shopItem.remove();
+                        showMessage('お気に入りから削除しました');
+                    }
                 });
-            });
+            }
         });
-    </script>
+    });
+});
+    function showMessage(message) {
+        const div = document.createElement('div');
+        div.textContent = message;
+        div.className = 'alert alert-success';
+
+        div.style.marginTop = '0px';
+        div.style.padding = '10px';
+        div.style.fontSize = '16px';
+        const target = document.querySelector('.favorites-title');
+        target.insertAdjacentElement('afterend', div); 
+
+        setTimeout(() => {
+            div.remove();
+        }, 3000);
+    }
+</script>
 @endsection
 
 

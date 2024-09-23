@@ -1,0 +1,84 @@
+.review-content {
+    padding: 20px 20px 70px 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.review-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center; /* タイトルを中央寄せ */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-right: 15px;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #407bf3;
+    outline: none;
+}
+
+#rating {
+    font-size: 24px;
+    display: flex;
+    margin-left: 25px;
+}
+
+.star {
+    cursor: pointer;
+    margin-right: 5px;
+    color: lightgray;
+    transition: color 0.2s;
+}
+
+.star:hover {
+    color: gold;
+}
+
+.btn-review {
+    background-color: rgb(63, 90, 242);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute; /* ボタンを右下に配置 */
+    right: 20px; 
+    bottom: 10px;
+}
+
+.btn-review:hover {
+    background-color: rgb(53, 80, 232);
+}

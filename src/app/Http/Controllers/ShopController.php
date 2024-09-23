@@ -15,9 +15,21 @@ class ShopController extends Controller {
         $this->middleware('auth')->except(['index', 'show','search']);
     }
 
-    public function index() {
-        $shops = Shop::all(); 
-        return view('shop.index', compact('shops'));
+    public function index(Request $request) {
+        $genreId = $request->input('genre');
+        $areaId = $request->input('area');
+        $keyword = $request->input('keyword');
+        
+        $shops = Shop::query()
+            ->genre($genreId)
+            ->area($areaId)
+            ->keyword($keyword)
+            ->get();
+
+        $areas = Area::all();
+        $genres = Genre::all();
+        
+        return view('shop.index', compact('shops','areas','genres'));
     }
 
     public function show($shop_id) {
@@ -66,21 +78,4 @@ class ShopController extends Controller {
         return redirect()->route('shop.detail', $id)->with('success', '店舗情報を更新しました');
     }
 
-    public function search(Request $request) {
-        $genreId = $request->input('genre_id');
-        $areaId = $request->input('area_id');
-        $keyword = $request->input('keyword');
-        
-        $shops = Shop::query()
-            ->genre($genreId)
-            ->area($areaId)
-            ->keyword($keyword)
-            ->get();
-        
-        return view('shop.index', [
-            'shops' => $shops,
-            'areas' => Area::all(),
-            'genres' => Genre::all(),
-        ]);
-    }
 }

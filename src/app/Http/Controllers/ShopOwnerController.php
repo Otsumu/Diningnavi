@@ -4,48 +4,74 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ShopRequest;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Booking;
 use App\Models\Review;
-use App\Models\Genre;  
-use App\Models\Area;   
+use App\Models\Genre;
+use App\Models\Area;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ShopOwnerController extends Controller
-{
+{   
     public function __construct() {
         $this->middleware(function ($request, $next) {
-            if (!Auth::user()->isShopOwner()) {
-                return redirect()->route('shop_owner.login')->withErrors('権限がありません');
+            if (!Auth::check() || !Auth::user()->isShopOwner()) {
+                return redirect()->route('shop_owner.login');
             }
             return $next($request);
-        });
+        })->except(['registerForm','register','confirm','store','loginForm', 'login']);
     }
 
-    public function shopownerRegisterForm() {
+    public function registerForm() {
         return view('shop_owner.register');
     }
 
-    public function shopownerRegister(Request $request) {
+    public function register(RegisterRequest $request) {
         $validated = $request->validated();
+        $request->session()->put('register_data', $validated);
+    
+        return redirect()->route('shop_owner.confirm');
+    }
+
+    public function confirm() {
+        $registerData = session('register_data');
+    
+        if (!$registerData) {
+            return redirect()->route('shop_owner.register');
+        }
+    
+        return view('shop_owner.confirm', ['data' => $registerData]);
+    }
+
+    public function store(Request $request) {
+        $registerData = session('register_data');
+
+        if (!$registerData) {
+            return redirect()->route('shop_owner.register');
+        }
 
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-            'role' => 'shop_owner',
+            'name' => $registerData['name'],
+            'email' => $registerData['email'],
+            'password' => Hash::make($registerData['password']),
+            'role' => 'shop_owner', 
         ]);
 
         Auth::login($user);
-        return redirect()->route('shop_owner.login')->with('success', '店舗代表者アカウントが作成されました');
+        $request->session()->forget('register_data');
+
+        return redirect()->route('shop_owner.login')->with('message', '会員登録できました');
     }
 
-    public function shopownerLoginForm() {
+    public function loginForm() {
         return view('shop_owner.login');
     }
 
-    public function shopownerLogin(Request $request) {
+    public function login(LoginRequest $request) {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials) && Auth::user()->isShopOwner()) {
@@ -58,7 +84,7 @@ class ShopOwnerController extends Controller
         return view('shop_owner.shops.form');
     }
 
-    public function store(Request $request) {
+    public function storeForm(ShopRequest $request) {
         $shop = Auth::user()->shops()->create($request->validated());
 
         return redirect()->route('shop_owner.shops.index')->with('success', '店舗情報を作成しました');
@@ -90,6 +116,17 @@ class ShopOwnerController extends Controller
         $bookings = Booking::whereIn('shop_id', $shopIds)->get();
 
         return view('shop_owner.shops.bookings',compact('bookings'));
+    }
+
+    public function destroy(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $request->session()->flash('success', 'ログアウトしました');
+
+        return redirect('/');
     }
 
 }

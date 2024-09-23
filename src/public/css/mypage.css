@@ -8,18 +8,16 @@
 
 .mypage__content {
     display: grid;
-    grid-template-columns: 1.5fr 2fr; 
-    gap: 16px; 
+    grid-template-columns: 1.5fr 1.5fr 1.5fr; 
+    gap: 15px; 
     margin-top: 30px;
 }
 
-.left-content {
-    padding: 7px;
-}
-
-.right-content {
-    padding: 7px;
-    margin-right: auto;
+.left-content,
+.right-content,
+.review-content {
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .booking-title {
@@ -32,10 +30,11 @@
     color: white;
     border-radius: 5px;
     font-size: 14px;
-    max-width: 400px;
+    max-width:400px;
     padding: 18px;
     margin-top: 3px;
     text-align: left;
+    gap: 15px; 
     position: relative;
 }
 
@@ -100,21 +99,19 @@
 }
 
 .shop__list {
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 30px; 
+    gap: 15px;
     justify-content: flex-start;
 }
 
 .shop__item {
-    width: 50%;
-    max-width: calc(50% - 30px);
-    flex: 0 0 calc(50% - 30px);
+    width: 80%;
+    max-width: calc(80% - 20px);
+    flex: 0 0 calc(80% - 20px);
     box-sizing: border-box;
     border-radius: 5px;
     box-shadow: 2px 2px 5px gray;
     text-align: left;
-    margin-bottom: 30px; /* 下部の余白を追加 */
+    margin-bottom: 30px;
 }
 
 .shop__img { 
@@ -180,4 +177,42 @@
     margin-bottom: 5px;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+.review-content {
+    display: block;
+    padding: 10px;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.reviews-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.review__list {
+    background-color: #407bf3; 
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 400px;
+    padding: 18px;
+    margin-top: 3px;
+    text-align: left;
+    position: relative;
+}
+
+.review__content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    padding: 0 40px 40px 10px;
+}
+
+.btn-review {
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }

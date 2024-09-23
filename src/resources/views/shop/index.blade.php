@@ -109,5 +109,23 @@
         })
         .catch(error => console.error('Error:', error));
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const areaSelect = document.querySelector('select[name="area"]');
+        const genreSelect = document.querySelector('select[name="genre"]');
+        const form = document.querySelector('form');
+
+        if (areaSelect) {
+            areaSelect.addEventListener('change', function() {
+                form.submit();
+            });
+        }
+
+        if (genreSelect) {
+            genreSelect.addEventListener('change', function() {
+                form.submit();
+            });
+        }
+    });
   </script>
 @endsection

@@ -43,20 +43,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function bookings()
-    {
+    public function bookings() {
         return $this->hasMany(Booking::class);
     }
 
-    public function reviews()
-    {
+    public function reviews() {
         return $this->hasMany(Review::class);
     }
 
-    public function favorites()
-{
+    public function favorites() {
     return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
-}
+    }
+
+    public function scopeAdmin($query) {
+        return $query->where('role', 'admin');
+    }
+
+    public function scopeShopOwner($query) {
+        return $query->where('role', 'shop_owner');
+    }
+
+    public function scopeRegularUser($query) {
+        return $query->where('role', 'user');
+    }
 
     public function isAdmin() {
         return $this->role === 'admin';

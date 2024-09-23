@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Booking;
 use App\Models\Shop;
 use App\Models\Favorite;
+use App\Models\Review;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\BookingRequest;
@@ -59,8 +60,16 @@ class UserController extends Controller
         $user = Auth::user();
         $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
         $favorites = $user->favorites;
+
+        $bookingId = $bookings->isNotEmpty() ? $bookings->last()->id : null;
+        
+        $reviews = Review::with('shop.area', 'shop.genre')
+                     ->when($bookingId, function($query) use ($bookingId) {
+                         return $query->where('booking_id', $bookingId);
+                     })
+                     ->get();
     
-        return view('user.users.mypage', compact('bookings', 'favorites'));
+        return view('user.users.mypage', compact('bookings', 'favorites','reviews'));
     }
 
     public function editBooking($id) {

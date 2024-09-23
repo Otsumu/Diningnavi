@@ -8,7 +8,7 @@
 <div class="shop__content">
     <div class="shop__left-content">
         <div class="shop__detail">
-            <a href="{{ $backRoute ?? '' }}" class="page-back"></a>
+            <a href="{{ $backRoute }}" class="page-back"></a>
             <span class="shop-name">{{ $shop->name }}</span>
         </div>
         <div class="shop_image">

@@ -52,8 +52,21 @@
 .search__item {
     display: flex;
     align-items: center;
-    flex-grow: 1;
+    width: 100%;
     margin-left: auto;
+}
+
+.search__item label {
+    width: 100%;
+}
+
+.search__item-input {
+    border: none;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .search__item-button {
@@ -65,15 +78,6 @@
 .search__item-button i {
     font-size: 16px;
     color: lightgray;
-}
-
-.search__item-input {
-    border: none;
-    padding: 8px;
-    font-size: 12px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .homepage {

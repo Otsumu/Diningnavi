@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     public function index() {
-        $reviews = Auth::user()->reviews;
+        $reviews = Review::with(['booking_user','booking_shop'])->get();
         return view('review.index', compact('reviews'));
     }
 
     public function create($bookingId) {
-        return view('review.form', ['bookingId' => $bookingId]);
+        $review = Review::where('booking_id', $bookingId)->first();
+        $booking = Booking::with('shop')->findOrFail($bookingId);
+    
+        return view('review.form', compact('bookingId', 'review', 'booking'));
     }
 
     public function confirm(ReviewRequest $request) {
