@@ -85,21 +85,33 @@
     
         <div class="review-content">
             <h3 class="reviews-title">レビュー一覧</h3>
+        
+            @if(session('success-review'))
+                <div class="alert alert-success">
+                    {{ session('success-review') }}
+                </div>
+            @endif
+
             @if($bookings->isEmpty())
-                <p style="font-size: 16px; padding: 5px;">ご利用がないとレビューは投稿できません</p>
+                <p class="notice-text">ご利用がないとレビューは投稿できません</p>
             @else
                 <a href="{{ route('review.create', ['bookingId' => $bookings->first()->id]) }}" class="btn-review">レビューを書く</a>
             @endif
-
+    
             @if($reviews->isEmpty())
-                <p style="font-size: 16px; padding: 5px; ">現在レビューの投稿はありません</p>
+                <p class="notice-text">現在レビューの投稿はありません</p>
             @else
                 <div class="review__list">
                     @foreach($reviews as $review)
                         <div class="review__content">
-                            <h2>{{ $review->shop->name }}</h2>
-                            <p>#{{ $review->shop->area->name }} #{{ $review->shop->genre->name }}</p>
-                                <div class="review__rating">
+                            <div class="shop-info">
+                                <p class="shop-text">Shop {{ $review->booking->shop->name }}</p>
+                                <p class="shop-text">Date  {{ $review->booking->booking_date }}</p>
+                            </div>
+        
+                            <div class="review__rating">
+                                <span style="font-size: 14px;">Rating</span>
+                                <div class="stars">
                                     @for($i = 1; $i <= 5; $i++)
                                         @if($i <= $review->rating)
                                             <span class="star filled">★</span>
@@ -108,11 +120,19 @@
                                         @endif
                                     @endfor
                                 </div>
-                            <p>{{ $review->review }}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <p class="title-text">Title {{ $review->title }}</p>
+                            </div>
+        
+                            <div class="form-group">
+                                <p class="review-text">Review  {{ $review->review }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
-            @endif    
+            @endif
         </div>
     </div>
 

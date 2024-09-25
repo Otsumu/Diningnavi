@@ -42,43 +42,7 @@ class ReviewController extends Controller
         $review->user_id = Auth::id();
         $review->save();
 
-        return redirect()->route('user.users.mypage')
-        ->with('success', 'レビューが投稿されました');
-    }
-
-    public function edit($id) {
-        $review = Review::findOrFail($id);
-        if (Auth::id() !== $review->user_id) {
-            return redirect()->route('review.index')->withErrors('投稿できません');
-        }
-        return view('review.form', compact('review'));
-    }
-
-    public function update(ReviewRequest $request, $id) {
-        $validated = $request->validated();
-
-        $review = Review::findOrFail($id);
-        if (Auth::id() !== $review->user_id) {
-            return redirect()->route('review.index')->withErrors('更新できません');
-        }
-
-        $review->title = $validated['title'] ?? $review->title;
-        $review->review = $validated['review'] ?? $review->review;
-        $review->rating = $validated['rating'] ?? $review->rating;
-        $review->save();
-
-        return redirect()->route('review.index')->with('success', 'レビューを更新しました');
-    }
-
-    public function destroy($reviewId) {
-        $review = Auth::user()->reviews()->find($reviewId);
-
-        if (!$review) {
-            return redirect()->back()->withErrors('指定のレビューが見つかりません');
-        }
-
-        $review->delete();
-        return redirect()->back()->with('success', 'レビューを削除しました');
+        return redirect()->route('user.users.mypage')->with('success-review', 'レビューが投稿されました');
     }
 }
 

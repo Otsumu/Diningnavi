@@ -179,11 +179,13 @@
     box-sizing: border-box;
 }
 
-.review-content {
-    display: block;
-    padding: 10px;
-    margin-right: auto;
-    margin-bottom: 20px;
+.review__content {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+    background-color: #fff;
+    display: flex; /* Flexboxを使用して横並びに */
+    flex-direction: column; 
 }
 
 .reviews-title {
@@ -191,28 +193,56 @@
     font-weight: bold;
 }
 
-.review__list {
-    background-color: #407bf3; 
-    color: white;
-    border-radius: 5px;
+.shop-info p,
+.review__rating p,
+.title-text,
+.review-text {
     font-size: 14px;
-    max-width: 400px;
-    padding: 18px;
-    margin-top: 3px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.shop-info, .review__rating, .form-group {
+    margin-bottom: 10px;
     text-align: left;
-    position: relative;
 }
 
-.review__content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 14px;
-    padding: 0 40px 40px 10px;
+.review__rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.btn-review {
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.review__rating .star {
+    color: lightgray;
+    margin-right: 3px;
+}
+
+.review__rating .star.filled {
+    color: #ffcc00;
+}
+
+.review__rating span {
+    margin-right: 5px;
+}
+
+.shop-text, .title-text, .review-text {
+    font-size: 14px;
+    margin: 5px 0px;
+    color: #333;
+}
+
+.alert.alert-success {
+    padding: 10px;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .review__content {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 }
