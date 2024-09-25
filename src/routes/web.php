@@ -52,10 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/users/form/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
     Route::post('/user/users/mypage/add/{shopId}', [FavoriteController::class, 'add'])->name('favorites.add');
     Route::delete('/user/users/mypage/remove/{shopId}', [FavoriteController::class, 'remove'])->name('favorites.remove');
-    Route::get('/review', [ReviewController::class, 'index']);
+
     Route::get('/review/form/{bookingId}', [ReviewController::class, 'create'])->name('review.create');
     Route::get('/review/confirm', [ReviewController::class, 'confirm'])->name('review.confirm');
-    Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('/user/users/mypage', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/user/users/mypage', [UserController::class, 'mypage'])->name('user.users.mypage');
     
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     

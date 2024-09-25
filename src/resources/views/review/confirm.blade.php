@@ -27,9 +27,9 @@
         <div class="review__rating">
             @for($i = 1; $i <= 5; $i++)
                 @if($i <= $validated['rating'])
-                    <span class="star filled">★</span>
+                    <span class="star filled confirm-star">★</span>
                 @else
-                    <span class="star">☆</span>
+                    <span class="star confirm-star">☆</span>
                 @endif
             @endfor
         </div>
@@ -47,10 +47,9 @@
             <input type="hidden" name="review" value="{{ $validated['review'] }}">
             <input type="hidden" name="rating" value="{{ $validated['rating'] }}">
             <input type="hidden" name="booking_id" value="{{ $validated['booking_id'] }}">
-            <button type="submit" class="btn btn-confirm">投稿する</button>
+            <a href="{{ route('review.create', ['bookingId' => $validated['booking_id']]) }}" class="btn btn-cancel">修正する</a>
+            <button type="submit" class="btn btn-review">投稿する</button>
         </form>
-        
-        <a href="{{ route('review.create', ['bookingId' => $validated['booking_id']]) }}" class="btn btn-cancel">修正する</a>
     </div>
 </div>
 

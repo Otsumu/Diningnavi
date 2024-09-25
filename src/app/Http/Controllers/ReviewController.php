@@ -10,20 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function index() {
-        $reviews = Review::with(['booking_user','booking_shop'])->get();
-        return view('review.index', compact('reviews'));
-    }
-
     public function create($bookingId) {
+
         $review = Review::where('booking_id', $bookingId)->first();
-        $booking = Booking::with('shop')->findOrFail($bookingId);
-    
-        return view('review.form', compact('bookingId', 'review', 'booking'));
+
+        $booking = Booking::with('shop')->where('id', $bookingId)->first();
+        $shop_name = $booking->shop->name;
+        $booking_date = $booking->booking_date;
+            
+        return view('review.form', compact('bookingId', 'review', 'booking','shop_name','booking_date'));
     }
 
     public function confirm(ReviewRequest $request) {
         $validated = $request->validated();
+
+        $booking = Booking::with('shop')->findOrFail($validated['booking_id']);
+        $validated['shop_name'] = $booking->shop->name;
+        $validated['booking_date'] = $booking->booking_date;
+
         return view('review.confirm', compact('validated'));
     }
 
@@ -38,7 +42,7 @@ class ReviewController extends Controller
         $review->user_id = Auth::id();
         $review->save();
 
-        return redirect()->route('review.index')
+        return redirect()->route('user.users.mypage')
         ->with('success', 'レビューが投稿されました');
     }
 

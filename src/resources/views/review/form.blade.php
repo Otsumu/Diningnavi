@@ -9,14 +9,14 @@
     <h2>レビュー投稿</h2>
     <div class="shop-info">
         <p style="font-size: 16px; margin-right: 10px;">
-            <strong>ご利用店 :</strong>  {{ $booking->shop->name }}
+            <strong>ご利用店 :</strong> {{ $shop_name ?? '不明' }}
         </p>
         <p style="font-size: 16px; margin-right: 10px;">
-            <strong>ご利用日 :</strong> {{ $booking->booking_date ? \Carbon\Carbon::parse($booking->booking_date)->format('Y年m月d日') : '日付が指定されていません' }}
+            <strong>ご利用日 :</strong> {{ $booking_date ?? '不明' }}
         </p> 
     </div>
     <form action="{{ route('review.confirm') }}" method="GET">
-        <input type="hidden" name="review_id" value="{{ $review->id ?? '' }}">
+        <input type="hidden" name="booking_id" value="{{ $booking->id }}">
         
         <div class="form-group">
             <label for="title">タイトル</label>
@@ -40,9 +40,11 @@
             <textarea name="review" id="review" rows="5" required></textarea>
         </div>
     
-        <button type="submit" class="btn btn-review">確認する</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-review">確認する</button>
+        </div>
     </form>
-</div>    
+</div>
 
 <script>
     const stars = document.querySelectorAll('.star');
