@@ -101,17 +101,21 @@
             @if($reviews->isEmpty())
                 <p class="notice-text">現在レビューの投稿はありません</p>
             @else
-                <div class="review__list">
-                    @foreach($reviews as $review)
-                        <div class="review__content">
-                            <div class="shop-info">
-                                <p class="shop-text">Shop {{ $review->booking->shop->name }}</p>
-                                <p class="shop-text">Date  {{ $review->booking->booking_date }}</p>
-                            </div>
-        
-                            <div class="review__rating">
-                                <span style="font-size: 14px;">Rating</span>
-                                <div class="stars">
+            <div class="review__list">
+                @foreach($reviews as $review)
+                    <div class="review__content">
+                        <table class="review-table">
+                            <tr>
+                                <td class="shop-text">Shop</td>
+                                <td class="shop-name">{{ $review->booking->shop->name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="booking-date">Date</td>
+                                <td class="booking-date-value">{{ $review->booking->booking_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="review__rating">Rating</td>
+                                <td>
                                     @for($i = 1; $i <= 5; $i++)
                                         @if($i <= $review->rating)
                                             <span class="star filled">★</span>
@@ -119,19 +123,20 @@
                                             <span class="star">☆</span>
                                         @endif
                                     @endfor
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <p class="title-text">Title {{ $review->title }}</p>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="review-text">Review  {{ $review->review }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title-text">Title</td>
+                                <td>{{ $review->title }}</td>
+                            </tr>
+                            <tr>
+                                <td class="review-text">Review</td>
+                                <td>{{ $review->review }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                @endforeach
+            </div>
             @endif
         </div>
     </div>
