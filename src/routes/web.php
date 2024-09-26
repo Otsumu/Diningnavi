@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/users/mypage/remove/{shopId}', [FavoriteController::class, 'remove'])->name('favorites.remove');
 
     Route::get('/review/form/{bookingId}', [ReviewController::class, 'create'])->name('review.create');
-    Route::get('/review/confirm', [ReviewController::class, 'confirm'])->name('review.confirm');
+    Route::get('/review/confirm/', [ReviewController::class, 'confirm'])->name('review.confirm');
     Route::post('/user/users/mypage', [ReviewController::class, 'store'])->name('review.store');
     Route::get('/user/users/mypage', [UserController::class, 'mypage'])->name('user.users.mypage');
     

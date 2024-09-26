@@ -23,11 +23,11 @@ class ReviewController extends Controller
 
     public function confirm(ReviewRequest $request) {
         $validated = $request->validated();
-
+            
         $booking = Booking::with('shop')->findOrFail($validated['booking_id']);
         $validated['shop_name'] = $booking->shop->name;
         $validated['booking_date'] = $booking->booking_date;
-
+    
         return view('review.confirm', compact('validated'));
     }
 
@@ -40,6 +40,10 @@ class ReviewController extends Controller
         $review->rating = $validated['rating'];
         $review->booking_id = $validated['booking_id'];
         $review->user_id = Auth::id();
+
+        $booking = Booking::find($validated['booking_id']);
+        $review->shop_id = $booking ? $booking->shop_id : null;
+        
         $review->save();
 
         return redirect()->route('user.users.mypage')->with('success-review', 'レビューが投稿されました');

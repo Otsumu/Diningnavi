@@ -60,16 +60,11 @@ class UserController extends Controller
         $user = Auth::user();
         $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
         $favorites = $user->favorites;
-
-        $bookingId = $bookings->isNotEmpty() ? $bookings->last()->id : null;
-        
-        $reviews = Review::with('shop.area', 'shop.genre')
-                     ->when($bookingId, function($query) use ($bookingId) {
-                         return $query->where('booking_id', $bookingId);
-                     })
-                     ->get();
     
-        return view('user.users.mypage', compact('bookings', 'favorites','reviews'));
+        $bookingId = $bookings->isNotEmpty() ? $bookings->last()->id : null;
+        $reviews = Review::where('user_id', $user->id)->with('booking.shop')->get();
+    
+        return view('user.users.mypage', compact('bookings', 'favorites', 'reviews'));
     }
 
     public function editBooking($id) {

@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .review-content {
     padding: 20px 20px 70px 20px;
     background-color: #f9f9f9;
@@ -28,7 +32,6 @@
     align-items: center;
     margin-bottom: 15px;
     flex-wrap: nowrap;
-    overflow: hidden;
 }
 
 label {
@@ -38,14 +41,13 @@ label {
     margin-right: 15px;
     white-space: nowrap;
     padding-right: 10px; 
+    width: 100px; 
 }
 
 .form-group p {
     margin: 0;
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 input[type="text"],

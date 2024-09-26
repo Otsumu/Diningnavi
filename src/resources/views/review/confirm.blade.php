@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="review-content">
-    <h2>レビュー確認</h2>
+    <h2 class="hidden">レビュー確認{{ isset($review) ? '訂正' : '確認' }}</h2>
 
     <div class="shop-info">
         <p style="font-size: 16px; margin-right: 10px;">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="button-group">
-        <form action="{{ route('review.store') }}" method="POST">
+        <form action="{{ isset($review) ? route('review.confirm', $review->id) : route('review.store') }}" method="POST">
             @csrf
             <input type="hidden" name="title" value="{{ $validated['title'] }}">
             <input type="hidden" name="review" value="{{ $validated['review'] }}">

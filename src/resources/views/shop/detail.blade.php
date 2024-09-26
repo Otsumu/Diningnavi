@@ -29,7 +29,7 @@
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">
                 <input type="date" id="booking_date" name="booking_date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"  required>
-                <input type="time" id="booking_time" name="booking_time" required>
+                <input type="time" id="booking_time" name="booking_time" min="{{ \Carbon\Carbon::now()->addHour(5)->format('H:i') }}" required>
                 <input type="number" id="number" name="number" min="1" max="100" required>
             </div>
             <div class="booking_confirm">

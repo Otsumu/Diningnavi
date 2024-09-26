@@ -43,12 +43,17 @@
                                 <div class="booking_item booking_value" data-type="number">{{ $booking->number ?? '未設定' }}人</div>
                             </div>
                             <div class="booking_actions">
-                                <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">変更</a>
+                                @if(\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($booking->booking_date . ' ' . $booking->booking_time)))
+                                    <a href="{{ route('review.create', $booking->id) }}" class="btn btn-secondary"
+                                        style="background-color: #b8f79f; border: 1px solid #b8f79f; ">レビューを書く</a>
+                                @else
+                                    <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">変更</a>
                                 <form action="{{ route('booking.cancel', $booking->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">キャンセル</button>
                                 </form>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -92,15 +97,6 @@
                 </div>
             @endif
 
-            @if($bookings->isEmpty())
-                <p class="notice-text">ご利用がないとレビューは投稿できません</p>
-            @else
-                <a href="{{ route('review.create', ['bookingId' => $bookings->first()->id]) }}" class="btn-review">レビューを書く</a>
-            @endif
-    
-            @if($reviews->isEmpty())
-                <p class="notice-text">現在レビューの投稿はありません</p>
-            @else
             <div class="review__list">
                 @foreach($reviews as $review)
                     <div class="review__content">
@@ -137,7 +133,6 @@
                     </div>
                 @endforeach
             </div>
-            @endif
         </div>
     </div>
 
