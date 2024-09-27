@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function shops() {
-        return $this->hasMany(Shop::class);
+        return $this->hasMany(Shop::class,'user_id');
     }
 
     public function scopeAdmin($query) {

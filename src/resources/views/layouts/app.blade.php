@@ -13,6 +13,7 @@
 </head>
 <body>
     <header>
+        @if(Auth::check() && Auth::user()->role === 'user')
         <div class="header__left">
             <div class="header__icon">
                 <input id="drawer__input" class="drawer__hidden" type="checkbox">
@@ -21,6 +22,7 @@
             </div>
             <div class="header__logo">Rese</div>
         </div>
+        @endif
         @yield('header')
     </header>
 

@@ -6,8 +6,9 @@
 
 @section('content')
 <main>
-  <form class="auth-form" action="{{ route('admin.form') }}" method="get">
-  <div class="auth-item">
+  <form class="auth-form" action="{{ route('admin.register.store') }}" method="post">
+  @csrf
+  <div class="auth-item" style="margin-top: 50px;">
       <h2 class="auth-title">ShopOwner Registration</h2>
       <div class="input-group">
           <i class="fa-solid fa-user"></i>
@@ -19,10 +20,6 @@
           @enderror
       </div>
 
-      <div class="input-group">
-          <i class="fa-solid fa-shop"></i>
-          <input type="text" id="shopname" name="shopname" placeholder="Shopname" value="{{ old('shopname') }}">
-      </div>
       <div class="error-message">
           @error('shopname')
           <p class="auth-form__error-message">{{ $message }}</p>

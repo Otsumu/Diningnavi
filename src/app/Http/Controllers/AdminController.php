@@ -54,15 +54,46 @@ class AdminController extends Controller
 
     public function ownerRegister(RegisterRequest $request) {
         $request->session()->put('register_data', $request->validated());
-        return redirect()->route('admin.shop_owners');
+        return redirect()->route('admin.confirm');
     }
 
     public function confirm() {
         $registerData = session('register_data');
-        return view('admin.confirm', ['data' => $registerData]);
+       return view('admin.confirm', ['data' => $registerData]);
+    }
+
+    public function ownerConfirm(RegisterRequest $request) {
+        $validatedData = $request->validated();
+        
+        User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'role' => 'shop_owner',
+        ]);  
+        return redirect()->route('admin.shop_owners')->with('success','ShopOwner情報が登録されました');
+    }
+
+    public function showShopOwners() {
+        $shopOwners = User::where('role', 'shop_owner')->with('shops')->get();
+        return view('admin.shop_owners', compact('shopOwners'));
+    }
+
+    public function editShopOwner($id) {
+        $shopOwner = User::with('shops')->findOrFail($id);
+        return view('admin.confirm', compact('shopOwner'));
+    }
+
+    public function deleteShopOwner($id) {
+        $shopOwner = User::findOrFail($id);
+        $shopOwner->shops()->delete(); 
+        $shopOwner->delete();
+
+        return redirect()->route('admin.shop_owners')->with('success', '情報を削除しました');
     }
 
     public function destroy(Request $request) {
+
         Auth::logout();
 
         $request->session()->invalidate();

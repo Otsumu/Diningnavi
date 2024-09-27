@@ -61,9 +61,13 @@ Route::middleware('auth')->group(function () {
     
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');
-    Route::get('/form', [AdminController::class, 'showRegisterForm'])->NAME('admin.form');
+    Route::get('/form', [AdminController::class, 'showRegisterForm'])->name('admin.form');
+    Route::post('/register',[AdminController::class,'ownerRegister'])->name('admin.register.store');
     Route::get('/confirm', [AdminController::class, 'confirm'])->name('admin.confirm');
-    Route::post('/shop_owners', [AdminController::class, 'ownerRegister'])->name('admin.register.store');
+    Route::post('/confirm', [AdminController::class,'ownerConfirm']);
+    Route::get('/shop_owners', [AdminController::class, 'showShopOwners'])->name('admin.shop_owners');
+    Route::get('/shop_owners/{id}/edit', [AdminController::class, 'editShopOwner'])->name('admin.shop_owner.edit');
+    Route::delete('/shop_owners/{id}', [AdminController::class, 'deleteShopOwner'])->name('admin.shop_owner.delete');
 
     Route::post('/logout', [AdminController::class, 'destroy'])->name('logout');
 });
