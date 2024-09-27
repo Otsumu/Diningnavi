@@ -7,6 +7,8 @@
 @section('content')
 <main>
     <h2 class="page-title">Shop Owners List</h2>
+
+    <<a href="{{ route('admin.menu') }}" class="btn btn-back">戻る</a>
     
     @if(session('success'))
         <div class="alert alert-success">
@@ -42,7 +44,10 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('admin.confirm', $owner->id) }}" class="btn btn-primary">編集する</a>
+                    <form action="{{ route('admin.confirm', $owner->id) }}" method="GET" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">編集する</button>
+                    </form>
                     <form action="{{ route('admin.shop_owner.delete', $owner->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
@@ -54,5 +59,6 @@
         </tbody>
     </table>
     </div>
+    {{ $shopOwners->links() }}
 </main>
 @endsection

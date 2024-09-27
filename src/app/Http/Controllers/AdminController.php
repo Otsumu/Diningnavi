@@ -75,7 +75,7 @@ class AdminController extends Controller
     }
 
     public function showShopOwners() {
-        $shopOwners = User::where('role', 'shop_owner')->with('shops')->get();
+        $shopOwners = User::where('role', 'shop_owner')->with('shops')->paginate(10); 
         return view('admin.shop_owners', compact('shopOwners'));
     }
 

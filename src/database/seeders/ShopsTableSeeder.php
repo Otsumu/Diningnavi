@@ -21,7 +21,7 @@ class ShopsTableSeeder extends Seeder
         );
 
         $user2 = User::firstOrCreate(
-            ['email' => 'ijiro@tenpo.com'], 
+            ['email' => 'jiro@tenpo.com'], 
             ['name' => '店舗二郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
