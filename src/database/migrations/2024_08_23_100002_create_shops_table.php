@@ -20,6 +20,7 @@ class CreateShopsTable extends Migration
             $table->string('intro')->nullable();
             $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->foreignId('area_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); 
             $table->timestamps();
         });
     }

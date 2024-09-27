@@ -26,6 +26,7 @@ class RegisterRequest extends FormRequest
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:191',
+            'shopname' => 'required|string|max:191',
         ];
     }
 
@@ -37,6 +38,7 @@ class RegisterRequest extends FormRequest
             'unique' => ':attribute はすでに使用されています。',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
+            'shopname.required' => '店名を入力して下さい',
         ];
     }
 

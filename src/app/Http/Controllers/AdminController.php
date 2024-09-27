@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function __construct() {
         $this->middleware(function ($request, $next) {
             if (!Auth::check() || !Auth::user()->isAdmin()) {
-                return redirect('admin.login');
+                return redirect()->route('admin.login'); 
             }
             return $next($request);
         })->except(['loginForm', 'login']);
@@ -26,50 +26,50 @@ class AdminController extends Controller
 
     public function login(LoginRequest $request) {
         $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials) && Auth::user()->isAdmin()) {
-            return redirect()->route('admin.shop_owners.index');
+    
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->isAdmin()) {
+                $request->session()->regenerate();
+                return redirect()->route('admin.menu');
+            } else {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => '管理者アカウントでログインしてください',
+                ]);
+            }
         }
-        return redirect()->back()->withErrors('ログインできません');
-    }
-
-    public function shopOwnersIndex() {
-        $shopOwners = User::shopOwner()->get();
-
-        return view('admin.shop_owners.index', compact('shopOwners'));
-    }
     
-    public function inviteShopOwner(Request $request) {
-        $validated = $request->validate([
-            'email' => 'required|email|unique:users,email',
+        return back()->withErrors([
+            'email' => 'メールアドレスまたはパスワードが正しくありません',
         ]);
-
-        Mail::to($validated['email'])->send(new ShopOwnerInvitation());
-
-        return redirect()->back()->with('message','招待メールをお送りしました');
     }
 
-    public function shopOwnersEdit($id) {
-        $shopOwner = User::findOrFail($id);
-
-        return view('admin.shop_owners.form', compact('shopOwner'));
+    public function menu() {
+        return view('admin.menu');
     }
-    
-    public function shopOwnersUpdate(Request $request, $id) {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'role' => 'sometimes|required|in:admin,shop_owner,regular_user',
-        ]);
-    
-        $shopOwner = User::findOrFail($id);
-        
-        if (Auth::user()->isAdmin()) {
-            $shopOwner->update($validated);
-        } else {
-            $shopOwner->update($validated->except('role'));
-        }
-        
-        return redirect()->route('admin.shop_owners.index')->with('success', 'ショップオーナーの情報を更新しました');
+
+    public function showRegisterForm() {
+        return view('admin.form');
+    }
+
+    public function ownerRegister(RegisterRequest $request) {
+        $request->session()->put('register_data', $request->validated());
+        return redirect()->route('admin.shop_owners');
+    }
+
+    public function confirm() {
+        $registerData = session('register_data');
+        return view('admin.confirm', ['data' => $registerData]);
+    }
+
+    public function destroy(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $request->session()->flash('success', 'ログアウトしました');
+
+        return redirect()->route('admin.login');
     }
 }

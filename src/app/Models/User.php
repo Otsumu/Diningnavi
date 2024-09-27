@@ -55,6 +55,10 @@ class User extends Authenticatable
     return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
     }
 
+    public function shops() {
+        return $this->hasMany(Shop::class);
+    }
+
     public function scopeAdmin($query) {
         return $query->where('role', 'admin');
     }

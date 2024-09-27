@@ -57,10 +57,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/review/confirm/', [ReviewController::class, 'confirm'])->name('review.confirm');
     Route::post('/user/users/mypage', [ReviewController::class, 'store'])->name('review.store');
     Route::get('/user/users/mypage', [UserController::class, 'mypage'])->name('user.users.mypage');
-    
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     
-    Route::middleware('auth')->prefix('admin')->group(function () {
-        Route::get('/index', [AdminController::class, 'index']);
-    });
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');
+    Route::get('/form', [AdminController::class, 'showRegisterForm'])->NAME('admin.form');
+    Route::get('/confirm', [AdminController::class, 'confirm'])->name('admin.confirm');
+    Route::post('/shop_owners', [AdminController::class, 'ownerRegister'])->name('admin.register.store');
+
+    Route::post('/logout', [AdminController::class, 'destroy'])->name('logout');
+});
 });

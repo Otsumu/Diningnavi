@@ -15,6 +15,7 @@ class Shop extends Model
         'intro',
         'genre_id',
         'area_id',
+        'user_id'
     ];
 
     public function genre() {
@@ -27,6 +28,10 @@ class Shop extends Model
 
     public function users() {
         return $this->belongsToMany(User::class, 'favorites', 'shop_id', 'user_id');
+    }
+
+    public function shopOwner() {
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function bookings() {
