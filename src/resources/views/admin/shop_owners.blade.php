@@ -2,14 +2,14 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/admin-shopowners.css') }}">
-<link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 @endsection
 
 @section('content')
 <main>
     <h2 class="page-title">Shop Owners List</h2>
-    
-    <a href="{{ route('admin.menu') }}" class="btn btn-back">戻る</a>
+
+    <a href="{{ route('admin.menu') }}" class="page-back">戻る</a>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -43,11 +43,11 @@
                         @endif
                     </td>
                     <td>
-                    <form action="{{ route('admin.confirm', $shopOwner->id) }}" method="GET" style="display:inline;">
-                        @csrf
+                    <form action="{{ route('admin.edit', $shopOwner->id) }}" method="GET" style="display:inline;">
                         <button type="submit" class="btn btn-primary">編集する</button>
                     </form>
-                    <form action="{{ route('admin.shop_owner.delete', $shopOwner->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('admin.delete', $shopOwner->id) }}" method="POST" style="display:inline;">
+
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('削除してよろしいですか?');">削除する</button>
@@ -57,7 +57,34 @@
             @endforeach
         </tbody>
     </table>
-    {{ $shopOwners->links() }}
+    @if ($shopOwners->hasPages())
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {{ $shopOwners->onFirstPage() ? 'disabled' : '' }}">
+                        <a class="page-link" href="{{ $shopOwners->previousPageUrl() }}" rel="prev">&laquo;</a>
+                    </li>
+
+                    @foreach ($shopOwners->links()->elements as $element)
+                        @if (is_string($element))
+                            <li class="disabled page-item"><span class="page-link">{{ $element }}</span></li>
+                        @endif
+
+                        @if (is_array($element))
+                            @foreach ($element as $page => $url)
+                                <li class="page-item {{ $page == $shopOwners->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+                        @endif
+                    @endforeach
+
+                    <li class="page-item {{ $shopOwners->hasMorePages() ? '' : 'disabled' }}">
+                        <a class="page-link" href="{{ $shopOwners->nextPageUrl() }}" rel="next">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        @endif
+
     </div>
 </main>
 @endsection

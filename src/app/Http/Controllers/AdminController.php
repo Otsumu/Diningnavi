@@ -81,7 +81,35 @@ class AdminController extends Controller
 
     public function editShopOwner($id) {
         $shopOwner = User::with('shops')->findOrFail($id);
-        return view('admin.confirm', compact('shopOwner'));
+        $data = [
+            'name' => $shopOwner->name,
+            'email' => $shopOwner->email,
+            'password' => '', 
+        ];
+        return view('admin.edit', compact('shopOwner','data'));
+    }
+    
+    public function updateShopOwner(Request $request, $id) {
+        $shopOwner = User::findOrFail($id);
+        
+        // バリデーション
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8', // 新しいパスワードをオプショナルに
+        ]);
+    
+        $shopOwner->name = $validatedData['name'];
+        $shopOwner->email = $validatedData['email'];
+    
+        // 新しいパスワードが提供されている場合のみ更新
+        if (!empty($validatedData['password'])) {
+            $shopOwner->password = Hash::make($validatedData['password']);
+        }
+    
+        $shopOwner->save();
+    
+        return redirect()->route('admin.shop_owners')->with('success', '情報が更新されました');
     }
 
     public function deleteShopOwner($id) {
