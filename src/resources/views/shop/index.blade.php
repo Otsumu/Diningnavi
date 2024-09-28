@@ -7,17 +7,17 @@
 @section('header')
 <form class="header__right" action="/" method="get">
     <div class="header__search">
-        <div class="select-box">
+       <div class="select-box">
             <label class="select-box-label"></label>
             <select name="area" class="select-box-item">
-                <option value="">All area</option>
-                @if(isset($areas))
-                    @foreach($areas as $area)
-                        <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>
-                            {{ $area->name }}
-                        </option>
-                    @endforeach
-                @endif
+                <option value="">All Areas</option>
+                    @if(isset($areas))
+                       @foreach($areas as $area)
+                           <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>
+                               {{ $area->name }}
+                            </option>
+                        @endforeach
+                    @endif
             </select>
         </div>
 
@@ -25,13 +25,13 @@
             <label class="select-box-label"></label>
             <select name="genre" class="select-box-item">
                 <option value="">All genre</option>
-                @if(isset($genres))
-                    @foreach($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>
-                            {{ $genre->name }}
-                        </option>
-                    @endforeach
-                @endif
+                    @if(isset($genres))
+                        @foreach($genres as $genre)
+                            <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>
+                                {{ $genre->name }}
+                            </option>
+                        @endforeach
+                    @endif
             </select>
         </div>
 
@@ -43,7 +43,7 @@
                 <input type="text" id="search-keyword" name="keyword" class="search__item-input" placeholder="Search ..." value="{{ request('keyword') }}">
             </label>
         </div>
-    </div>
+    </div>    
 </form>
 @endsection
 

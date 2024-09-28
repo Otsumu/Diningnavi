@@ -24,7 +24,7 @@
             <li class="nav__item" ><a class="nav__item-link" href="/admin/form">Registration</a></li>
             <li class="nav__item" ><a class="nav__item-link" href="/admin/shop_owners">ShopOwner List</a></li>
             <li class="nav__item">
-                <form action="{{ route('logout') }}" method="POST" style="display: inline-block;">
+                <form action="{{ route('admin.logout') }}" method="POST" style="display: inline-block;">
                     @csrf
                     <button type="submit" class="nav__item-link nav__item-link-button">
                         Logout

@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/shop/{shop}/booking', [BookingController::class, 'createBooking'])->name('shop.booking');
     Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
-    Route::get('/user/users/mypage', [UserController::class, 'myPage'])->name('mypage');
+    Route::get('/user/users/mypage', [UserController::class, 'myPage'])->name('user.users.mypage');
     Route::get('/user/users/form/{id}/edit', [UserController::class, 'editBooking'])->name('booking.edit');
     Route::patch('/user/users/form/{id}', [UserController::class, 'updateBooking'])->name('booking.update');
     Route::delete('/user/users/form/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
@@ -69,6 +69,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/shop_owners/{id}/edit', [AdminController::class, 'editShopOwner'])->name('admin.shop_owner.edit');
     Route::delete('/shop_owners/{id}', [AdminController::class, 'deleteShopOwner'])->name('admin.shop_owner.delete');
 
-    Route::post('/logout', [AdminController::class, 'destroy'])->name('logout');
+    Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 });
 });

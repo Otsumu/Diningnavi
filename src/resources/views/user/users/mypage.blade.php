@@ -48,7 +48,7 @@
                                         style="background-color: #b8f79f; border: 1px solid #b8f79f; ">レビューを書く</a>
                                 @else
                                     <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">変更</a>
-                                <form action="{{ route('booking.cancel', $booking->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('booking.cancel', ['id' => $booking->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">キャンセル</button>

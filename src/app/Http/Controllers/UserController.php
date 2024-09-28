@@ -69,7 +69,11 @@ class UserController extends Controller
 
     public function editBooking($id) {
         $booking = Booking::findOrFail($id);
-        $shop = Shop::findOrFail($booking->shop_id);
+        if (!$booking->shop_id) {
+            return redirect()->route('user.users.mypage')->with('error', '予約が見つかりませんでした。');
+        }
+
+        $shop = Shop::findOrFail($booking->shop_id); 
 
         return view('user.users.form', compact('booking', 'shop'));
     }
@@ -78,13 +82,13 @@ class UserController extends Controller
         $booking = Booking::findOrFail($id);
         $booking->update($request->validated());
 
-        return redirect()->route('mypage')->with('success', '予約が更新されました');
+        return redirect()->route('user.users.mypage')->with('success', '予約が更新されました');
     }
 
     public function destroyBooking($id) {
         $booking = Booking::findOrFail($id);
         $booking->delete();
 
-        return redirect()->route('mypage')->with('success', 'ご予約をキャンセルしました');
+        return redirect()->route('user.users.mypage')->with('success', 'ご予約をキャンセルしました');
     }
 }

@@ -29,7 +29,7 @@
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">
                 <input type="date" id="booking_date" name="booking_date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"  required>
-                <input type="time" id="booking_time" name="booking_time" min="{{ \Carbon\Carbon::now()->addHour(5)->format('H:i') }}" required>
+                <input type="time" id="booking_time" name="booking_time" required>
                 <input type="number" id="number" name="number" min="1" max="100" required>
             </div>
             <div class="booking_confirm">
@@ -73,12 +73,32 @@
             bookingTimeValue.textContent = bookingTimeInput.value || '未設定';
             numberValue.textContent = numberInput.value || '未設定';
         }
-        
-        bookingDateInput.addEventListener('input', updateBookingDetails);
+
+        function updateTimeMin() {
+            const now = new Date();
+            const selectedDate = new Date(bookingDateInput.value);
+            
+            if (selectedDate.toDateString() === now.toDateString()) {
+                const minTime = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+                const minHours = minTime.getHours().toString().padStart(2, '0');
+                const minMinutes = minTime.getMinutes().toString().padStart(2, '0');
+
+                bookingTimeInput.min = `${minHours}:${minMinutes}`;
+            } else {
+                bookingTimeInput.min = "00:00";
+            }
+        }
+
+        bookingDateInput.addEventListener('input', function() {
+            updateBookingDetails();
+            updateTimeMin();
+        });
+
         bookingTimeInput.addEventListener('input', updateBookingDetails);
         numberInput.addEventListener('input', updateBookingDetails);
         
         updateBookingDetails();
+        updateTimeMin();
     });
 </script>
 @endsection

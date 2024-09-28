@@ -2,14 +2,15 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/admin-shopowners.css') }}">
+<link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endsection
 
 @section('content')
 <main>
     <h2 class="page-title">Shop Owners List</h2>
-
-    <<a href="{{ route('admin.menu') }}" class="btn btn-back">戻る</a>
     
+    <a href="{{ route('admin.menu') }}" class="btn btn-back">戻る</a>
+
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -27,38 +28,36 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($shopOwners as $owner)
-            <tr>
-                <td>{{ $owner->id }}</td>
-                <td>{{ $owner->name }}</td>
-                <td>{{ $owner->email }}</td>
-                <td>
-                    @if($owner->shops->isEmpty())
-                        <p>店舗がありません</p>
-                    @else
-                        <ul>
-                        @foreach($owner->shops as $shop)
-                            <li>{{ $shop->name }}</li>
-                        @endforeach
-                        </ul>
-                    @endif
-                </td>
-                <td>
-                    <form action="{{ route('admin.confirm', $owner->id) }}" method="GET" style="display:inline;">
+            @foreach($shopOwners as $shopOwner)
+                <tr>
+                    <td>{{ $shopOwner->id }}</td>
+                    <td>{{ $shopOwner->name }}</td>
+                    <td>{{ $shopOwner->email }}</td>
+                    <td>
+                        @if($shopOwner->shops->isNotEmpty())
+                            @foreach($shopOwner->shops as $shop)
+                                <a href="{{ route('shop.detail', $shop->id) }}">{{ $shop->name }}</a><br>
+                            @endforeach
+                        @else
+                            <span>店舗がありません</span>
+                        @endif
+                    </td>
+                    <td>
+                    <form action="{{ route('admin.confirm', $shopOwner->id) }}" method="GET" style="display:inline;">
                         @csrf
                         <button type="submit" class="btn btn-primary">編集する</button>
                     </form>
-                    <form action="{{ route('admin.shop_owner.delete', $owner->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('admin.shop_owner.delete', $shopOwner->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('削除してよろしいですか?');">削除する</button>
                     </form>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-    </div>
     {{ $shopOwners->links() }}
+    </div>
 </main>
 @endsection

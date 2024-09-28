@@ -10,6 +10,7 @@
   @csrf
   <div class="auth-item" style="margin-top: 50px;">
       <h2 class="auth-title">Admin</h2>
+      <p class="confirm-message">この内容で登録してよろしいですか？</p> 
       <div class="input-group">
           <i class="fa-solid fa-user"></i>
           <input type="text" id="name" name="name" value="{{ $data['name'] }}" readonly>

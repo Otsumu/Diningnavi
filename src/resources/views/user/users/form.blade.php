@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                <a href="{{ route('mypage') }}" class="btn-back">戻る</a>
+                <a href="{{ route('user.users.mypage') }}" class="btn-back">戻る</a>
                 <button type="submit" class="btn-booking">変更する</button>
             </div>
         </form>
