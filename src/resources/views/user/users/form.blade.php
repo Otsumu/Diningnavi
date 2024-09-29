@@ -83,11 +83,9 @@
             console.log(`Date: ${bookingDateValue}, Time: ${bookingTimeValue}, Number: ${numberValue}`);
         }
 
-        // 初期化
         generateTimeOptions();
         updateBookingDetails();
 
-        // イベントリスナーを設定
         bookingDateInput.addEventListener('input', updateBookingDetails);
         bookingTimeInput.addEventListener('input', updateBookingDetails);
         numberInput.addEventListener('input', updateBookingDetails);
