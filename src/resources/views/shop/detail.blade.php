@@ -29,8 +29,12 @@
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">
                 <input type="date" id="booking_date" name="booking_date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"  required>
-                <input type="time" id="booking_time" name="booking_time" required>
-                <input type="number" id="number" name="number" min="1" max="100" required>
+                <select id="booking_time" name="booking_time" 
+                style="padding: 5px 10px; border: 1px solid white; border-radius: 5px; box-sizing: border-box;
+                height: 30px; font-family: 'Arial', sans-serif; font-size: 14px; line-height: 30px;" required>
+                    <option value="">時刻を選択してください</option>
+                </select>
+                <input type="number" id="number" name="number" min="1" max="50" required>
             </div>
             <div class="booking_confirm">
                 <div class="booking_detail">
@@ -63,42 +67,96 @@
         const bookingDateInput = document.getElementById('booking_date');
         const bookingTimeInput = document.getElementById('booking_time');
         const numberInput = document.getElementById('number');
-        
+
         const bookingDateValue = document.querySelector('.booking_value[data-type="date"]');
         const bookingTimeValue = document.querySelector('.booking_value[data-type="time"]');
         const numberValue = document.querySelector('.booking_value[data-type="number"]');
-        
+
+        function generateTimeOptions() {
+            for (let hour = 17; hour <= 21; hour++) {
+            for (let minute = 0; minute < 60; minute += 30) {
+            if (hour === 21 && minute === 30) {
+                continue; 
+            }
+            const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+            const option = document.createElement('option');
+            option.value = timeValue;
+            option.textContent = timeValue;
+            bookingTimeInput.appendChild(option);
+            }
+        }
+            const lastOrderOption = document.createElement('option');
+            lastOrderOption.value = '21:30';
+            lastOrderOption.textContent = '21:30';
+            bookingTimeInput.appendChild(lastOrderOption);
+        }
+
         function updateBookingDetails() {
             bookingDateValue.textContent = bookingDateInput.value || '未設定';
             bookingTimeValue.textContent = bookingTimeInput.value || '未設定';
-            numberValue.textContent = numberInput.value || '未設定';
+            numberValue.textContent = (numberInput.value ? numberInput.value + '人' : '未設定');
         }
 
-        function updateTimeMin() {
+        function validateBookingTime() {
             const now = new Date();
             const selectedDate = new Date(bookingDateInput.value);
+            const inputTime = bookingTimeInput.value;
+
+            if (!inputTime) return;
+
+            const [hours, minutes] = inputTime.split(':').map(Number);
+            const selectedTime = new Date(selectedDate.setHours(hours, minutes));
             
             if (selectedDate.toDateString() === now.toDateString()) {
-                const minTime = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-                const minHours = minTime.getHours().toString().padStart(2, '0');
-                const minMinutes = minTime.getMinutes().toString().padStart(2, '0');
-
-                bookingTimeInput.min = `${minHours}:${minMinutes}`;
-            } else {
-                bookingTimeInput.min = "00:00";
+                const minTime = new Date(now.getTime() + 1 * 60 * 60 * 1000);
+                if (selectedTime < minTime) {
+                    alert('予約は現時刻から1時間以降に可能です');
+                    bookingTimeInput.value = '';
+                    return false;
+                }
             }
+            
+            return true;
         }
 
         bookingDateInput.addEventListener('input', function() {
             updateBookingDetails();
-            updateTimeMin();
         });
 
-        bookingTimeInput.addEventListener('input', updateBookingDetails);
-        numberInput.addEventListener('input', updateBookingDetails);
-        
+        bookingTimeInput.addEventListener('input', function() {
+            if (validateBookingTime()) {
+                updateBookingDetails();
+            }
+        });
+
+        numberInput.addEventListener('input', function() {
+            const value = numberInput.value;
+            if (value >= 1 && value <= 50) {
+                numberInput.value = value;
+                updateBookingDetails();
+            } else {
+                numberInput.value = '';
+                updateBookingDetails();
+            }
+        });
+
+        generateTimeOptions();
         updateBookingDetails();
-        updateTimeMin();
+
+        numberInput.placeholder = '1人';
+
+        numberInput.addEventListener('focus', () => {
+            numberInput.placeholder = '';
+        });
+
+        numberInput.addEventListener('blur', () => {
+            if (numberInput.value === '') {
+                numberInput.placeholder = '1人';
+            } else {
+                numberInput.placeholder = numberInput.value + '人';
+            }
+        });
+
     });
 </script>
 @endsection

@@ -30,12 +30,15 @@
 
             <div class="form-group">
                 <label for="booking_time">Time</label>
-                <input type="time" id="booking_time" name="booking_time" value="{{ $booking->booking_time }}" required>
+                <select id="booking_time" name="booking_time" 
+                style="width: 100%; border: 1px solid lightgray; border-radius: 3px; box-sizing: border-box;
+                height: 30px; line-height: 30px; font-size: 12px; padding: 0px 0px 5px;" 
+                required></select>
             </div>
 
             <div class="form-group">
                 <label for="number">Number</label>
-                <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="100" required>
+                <input type="number" id="number" name="number" value="{{ $booking->number }}" min="1" max="50" required>
             </div>
 
             <div class="form-group">
@@ -52,22 +55,42 @@
         const bookingDateInput = document.getElementById('booking_date');
         const bookingTimeInput = document.getElementById('booking_time');
         const numberInput = document.getElementById('number');
-        
-        const bookingDateValue = document.querySelector('.booking_value[data-type="date"]');
-        const bookingTimeValue = document.querySelector('.booking_value[data-type="time"]');
-        const numberValue = document.querySelector('.booking_value[data-type="number"]');
-        
-        function updateBookingDetails() {
-            bookingDateValue.textContent = bookingDateInput.value || '未設定';
-            bookingTimeValue.textContent = bookingTimeInput.value || '未設定';
-            numberValue.textContent = numberInput.value || '未設定';
+
+        function generateTimeOptions() {
+            for (let hour = 17; hour <= 21; hour++) {
+            for (let minute = 0; minute < 60; minute += 30) {
+            if (hour === 21 && minute === 30) {
+                continue; 
+            }
+            const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+            const option = document.createElement('option');
+            option.value = timeValue;
+            option.textContent = timeValue;
+            bookingTimeInput.appendChild(option);
+            }
         }
-        
+            const lastOrderOption = document.createElement('option');
+            lastOrderOption.value = '21:30';
+            lastOrderOption.textContent = '21:30';
+            bookingTimeInput.appendChild(lastOrderOption);
+        }
+
+        function updateBookingDetails() {
+            const bookingDateValue = bookingDateInput.value || '未設定';
+            const bookingTimeValue = bookingTimeInput.value || '未設定';
+            const numberValue = numberInput.value ? `${numberInput.value}'人` : '未設定';
+
+            console.log(`Date: ${bookingDateValue}, Time: ${bookingTimeValue}, Number: ${numberValue}`);
+        }
+
+        // 初期化
+        generateTimeOptions();
+        updateBookingDetails();
+
+        // イベントリスナーを設定
         bookingDateInput.addEventListener('input', updateBookingDetails);
         bookingTimeInput.addEventListener('input', updateBookingDetails);
         numberInput.addEventListener('input', updateBookingDetails);
-        
-        updateBookingDetails();
     });
 </script>
 @endsection

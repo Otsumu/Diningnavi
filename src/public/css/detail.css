@@ -64,7 +64,7 @@ header {
     background-color: rgb(34, 84, 250);
     color: white;
     border-radius: 5px;
-    min-height: calc(100vh - 60px); 
+    min-height: calc(100vh - 60px);
     margin-left: 50px;
     position: relative;
 }
@@ -78,15 +78,14 @@ header {
 
 .form-group {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
     flex-direction: column;
-    width: auto; 
+    width: auto;
     max-width: 100%;
     padding: 20px;
 }
 
-input[type="date"], 
-input[type="time"], 
+input[type="date"],
 input[type="number"] {
     padding: 10px;
     border: 1px solid white;
@@ -94,20 +93,19 @@ input[type="number"] {
     box-sizing: border-box;
     height: 30px;
     font-family: 'Arial', sans-serif;
-    font-size: 14px; 
+    font-size: 14px;
+    outline: none;
 }
 
-input[type="time"], 
 input[type="number"] {
-    -webkit-appearance: none; 
-    appearance: none; 
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 input[type="date"] {
-    max-width: 33%; 
+    max-width: 33%;
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator,
 input[type="number"]::-webkit-inner-spin-button {
     display: block;
     color: gray;
@@ -116,7 +114,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .booking_confirm {
     font-family: 'Arial', sans-serif;
     font-size: 14px;
-    max-width: 100%; 
+    max-width: 100%;
     padding: 0 15px;
     margin-top: 8px;
     margin-left: auto;
