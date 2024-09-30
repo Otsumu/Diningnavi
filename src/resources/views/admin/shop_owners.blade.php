@@ -39,7 +39,7 @@
                                 <a href="{{ route('shop.detail', $shop->id) }}">{{ $shop->name }}</a><br>
                             @endforeach
                         @else
-                            <span>店舗がありません</span>
+                            <span>登録店舗はありません</span>
                         @endif
                     </td>
                     <td>

@@ -92,17 +92,15 @@ class AdminController extends Controller
     public function updateShopOwner(Request $request, $id) {
         $shopOwner = User::findOrFail($id);
         
-        // バリデーション
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8', // 新しいパスワードをオプショナルに
+            'password' => 'nullable|string|min:8',
         ]);
     
         $shopOwner->name = $validatedData['name'];
         $shopOwner->email = $validatedData['email'];
     
-        // 新しいパスワードが提供されている場合のみ更新
         if (!empty($validatedData['password'])) {
             $shopOwner->password = Hash::make($validatedData['password']);
         }

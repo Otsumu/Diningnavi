@@ -48,5 +48,28 @@ class ReviewController extends Controller
 
         return redirect()->route('user.users.mypage')->with('success-review', 'レビューが投稿されました');
     }
+
+    public function editReview($id) {
+        $review = Review::findOrFail($id);
+        $shop_name = $review->booking->shop->name;
+        $booking_date = $review->booking->booking_date;
+
+        return view('review.edit',compact('review','shop_name','booking_date' ));
+    }
+
+    public function updateReview(ReviewRequest $request, $id) {
+        $review = Review::findOrFail($id);
+        $validatedData = $request->validated();
+        $review->update($validatedData);
+
+        return redirect()->route('user.users.mypage')->with('success-review','レビューが更新されました');
+    }
+
+    public function deleteReview($id) {
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        return redirect()->route('user.users.mypage')->with('success-review','レビューを削除しました');
+    }
 }
 

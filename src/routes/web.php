@@ -56,6 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/review/form/{bookingId}', [ReviewController::class, 'create'])->name('review.create');
     Route::get('/review/confirm/', [ReviewController::class, 'confirm'])->name('review.confirm');
     Route::post('/user/users/mypage', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('review.edit');
+    Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
+    Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
     Route::get('/user/users/mypage', [UserController::class, 'mypage'])->name('user.users.mypage');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     

@@ -57,12 +57,26 @@
         const numberInput = document.getElementById('number');
 
         function generateTimeOptions() {
+            const now = new Date();
+            const selectedDate = new Date(bookingDateInput.value);
+            const isToday = selectedDate.toDateString() === now.toDateString();
+
+            bookingTimeInput.innerHTML = ''; 
+
             for (let hour = 17; hour <= 21; hour++) {
             for (let minute = 0; minute < 60; minute += 30) {
             if (hour === 21 && minute === 30) {
                 continue; 
             }
             const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+
+            if (isToday) {
+                        const selectedTime = new Date(selectedDate.setHours(hour, minute));
+                        if (selectedTime < now) {
+                            continue;
+                        }
+                    }
+
             const option = document.createElement('option');
             option.value = timeValue;
             option.textContent = timeValue;

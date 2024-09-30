@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="review-content">
-    <h2 class="hidden">レビュー確認{{ isset($review) ? '訂正' : '確認' }}</h2>
+    <h2 class="hidden">レビュー確認</h2>
 
     <div class="shop-info">
         <p style="font-size: 16px; margin-right: 10px;">

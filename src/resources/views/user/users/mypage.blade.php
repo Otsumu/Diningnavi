@@ -130,6 +130,20 @@
                                 <td>{{ $review->review }}</td>
                             </tr>
                         </table>
+                    </div>    
+                    <div class="review-actions" style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <form action="{{ route('review.edit', ['id' => $review->id]) }}" method="GET">
+                            <button type="submit" class="edit-review" 
+                            style="padding: 5px 10px; background-color: rgb(63, 90, 242); color: white; border: none; border-radius: 5px; 
+                            cursor: pointer; margin-top: 3px;">編集する</button>
+                        </form>
+                        <form action="{{ route('review.delete', ['id' => $review->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-review" 
+                            style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; 
+                            cursor: pointer; margin-top:3px;">削除する</button>
+                        </form>
                     </div>
                 @endforeach
             </div>

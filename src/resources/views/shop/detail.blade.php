@@ -73,18 +73,33 @@
         const numberValue = document.querySelector('.booking_value[data-type="number"]');
 
         function generateTimeOptions() {
+            const now = new Date();
+            const selectedDate = new Date(bookingDateInput.value);
+            const isToday = selectedDate.toDateString() === now.toDateString();
+
+            bookingTimeInput.innerHTML = '';
+
             for (let hour = 17; hour <= 21; hour++) {
-            for (let minute = 0; minute < 60; minute += 30) {
-            if (hour === 21 && minute === 30) {
-                continue; 
+                for (let minute = 0; minute < 60; minute += 30) {
+                    if (hour === 21 && minute === 30) {
+                        continue;
+                    }
+                    const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                    
+                    if (isToday) {
+                        const selectedTime = new Date(selectedDate.setHours(hour, minute));
+                        if (selectedTime < now) {
+                            continue;
+                        }
+                    }
+
+                    const option = document.createElement('option');
+                    option.value = timeValue;
+                    option.textContent = timeValue;
+                    bookingTimeInput.appendChild(option);
+                }
             }
-            const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-            const option = document.createElement('option');
-            option.value = timeValue;
-            option.textContent = timeValue;
-            bookingTimeInput.appendChild(option);
-            }
-        }
+
             const lastOrderOption = document.createElement('option');
             lastOrderOption.value = '21:30';
             lastOrderOption.textContent = '21:30';
@@ -106,7 +121,7 @@
 
             const [hours, minutes] = inputTime.split(':').map(Number);
             const selectedTime = new Date(selectedDate.setHours(hours, minutes));
-            
+
             if (selectedDate.toDateString() === now.toDateString()) {
                 const minTime = new Date(now.getTime() + 1 * 60 * 60 * 1000);
                 if (selectedTime < minTime) {
@@ -115,11 +130,12 @@
                     return false;
                 }
             }
-            
+
             return true;
         }
 
         bookingDateInput.addEventListener('input', function() {
+            generateTimeOptions();
             updateBookingDetails();
         });
 
@@ -156,7 +172,6 @@
                 numberInput.placeholder = numberInput.value + '人';
             }
         });
-
     });
 </script>
 @endsection
