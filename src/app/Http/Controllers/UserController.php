@@ -56,7 +56,7 @@ class UserController extends Controller
     public function showMenu1() {
         return view('user.users.menu1');
     }
-
+    
     public function myPage() {
         $user = Auth::user();
         $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
