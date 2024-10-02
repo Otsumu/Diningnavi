@@ -8,14 +8,16 @@ use App\Models\Booking;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
   public function store(BookingRequest $request) {
     if (!Auth::check()) {
-      return redirect()->route('user.menu2')->withErrors(['error' => '会員登録、もしくはログインしてください']);
+      session()->flash('menu2-error', '会員登録、もしくはログインが必要です');
+      return view('user.menu2');
     }
-      
+
       $data = $request->only(['shop_id', 'booking_date', 'booking_time', 'number']);
       $data['user_id'] = Auth::id();
 

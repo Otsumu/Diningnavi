@@ -59,7 +59,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('review.edit');
     Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
-    Route::get('/user/users/mypage', [UserController::class, 'mypage'])->name('user.users.mypage');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     
 Route::middleware('auth')->prefix('admin')->group(function () {

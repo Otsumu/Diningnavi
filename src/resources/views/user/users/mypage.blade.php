@@ -45,7 +45,7 @@
                             <div class="booking_actions">
                                 @if(\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($booking->booking_date . ' ' . $booking->booking_time)))
                                     <a href="{{ route('review.create', $booking->id) }}" class="btn btn-secondary"
-                                        style="background-color: #b8f79f; border: 1px solid #b8f79f; ">レビューを書く</a>
+                                        style="background-color: #e38bf1; border: 1px solid #e38bf1; ">レビューを書く</a>
                                 @else
                                     <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-primary">変更</a>
                                 <form action="{{ route('booking.cancel', ['id' => $booking->id]) }}" method="POST" style="display:inline;">

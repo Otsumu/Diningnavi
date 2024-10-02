@@ -16,14 +16,12 @@
     <header>
         <div class= header>
             <div class="header__left">
-                @if(Auth::check() && Auth::user()->role === 'user')
                 <div class="header__icon">
                     <input id="drawer__input" class="drawer__hidden" type="checkbox">
                     <label for="drawer__input" class="drawer__open menuToggle" id="menuToggle">
                     <span></span></label>
                 </div>
                 <div class="header__logo">Rese</div>
-                @endif
             </div>
             <div class="header__right">
                 @yield('header')

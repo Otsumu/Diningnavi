@@ -36,14 +36,14 @@
         </div>
 
         <div class="search__item">
-            <div class="search__item-button">  
+            <div class="search__item-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <label for="search-keyword">
                 <input type="text" id="search-keyword" name="keyword" class="search__item-input" placeholder="Search ..." value="{{ request('keyword') }}">
             </label>
         </div>
-    </div>    
+    </div>
 </form>
 @endsection
 

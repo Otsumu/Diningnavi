@@ -46,9 +46,10 @@ class UserController extends Controller
     }
 
     public function showMenu2() {
-        if(Auth::check()) {
+        if (Auth::check()) {
             return redirect()->route('user.users.menu1');
         }
+        session()->flash('menu2-error', '会員登録、もしくはログインが必要です');
         return view('user.menu2');
     }
 

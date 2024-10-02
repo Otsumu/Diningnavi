@@ -11,12 +11,6 @@
     @yield('css')
 </head>
 <body>
-    <header>
-        <div class="header__left">
-            <div class="close-icon" id="closeButton"></div>
-        </div>
-    </header>
-
 <main>
   <div class="menu">
     <nav class="nav__content">

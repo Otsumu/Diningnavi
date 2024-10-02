@@ -17,16 +17,13 @@
     </header>
 
     <main>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="menu">
+            @if (session()->has('menu2-error'))
+                <div class="alert alert-danger">
+                    {{ session('menu2-error') }}
+                </div>
+            @endif
+    
             <nav class="nav__content">
                 <ul class="nav__list">
                     <li class="nav__item"><a class="nav__item-link" href="/">Home</a></li>
@@ -39,14 +36,10 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const closeButton = document.getElementById('closeButton');
-                const menu = document.querySelector('.nav__content');
-                
-                if (closeButton && menu) {
-                    closeButton.addEventListener('click', function() {
-                        menu.classList.add('hidden');
-                        window.location.href = '/';
-                    });
-                }
+
+                closeButton.addEventListener('click', function() {
+                    window.location.href = '/';
+                });
             });
         </script>
     </main>
