@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/users/form/{id}', [UserController::class, 'destroyBooking'])->name('booking.cancel');
     Route::post('/user/users/mypage/add/{shopId}', [FavoriteController::class, 'add'])->name('favorites.add');
     Route::delete('/user/users/mypage/remove/{shopId}', [FavoriteController::class, 'remove'])->name('favorites.remove');
-
     Route::get('/review/form/{bookingId}', [ReviewController::class, 'create'])->name('review.create');
     Route::get('/review/confirm/', [ReviewController::class, 'confirm'])->name('review.confirm');
     Route::post('/user/users/mypage', [ReviewController::class, 'store'])->name('review.store');
@@ -60,7 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
-    
+});
+
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');
     Route::get('/form', [AdminController::class, 'showRegisterForm'])->name('admin.form');
@@ -73,4 +73,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('/shop_owners/{id}', [AdminController::class, 'deleteShopOwner'])->name('admin.delete');
     Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 });
+
+Route::middleware('auth')->prefix('shop_owner')->group(function () {
+    Route::get('/shops/menu', [ShopOwnerController::class, 'menu'])->name('shop_owner.shops.menu');
+    Route::get('/shops/bookings', [ShopOwnerController::class, 'bookingsIndex'])->name('shop_owner.shops.bookings');
+    Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });

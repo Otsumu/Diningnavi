@@ -75,9 +75,13 @@ class ShopOwnerController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials) && Auth::user()->isShopOwner()) {
-            return redirect()->route('shop_owner.shops.index');
+            return redirect()->route('shop_owner.shops.menu');
         }
         return redirect()->back()->withErrors('ログインできません');
+    }
+
+    public function menu() {
+        return view('shop_owner.shops.menu');
     }
 
     public function create() {
@@ -112,8 +116,10 @@ class ShopOwnerController extends Controller
     }
 
     public function bookingsIndex() {
-        $shopIds = Auth::user()->shops()->pluck('id');
-        $bookings = Booking::whereIn('shop_id', $shopIds)->get();
+        $shopOwnerId = Auth::id();
+        $bookings = Booking::whereHas('shop',function($query) use ($shopOwnerId) {
+          $query->where('shop_owner_id',$shopOwnerId);
+        })->with('user', 'shop')->paginate(5); 
 
         return view('shop_owner.shops.bookings',compact('bookings'));
     }
@@ -126,7 +132,7 @@ class ShopOwnerController extends Controller
 
         $request->session()->flash('success', 'ログアウトしました');
 
-        return redirect('/');
+        return redirect()->route('shop_owner.login');
     }
 
 }
