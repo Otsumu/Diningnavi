@@ -84,14 +84,32 @@ class ShopOwnerController extends Controller
         return view('shop_owner.shops.menu');
     }
 
-    public function create() {
-        return view('shop_owner.shops.form');
+    public function showForm() {
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('shop_owner.shops.form', compact('areas', 'genres'));
     }
 
-    public function storeForm(ShopRequest $request) {
-        $shop = Auth::user()->shops()->create($request->validated());
+    public function confirmForm(ShopRequest $request) {
+        $inputs = $request->all();
+        $areas = Area::all(); 
+        $genres = Genre::all();
 
-        return redirect()->route('shop_owner.shops.index')->with('success', '店舗情報を作成しました');
+        session(['shop_inputs' => $inputs]); 
+
+        return redirect()->route('shop_owner.shops.confirm.view');
+    }
+
+    public function showConfirm() {
+        $inputs = session('shop_inputs', []);
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('shop_owner.shops.confirm', compact('inputs', 'areas','genres'));
+    }
+
+    public function storeForm(Request $request) {
+        $shop = Auth::user()->shops()->create($request->all());
+        return redirect()->route('shop_owner.shops.index')->with('success', '新規店舗を登録しました');
     }
 
     public function edit($id) {

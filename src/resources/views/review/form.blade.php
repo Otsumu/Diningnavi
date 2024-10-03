@@ -17,7 +17,7 @@
     </div>
     <form action="{{ route('review.confirm') }}" method="GET">
         <input type="hidden" name="booking_id" value="{{ $booking->id }}">
-        
+
         <div class="form-group">
             <label for="title">タイトル</label>
             <input type="text" name="title" id="title" required>

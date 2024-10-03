@@ -77,5 +77,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::get('/shops/menu', [ShopOwnerController::class, 'menu'])->name('shop_owner.shops.menu');
     Route::get('/shops/bookings', [ShopOwnerController::class, 'bookingsIndex'])->name('shop_owner.shops.bookings');
+    Route::get('/shops/form',[ShopOwnerController::class,'showForm'])->name('shop_owner.shops.form');
+    Route::get('/shops/confirm', [ShopOwnerController::class, 'showConfirm'])->name('shop_owner.shops.confirm.view');
+    Route::post('/shops/confirm', [ShopOwnerController::class, 'confirmForm'])->name('shop_owner.shops.confirm'); 
+    Route::post('shops/index',[ShopOwnerController::class,'storeForm'])->name('shop_owner.shops.index');
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });

@@ -1,0 +1,122 @@
+html {
+    font-size: 65%;
+    font-family: 'Yu Gothic', '游ゴシック', 'YuGothic', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif;
+}
+
+body {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 0 75px 30px 75px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.menu-title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 9999999;
+    font-size: 30px;
+    padding: 15px; 
+    margin-top: 20px;
+}
+
+.nav__content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 5%;
+    right: 0;  
+    background: #fff;
+    transition: 0.5s;
+    display: block;
+    z-index: 1000;
+}
+
+.nav__list {
+    list-style: none;
+    height: 60%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    padding: 0;
+}
+
+.nav__item-link,
+.nav__item-link-button {
+    font-size: 30px;
+    font-weight: 100;
+    text-align: center;
+    padding-bottom: 12px;
+    display: inline-block;
+    color: rgb(63, 90, 242);
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.nav__item-link-button {
+    margin-top: 10px;
+}
+
+.nav__item-link:hover,
+.nav__item-link-button:hover {
+    opacity: 0.8;
+}
+
+.nav__item {
+    line-height: 2;
+    position: relative;
+}
+
+.nav__sub-item {
+    margin: 0;
+}
+
+.nav__sub-list {
+    position: absolute;
+    top: 0;
+    right: -250px;
+    z-index: 1000;
+    display: block;
+
+}
+
+.nav__sub-item-link {
+    display: block; 
+    padding: 2px 4px;
+    font-size: 16px;
+    color: #1835f1; 
+    text-decoration: none;
+}
+
+.nav__sub-item-link:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.nav__sub-list p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}

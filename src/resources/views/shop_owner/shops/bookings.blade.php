@@ -14,14 +14,13 @@
 <main>
     <h2 class="page-title">Booking List</h2>
 
-    <a href="{{ route('shop_owner.shops.menu') }}" class="page-back">戻る</a>
-
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
     <div class="container">
+        <a href="{{ route('shop_owner.shops.menu') }}" class="page-back">戻る</a>
     <table class="table">
         <thead>
             <tr>
