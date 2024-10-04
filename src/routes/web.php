@@ -79,7 +79,13 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::get('/shops/bookings', [ShopOwnerController::class, 'bookingsIndex'])->name('shop_owner.shops.bookings');
     Route::get('/shops/form',[ShopOwnerController::class,'showForm'])->name('shop_owner.shops.form');
     Route::get('/shops/confirm', [ShopOwnerController::class, 'showConfirm'])->name('shop_owner.shops.confirm.view');
-    Route::post('/shops/confirm', [ShopOwnerController::class, 'confirmForm'])->name('shop_owner.shops.confirm'); 
-    Route::post('shops/index',[ShopOwnerController::class,'storeForm'])->name('shop_owner.shops.index');
+    Route::post('/shops/confirm', [ShopOwnerController::class, 'confirmForm'])->name('shop_owner.shops.confirm');
+    Route::get('/shops/index',[ShopOwnerController::class,'index'])->name('shop_owner.shops.index');
+    Route::post('shops/index',[ShopOwnerController::class,'storeForm'])->name('shop_owner.shops.index.store');
+
+    Route::get('/shops/{id}/edit', [ShopOwnerController::class, 'edit'])->name('shop_owner.shops.edit');
+    Route::patch('/shops/{id}', [ShopOwnerController::class, 'update'])->name('shop_owner.shops.update');
+    Route::delete('/shops/{id}', [ShopOwnerController::class, 'delete'])->name('shop_owner.shops.delete');
+    
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });

@@ -26,21 +26,29 @@
             <tr>
                 <th><i class="fa-solid fa-id-card-clip"></i>&nbsp;ID</th>
                 <th><i class="fa-solid fa-user"></i>&nbsp;Name</th>
+                <th><i class="fa-solid fa-person"></i>&nbsp;Number</th>
                 <th><i class="fa-solid fa-envelope"></i>&nbsp;Email</th>
                 <th><i class="fa-solid fa-shop"></i>&nbsp;Shop</th>
                 <th><i class="fa-regular fa-clock"></i></i>&nbsp;Date</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($bookings as $booking)
+            @if($bookings->isEmpty())
                 <tr>
-                    <td>{{ $booking->id }}</td>
-                    <td>{{ $booking->user->name }}</td>
-                    <td>{{ $booking->user->email }}</td>
-                    <td>{{ $booking->shop->name }}</td>
-                    <td>{{ $booking->booking_date }}&nbsp;{{ $booking->booking_time }}</td>
+                    <td colspan="5">予約情報はありません。</td>
                 </tr>
-            @endforeach
+            @else
+                @foreach($bookings as $booking)
+                    <tr>
+                        <td>{{ $booking->id }}</td>
+                        <td>{{ $booking->user->name }}</td>
+                        <td>{{ $booking->number }}</td>
+                        <td>{{ $booking->user->email }}</td>
+                        <td>{{ $booking->shop->name }}</td>
+                        <td>{{ $booking->booking_date }}&nbsp;{{ $booking->booking_time }}</td>
+                    </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
     @if ($bookings->hasPages())

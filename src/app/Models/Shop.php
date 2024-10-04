@@ -15,7 +15,8 @@ class Shop extends Model
         'intro',
         'genre_id',
         'area_id',
-        'user_id'
+        'user_id',
+        'shop_owner_id'
     ];
 
     public function genre() {

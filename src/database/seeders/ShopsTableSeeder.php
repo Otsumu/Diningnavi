@@ -57,7 +57,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
                 'area_id' => 1,
                 'genre_id' => 1,
-                'user_id' => $user1->id, 
+                'user_id' => $user1->id,
+                'shop_owner_id' => $user1->id,
             ],
             [
                 'name' => '牛助',
@@ -65,7 +66,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
                 'area_id' => 2,
                 'genre_id' => 2,
-                'user_id' => $user2->id, 
+                'user_id' => $user2->id,
+                'shop_owner_id' => $user2->id,
             ],
             [
                 'name' => '戦慄',
@@ -73,7 +75,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/izakaya.jpg',
                 'area_id' => 3,
                 'genre_id' => 3,
-                'user_id' => $user3->id, 
+                'user_id' => $user3->id,
+                'shop_owner_id' => $user3->id,
             ],
             [
                 'name' => 'ルーク',
@@ -81,7 +84,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
                 'area_id' => 1,
                 'genre_id' => 4,
-                'user_id' => $user3->id, 
+                'user_id' => $user3->id,
+                'shop_owner_id' => $user3->id,
             ],
             [
                 'name' => '志摩屋',
@@ -89,7 +93,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg',
                 'area_id' => 3,
                 'genre_id' => 5,
-                'user_id' => $user3->id, 
+                'user_id' => $user3->id,
+                'shop_owner_id' => $user3->id,
             ],
             [
                 'name' => '香',
@@ -97,7 +102,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
                 'area_id' => 1,
                 'genre_id' => 2,
-                'user_id' => $user2->id, 
+                'user_id' => $user2->id,
+                'shop_owner_id' => $user2->id,
             ],  
             [
                 'name' => 'JJ',
@@ -105,7 +111,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
                 'area_id' => 2,
                 'genre_id' => 4,
-                'user_id' => $user1->id, 
+                'user_id' => $user1->id,
+                'shop_owner_id' => $user1->id,
             ],
             [
                 'name' => 'らーめん極み',
@@ -113,7 +120,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg',
                 'area_id' => 1,
                 'genre_id' => 5,
-                'user_id' => $user1->id, 
+                'user_id' => $user1->id,
+                'shop_owner_id' => $user1->id,
             ],
             [
                 'name' => '鳥雨',
@@ -121,7 +129,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/izakaya.jpg',
                 'area_id' => 2,
                 'genre_id' => 3,
-                'user_id' => $user4->id, 
+                'user_id' => $user4->id,
+                'shop_owner_id' => $user4->id,
             ],
             [
                 'name' => '築地色合',
@@ -129,7 +138,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
                 'area_id' => 1,
                 'genre_id' => 1,
-                'user_id' => $user5->id, 
+                'user_id' => $user5->id,
+                'shop_owner_id' => $user5->id,
             ],
             [
                 'name' => '晴海',
@@ -137,7 +147,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
                 'area_id' => 2,
                 'genre_id' => 2,
-                'user_id' => $user6->id, 
+                'user_id' => $user6->id,
+                'shop_owner_id' => $user6->id,
             ],
             [
                 'name' => '三子',
@@ -145,7 +156,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
                 'area_id' => 3,
                 'genre_id' => 2,
-                'user_id' => $user3->id, 
+                'user_id' => $user3->id,
+                'shop_owner_id' => $user3->id,
             ],
             [
                 'name' => '八戒',
@@ -153,7 +165,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/izakaya.jpg',
                 'area_id' => 1,
                 'genre_id' => 3,
-                'user_id' => $user7->id, 
+                'user_id' => $user7->id,
+                'shop_owner_id' => $user7->id,
             ],
             [
                 'name' => '福助',
@@ -161,7 +174,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
                 'area_id' => 2,
                 'genre_id' => 1,
-                'user_id' => $user7->id, 
+                'user_id' => $user7->id,
+                'shop_owner_id' => $user7->id,
             ],
             [
                 'name' => 'ラー北',
@@ -169,7 +183,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg',
                 'area_id' => 1,
                 'genre_id' => 5,
-                'user_id' => $user6->id, 
+                'user_id' => $user6->id,
+                'shop_owner_id' => $user6->id,
             ],
             [
                 'name' => '翔',
@@ -177,7 +192,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg',
                 'area_id' => 2,
                 'genre_id' => 3,
-                'user_id' => $user5->id, 
+                'user_id' => $user5->id,
+                'shop_owner_id' => $user5->id,
             ],
             [
                 'name' => '経緯',
@@ -185,7 +201,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
                 'area_id' => 1,
                 'genre_id' => 1,
-                'user_id' => $user4->id, 
+                'user_id' => $user4->id,
+                'shop_owner_id' => $user4->id,
             ],
             [
                 'name' => '漆',
@@ -193,7 +210,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg',
                 'area_id' => 1,
                 'genre_id' => 2,
-                'user_id' => $user4->id, 
+                'user_id' => $user4->id,
+                'shop_owner_id' => $user4->id,
             ],
             [
                 'name' => 'THE TOOL',
@@ -201,7 +219,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',
                 'area_id' => 3,
                 'genre_id' => 4,
-                'user_id' => $user6->id, 
+                'user_id' => $user6->id,
+                'shop_owner_id' => $user6->id,
             ],
             [
                 'name' => '木船',
@@ -209,7 +228,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
                 'area_id' => 2,
                 'genre_id' => 1,
-                'user_id' => $user1->id, 
+                'user_id' => $user1->id,
+                'shop_owner_id' => $user1->id,
             ],
         ];
 
@@ -220,7 +240,8 @@ class ShopsTableSeeder extends Seeder
                 'image_url' => $shop['image_url'],
                 'area_id' => $shop['area_id'],
                 'genre_id' => $shop['genre_id'],
-                'user_id' => $shop['user_id']
+                'user_id' => $shop['user_id'],
+                'shop_owner_id' => $shop['shop_owner_id'],
             ]);
         }
     }

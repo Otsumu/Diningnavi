@@ -81,7 +81,17 @@ class ShopOwnerController extends Controller
     }
 
     public function menu() {
+        $shop = Auth::user()->shops()->get();
         return view('shop_owner.shops.menu');
+    }
+
+    public function bookingsIndex() {
+        $shopOwnerId = Auth::id();
+        $bookings = Booking::whereHas('shop', function($query) use ($shopOwnerId) {
+            $query->where('shop_owner_id', $shopOwnerId);
+        })->with('user', 'shop')->paginate(5); 
+    
+        return view('shop_owner.shops.bookings', compact('bookings'));
     }
 
     public function showForm() {
@@ -90,6 +100,13 @@ class ShopOwnerController extends Controller
         return view('shop_owner.shops.form', compact('areas', 'genres'));
     }
 
+    public function showConfirm() {
+        $inputs = session('shop_inputs', []);
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('shop_owner.shops.confirm', compact('inputs', 'areas','genres'));
+    }
+    
     public function confirmForm(ShopRequest $request) {
         $inputs = $request->all();
         $areas = Area::all(); 
@@ -100,15 +117,16 @@ class ShopOwnerController extends Controller
         return redirect()->route('shop_owner.shops.confirm.view');
     }
 
-    public function showConfirm() {
-        $inputs = session('shop_inputs', []);
-        $areas = Area::all();
-        $genres = Genre::all();
-        return view('shop_owner.shops.confirm', compact('inputs', 'areas','genres'));
+    public function index() {
+        $shops = Auth::user()->shops()->with('area', 'genre')->paginate(5);
+        return view('shop_owner.shops.index', compact('shops'));
     }
 
-    public function storeForm(Request $request) {
-        $shop = Auth::user()->shops()->create($request->all());
+    public function storeForm(ShopRequest $request) {
+        $shopData = $request->only(['name','intro','image_url','genre_id','area_id']);
+        $shopData['shop_owner_id'] = Auth::id();
+        $shop = Auth::user()->shops()->create($shopData);
+
         return redirect()->route('shop_owner.shops.index')->with('success', '新規店舗を登録しました');
     }
 
@@ -117,29 +135,21 @@ class ShopOwnerController extends Controller
         $genres = Genre::all();
         $areas = Area::all(); 
     
-        return view('shop_owner.shops.form', compact('shop', 'genres', 'areas'));
+        return view('shop_owner.shops.edit', compact('shop', 'genres', 'areas'));
     }
 
-    public function update(Request $request, $id) {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'role' => 'required|in:admin,shop_owner,regular_user',
-        ]);
-
+    public function update(ShopRequest $request, $id) {
         $shop = Auth::user()->shops()->findOrFail($id);
         $shop -> update($request->validated());
 
         return redirect()->route('shop_owner.shops.index')->with('success', '店舗情報を更新しました');
     }
 
-    public function bookingsIndex() {
-        $shopOwnerId = Auth::id();
-        $bookings = Booking::whereHas('shop',function($query) use ($shopOwnerId) {
-          $query->where('shop_owner_id',$shopOwnerId);
-        })->with('user', 'shop')->paginate(5); 
+    public function delete($id) {
+        $shop = Shop::findOrFail($id);
+        $shop->delete();
 
-        return view('shop_owner.shops.bookings',compact('bookings'));
+        return redirect()->route('shop_owner.shops.index')->with('success', '店舗情報を削除しました');
     }
 
     public function destroy(Request $request) {
@@ -152,5 +162,4 @@ class ShopOwnerController extends Controller
 
         return redirect()->route('shop_owner.login');
     }
-
 }

@@ -32,9 +32,6 @@
                         <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/form">Create 新規店舗登録</a>
                     </li>
                     <li class="nav__sub-item">
-                        <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/edit">Edit&Update 既存店の編集</a>
-                    </li>
-                    <li class="nav__sub-item">
                         <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/index">Shop List 登録店一覧</a>
                     </li>
                 </ul>

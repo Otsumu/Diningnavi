@@ -7,6 +7,8 @@
 @section('content')
     <div class="container">
       <h2 class="form-title">入力内容確認</h2>
+      <p class="form-message" style="font-size: 16px; font-weight: bold; text-align: center;">
+        こちらで登録してよろしいですか？</p>
         <form action="{{ route('shop_owner.shops.index') }}" method="post">
             @csrf
             <div class="form-group">
@@ -26,7 +28,7 @@
 
             <div class="form-group">
                 <label for="area_id"><i class="fa-solid fa-location-dot"></i>&nbsp;Area</label>
-                <select id="area_id" name="area_id" disabled>
+                <select id="area_id" name="area_id">
                     @foreach($areas as $area)
                         <option value="{{ $area->id }}" {{ (isset($inputs['area_id']) && $inputs['area_id'] == $area->id) ? 'selected' : '' }}>
                             {{ $area->name }}
@@ -36,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="genre_id"><i class="fa-solid fa-utensils"></i>&nbsp;Genre</label>
-                <select id="genre_id" name="genre_id" disabled>
+                <select id="genre_id" name="genre_id">
                     @foreach($genres as $genre)
                         <option value="{{ $genre->id }}" {{ (isset($inputs['genre_id']) && $inputs['genre_id'] == $genre->id) ? 'selected' : '' }}>
                             {{ $genre->name }}
