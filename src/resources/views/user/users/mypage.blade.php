@@ -19,7 +19,7 @@
               </div>
             @endif
             @if($bookings->isEmpty())
-                <p style="font-size: 16px; padding: 5px;">現在ご予約はありません</p>
+                <p style="font-size: 16px; padding: 5px;">ご予約はありません</p>
             @else
                 @foreach($bookings as $booking)
                     <div class="booking_confirm">
@@ -64,7 +64,7 @@
         <div class="right-content">
             <h3 class="favorites-title">お気に入り店舗</h3>
             @if($favorites->isEmpty())
-                <p style="font-size: 16px; padding: 5px;">お気に入り登録店はありません</p>
+                <p style="font-size: 16px; padding: 5px;">お気に入りはありません</p>
             @else
                 <div class="shop__list">
                     @foreach($favorites as $shop)
@@ -89,7 +89,10 @@
         </div>
     
         <div class="review-content">
-            <h3 class="reviews-title">レビュー一覧</h3>
+        <h3 class="reviews-title">レビュー一覧</h3>
+        @if($reviews->isEmpty())
+            <p style="font-size: 16px; padding: 5px;">レビューはありません</p>
+        @else
         
             @if(session('success-review'))
                 <div class="alert alert-success">
@@ -147,6 +150,7 @@
                     </div>
                 @endforeach
             </div>
+        @endif
         </div>
     </div>
 
@@ -180,15 +184,7 @@
         div.textContent = message;
         div.className = 'alert alert-success';
 
-        div.style.marginTop = '0px';
-        div.style.padding = '10px';
-        div.style.fontSize = '16px';
-        const target = document.querySelector('.favorites-title');
-        target.insertAdjacentElement('afterend', div); 
-
-        setTimeout(() => {
-            div.remove();
-        }, 3000);
+        document.querySelector('.favorites-title').insertAdjacentElement('afterend', div);
     }
 </script>
 @endsection

@@ -18,6 +18,8 @@ class LoginController extends Controller {
     
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->flash('success', 'ログインしました');
+
             return redirect()->route('home');
         }
 

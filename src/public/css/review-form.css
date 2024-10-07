@@ -130,9 +130,60 @@ p {
     display: flex;
     margin-left: 25px;
 }
-    
+
 .confirm-star {
     margin-right: 5px;
     color: gold;
     transition: color 0.2s;
 }
+
+
+@media (max-width: 768px) {
+    .review-content {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    .shop-info {
+        padding: 10px 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    
+    #rating {
+        display: flex;
+    }
+    
+    .star {
+        cursor: pointer;
+        font-size: 24px;
+        color: gold;
+    }
+
+    .button-group {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 40px;
+    }
+    
+    .button-review {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 10px 20px;
+    }
+}    
