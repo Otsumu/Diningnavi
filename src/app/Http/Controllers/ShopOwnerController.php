@@ -89,7 +89,7 @@ class ShopOwnerController extends Controller
         $shopOwnerId = Auth::id();
         $bookings = Booking::whereHas('shop', function($query) use ($shopOwnerId) {
             $query->where('shop_owner_id', $shopOwnerId);
-        })->with('user', 'shop')->paginate(5); 
+        })->with('user', 'shop')->paginate(10); 
     
         return view('shop_owner.shops.bookings', compact('bookings'));
     }
