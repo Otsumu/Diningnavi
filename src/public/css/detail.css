@@ -172,9 +172,17 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 @media (max-width: 768px) {
-    .review__content {
-        grid-template-columns: 1fr;
-        padding: 10px;
+    .shop__content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .shop__left-content,
+    .shop__right-content {
+        width: 100%;
+        margin-left: 0;
     }
 }
 
