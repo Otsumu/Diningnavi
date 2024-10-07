@@ -82,10 +82,11 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::post('/shops/confirm', [ShopOwnerController::class, 'confirmForm'])->name('shop_owner.shops.confirm');
     Route::get('/shops/index',[ShopOwnerController::class,'index'])->name('shop_owner.shops.index');
     Route::post('shops/index',[ShopOwnerController::class,'storeForm'])->name('shop_owner.shops.index.store');
-
     Route::get('/shops/{id}/edit', [ShopOwnerController::class, 'edit'])->name('shop_owner.shops.edit');
     Route::patch('/shops/{id}', [ShopOwnerController::class, 'update'])->name('shop_owner.shops.update');
     Route::delete('/shops/{id}', [ShopOwnerController::class, 'delete'])->name('shop_owner.shops.delete');
-    
+    Route::get('/shops/save_image', [ShopOwnerController::class, 'showImageUploadForm'])->name('shop_owner.shops.show_image_upload');
+    Route::post('/shops/save_image', [ShopOwnerController::class, 'saveImageFromUrl'])->name('shop_owner.shops.save_image');
+
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });

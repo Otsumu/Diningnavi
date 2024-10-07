@@ -14,6 +14,8 @@ use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class ShopOwnerController extends Controller
 {   
@@ -150,6 +152,23 @@ class ShopOwnerController extends Controller
         $shop->delete();
 
         return redirect()->route('shop_owner.shops.index')->with('success', '店舗情報を削除しました');
+    }
+
+    public function showImageUploadForm() {
+        return view('shop_owner.shops.image_upload'); // フォームを表示
+    }
+    
+    public function saveImageFromUrl(Request $request) {
+        $imageUrl = $request->input('image_url');
+        $response = Http::get($imageUrl);
+    
+        if ($response->successful()) {
+            $fileName = basename($imageUrl);
+            Storage::disk('public')->put("images/{$fileName}", $response->body());
+    
+            return response()->json(['message' => '画像を保存しました']);
+        }
+        return response()->json(['message' => '画像の保存に失敗しました'], 500);
     }
 
     public function destroy(Request $request) {
