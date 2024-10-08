@@ -155,7 +155,7 @@ class ShopOwnerController extends Controller
     }
 
     public function showImageUploadForm() {
-        return view('shop_owner.shops.image_upload'); // フォームを表示
+        return view('shop_owner.shops.image_upload');
     }
     
     public function saveImageFromUrl(Request $request) {
@@ -165,10 +165,8 @@ class ShopOwnerController extends Controller
         if ($response->successful()) {
             $fileName = basename($imageUrl);
             Storage::disk('public')->put("images/{$fileName}", $response->body());
-    
-            return response()->json(['message' => '画像を保存しました']);
         }
-        return response()->json(['message' => '画像の保存に失敗しました'], 500);
+            return response()->json(['message' => '画像を保存しました']);
     }
 
     public function destroy(Request $request) {
