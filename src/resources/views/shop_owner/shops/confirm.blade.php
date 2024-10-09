@@ -22,8 +22,13 @@
             </div>
 
             <div class="form-group">
-                <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image URL</label>
-                <input type="url" id="image_url" name="image_url" value="{{ $inputs['image_url'] ?? '' }}" readonly>
+                <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image</label>
+                <input type="text" id="image_url" name="image_url" value="{{ $inputs['image_url'] ?? '' }}" readonly>
+                <div class="image-preview" style="margin-top: 10px;">
+                    @if($inputs['image_url'])
+                        <img src="{{ asset('storage/images/' . $inputs['image_url']) }}" style="max-width: 100%; height: auto;">
+                    @endif
+                </div>
             </div>
 
             <div class="form-group">

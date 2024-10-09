@@ -21,6 +21,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             width: 300px;
+            text-align: center;
         }
 
         input[type="text"], button {
@@ -31,6 +32,7 @@
             border-radius: 5px;
             margin-bottom: 15px;
             box-sizing: border-box;
+            text-align: center;
         }
 
         button {
@@ -50,6 +52,7 @@
     @csrf
     <input type="text" name="image_url" placeholder="画像のURLを入力" required>
     <button type="submit">画像を保存</button>
+    <a class="back" style="display: block; text-align: center; font-size: 12px;" href="{{ route('shop_owner.shops.menu') }}">メニューに戻る</a>
 </form>
 </body>
 </html>

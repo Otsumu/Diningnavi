@@ -25,6 +25,23 @@
     flex-wrap: nowrap;
 }
 
+.image_upload-link {
+    display: block;
+    margin-top: 10px;
+}
+
+.image_upload-link a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.image_upload-link a:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
 label {
     font-size: 16px;
     font-weight: bold;

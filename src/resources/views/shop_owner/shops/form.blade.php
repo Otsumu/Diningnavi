@@ -26,11 +26,21 @@
             </div>
 
             <div class="form-group">
-                <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image URL</label>
-                <input type="url" id="image_url" name="image_url" value="{{ old('image_url', session('shop_inputs.image_url' , '' )) }}" placeholder="画像URLを入力して下さい" required>
-                    @error('image_url')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image</label>
+                <select id="image_url" name="image_url" required>
+                    <option value="">画像を選択してください</option>
+                    @foreach ($imageFiles as $file)
+                        <option value="{{ $file }}" {{ old('image_url', session('shop_inputs.image_url', '')) == $file ? 'selected' : '' }}>
+                            {{ basename($file) }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('image_url')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="image_upload-link" style="font-size: 12px; text-align: right; margin-top: -20px; padding-bottom:10px;">
+                <a href="{{ route('shop_owner.shops.image_upload') }}">画像をダウンロードする</a>
             </div>
 
             <div class="form-group">

@@ -100,7 +100,13 @@ class ShopOwnerController extends Controller
         $inputs = session('shop_inputs', []); 
         $areas = Area::all();
         $genres = Genre::all();
-        return view('shop_owner.shops.form', compact('areas', 'genres'))->withInput($inputs);;
+        $imageFiles = Storage::disk('public')->files('images');
+    
+        $imageFiles = array_map(function($file) {
+            return asset($file);
+        }, $imageFiles);
+    
+        return view('shop_owner.shops.form', compact('areas', 'genres', 'imageFiles'))->withInput($inputs);
     }
 
     public function showConfirm() {
@@ -112,8 +118,7 @@ class ShopOwnerController extends Controller
     
     public function confirmForm(ShopRequest $request) {
         $inputs = $request->all();
-        $areas = Area::all(); 
-        $genres = Genre::all();
+        session(['shop_inputs' => $inputs]); 
 
         return redirect()->route('shop_owner.shops.confirm.view');
     }
