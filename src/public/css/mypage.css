@@ -192,6 +192,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 .review-table {

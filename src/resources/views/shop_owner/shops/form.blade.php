@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label for="name"><i class="fa-solid fa-shop"></i>&nbsp;shop</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="店舗名を入力して下さい" required>
+                <input type="text" id="name" name="name" value="{{ old('name', session('shop_inputs.name', '' )) }}" placeholder="店舗名を入力して下さい" required>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label for="intro"><i class="fa-regular fa-comment"></i>&nbsp;Intro</label>
-                <textarea id="intro" name="intro" rows="5" value="{{ old('intro') }}" placeholder="お店の紹介文を入力して下さい"></textarea>
+                <textarea id="intro" name="intro" rows="5" placeholder="お店の紹介文を入力して下さい">{{ old('intro', session('shop_inputs.intro', '')) }} </textarea>
                     @error('intro')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image URL</label>
-                <input type="url" id="image_url" name="image_url" value="{{ old('image_url') }}" placeholder="画像URLを入力して下さい" required>
+                <input type="url" id="image_url" name="image_url" value="{{ old('image_url', session('shop_inputs.image_url' , '' )) }}" placeholder="画像URLを入力して下さい" required>
                     @error('image_url')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

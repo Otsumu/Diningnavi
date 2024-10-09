@@ -97,9 +97,10 @@ class ShopOwnerController extends Controller
     }
 
     public function showForm() {
+        $inputs = session('shop_inputs', []); 
         $areas = Area::all();
         $genres = Genre::all();
-        return view('shop_owner.shops.form', compact('areas', 'genres'));
+        return view('shop_owner.shops.form', compact('areas', 'genres'))->withInput($inputs);;
     }
 
     public function showConfirm() {
@@ -113,8 +114,6 @@ class ShopOwnerController extends Controller
         $inputs = $request->all();
         $areas = Area::all(); 
         $genres = Genre::all();
-
-        session(['shop_inputs' => $inputs]); 
 
         return redirect()->route('shop_owner.shops.confirm.view');
     }

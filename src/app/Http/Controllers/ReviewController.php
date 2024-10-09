@@ -11,19 +11,18 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     public function create($bookingId) {
-
+        $inputs = session("reviews_inputs.$bookingId",[]);
         $review = Review::where('booking_id', $bookingId)->first();
-
         $booking = Booking::with('shop')->where('id', $bookingId)->first();
         $shop_name = $booking->shop->name;
         $booking_date = $booking->booking_date;
             
-        return view('review.form', compact('bookingId', 'review', 'booking','shop_name','booking_date'));
+        return view('review.form', compact('bookingId', 'review', 'booking','shop_name','booking_date'))->withInput($inputs);
     }
 
     public function confirm(ReviewRequest $request) {
         $validated = $request->validated();
-            
+        session(["reviews_inputs.{$validated['booking_id']}" => $validated]); 
         $booking = Booking::with('shop')->findOrFail($validated['booking_id']);
         $validated['shop_name'] = $booking->shop->name;
         $validated['booking_date'] = $booking->booking_date;

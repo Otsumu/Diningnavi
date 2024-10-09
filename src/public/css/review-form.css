@@ -137,6 +137,81 @@ p {
     transition: color 0.2s;
 }
 
+.header__left{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.drawer__hidden {
+    display: none;
+}
+
+.drawer__open {
+    display: flex;
+    height: 32px;
+    width: 32px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+    background-color: rgb(73, 99, 246);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    padding: 0 5px;
+}
+
+.drawer__open:hover {
+    opacity: 0.8;
+}
+
+.drawer__open span,
+.drawer__open span:before,
+.drawer__open span:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 16px;
+    border-radius: 3px;
+    background: #fff;
+    transition: 0.2s;
+    position: relative;
+}
+
+.drawer__open span:before {
+    bottom: 6px;
+    width: 10px;
+}
+
+.drawer__open span:after {
+    top: 6px;
+    width: 10px;
+}
+
+.header__logo {
+    font-size: 32px;
+    color: rgb(63, 90, 242);
+    font-weight: bold;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
 
 @media (max-width: 768px) {
     .review-content {
@@ -186,4 +261,4 @@ p {
         right: 0;
         padding: 10px 20px;
     }
-}    
+}
