@@ -87,7 +87,7 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::delete('/shops/{id}', [ShopOwnerController::class, 'delete'])->name('shop_owner.shops.delete');
     Route::get('/shops/image_upload', [ShopOwnerController::class, 'showImageUploadForm'])->name('shop_owner.shops.image_upload');
     Route::post('/shops/save_image', [ShopOwnerController::class, 'saveImageFromUrl'])->name('shop_owner.shops.save_image');
-
-
+    Route::get('/emails/user_send_mail', [ShopOwnerController::class, 'showEmailForm'])->name('emails.user_send_mail');
+    Route::post('/send-bulk-email', [ShopOwnerController::class, 'sendBulkEmail'])->name('send.bulk.email');
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             GenresTableSeeder::class,
             ShopsTableSeeder::class,
             AdminSeeder::class,
+            UserSeeder::class,
+            BookingsTableSeeder::class,
         ]);
     }
 }

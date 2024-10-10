@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ShopRequest;
+use App\Mail\UserSendMail;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Booking;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class ShopOwnerController extends Controller
 {   
@@ -171,6 +173,34 @@ class ShopOwnerController extends Controller
             Storage::disk('public')->put("images/{$fileName}", $response->body());
         }
             return response()->json(['message' => '画像を保存しました']);
+    }
+
+    public function showEmailForm() {
+        return view('emails.user_send_mail', [
+            'subject' => 'メール送信フォーム',
+            'body' => ''
+        ]);
+    }
+
+    private function sendUserMail($email, $subject, $body) {
+        Mail::to($email)->send(new UserSendMail($subject, $body));
+    }
+
+    
+    public function sendBulkEmail(Request $request) {
+        $request->validate([
+            'body' => 'required|string|max:1000',
+        ]);
+    
+        $subject = 'イベント、キャンペーンのご案内';
+        $body = $request->input('body');
+        $users = User::all(); 
+    
+        foreach ($users as $user) {
+            $this->sendUserMail($user->email, $subject, $body);
+        }
+    
+        return redirect()->back()->with('success', '全顧客にメールを送信しました。');
     }
 
     public function destroy(Request $request) {
