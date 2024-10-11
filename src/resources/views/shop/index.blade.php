@@ -74,6 +74,54 @@
         @endforeach
     </div>
 </div>
+@if ($shops->hasPages())
+<style>
+    .pagination {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+    .pagination .page-link {
+        padding: 10px 15px;
+        font-weight: bold;
+    }
+    .pagination .page-link:hover {
+        background-color: #f0f0f0;
+    }
+    .pagination .active .page-link {
+        background-color: rgb(63, 90, 242);
+        color: white;
+        border-color: rgb(63, 90, 242);
+    }
+</style>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {{ $shops->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $shops->previousPageUrl() }}" rel="prev">&laquo;</a>
+            </li>
+
+            @foreach ($shops->links()->elements as $element)
+                @if (is_string($element))
+                    <li class="disabled page-item"><span class="page-link">{{ $element }}</span></li>
+                @endif
+
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        <li class="page-item {{ $page == $shops->currentPage() ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+                @endif
+            @endforeach
+
+            <li class="page-item {{ $shops->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $shops->nextPageUrl() }}" rel="next">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+@endif
 @endsection
 
 @section('js')

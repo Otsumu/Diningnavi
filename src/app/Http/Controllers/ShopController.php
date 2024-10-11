@@ -24,7 +24,7 @@ class ShopController extends Controller {
             ->genre($genreId)
             ->area($areaId)
             ->keyword($keyword)
-            ->get();
+            ->paginate(20);
 
         $areas = Area::all();
         $genres = Genre::all();

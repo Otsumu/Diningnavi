@@ -194,7 +194,7 @@ class ShopOwnerController extends Controller
     
         $subject = 'イベント、キャンペーンのご案内';
         $body = $request->input('body');
-        $users = User::all(); 
+        $users = User::where('role', 'user')->get(); 
     
         foreach ($users as $user) {
             $this->sendUserMail($user->email, $subject, $body);

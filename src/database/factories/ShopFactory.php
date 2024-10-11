@@ -25,7 +25,7 @@ class ShopFactory extends Factory
             'genre_id' => Genre::factory(),
             'area_id' => Area::factory(),
             'user_id' => User::factory(),
-            'shop_owner_id' => User::factory(),
+            'shop_owner_id' => User::factory()->shopOwner(),
         ];
     }
 }

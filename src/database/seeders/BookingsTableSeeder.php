@@ -22,10 +22,10 @@ class BookingsTableSeeder extends Seeder
         foreach ($users as $user) {
             Booking::factory()->count(3)->create([
                 'user_id' => $user->id,
-                'shop_id' => $shops->random()->id, // ランダムにショップを選択
-                'booking_date' => now()->addDays(rand(1, 30)), // 1～30日後の日付を設定
-                'booking_time' => now()->format('H:i:s'), // 現在の時刻を設定
-                'number' => rand(1, 10), // 1～10人の人数を設定
+                'shop_id' => $shops->random()->id,
+                'booking_date' => now()->addDays(rand(1, 30)),
+                'booking_time' => now()->format('H:i:s'),
+                'number' => rand(1, 30),
             ]);
         }
     }
