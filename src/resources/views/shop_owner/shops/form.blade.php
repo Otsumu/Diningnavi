@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
       <h2 class="form-title">新規店舗登録</h2>
-        <form action="{{ route('shop_owner.shops.confirm') }}" method="POST">
+        <form action="{{ route('shop_owner.shops.confirm') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name"><i class="fa-solid fa-shop"></i>&nbsp;shop</label>

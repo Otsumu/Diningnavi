@@ -56,21 +56,21 @@
     @endif
     <div class="shop__list">
         @foreach($shops as $shop)
-        <div class="shop__item">
-            <div class="shop__image">
-                <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop__img">
+            <div class="shop__item">
+                <div class="shop__image">
+                    <img src="{{ $shop->image_url }}" alt="{{ $shop->name }}" class="shop__img">
+                </div>
+                <div class="shop__content">
+                    <h2>{{ $shop->name }}</h2>
+                    <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+                    <div class="shop__buttons">
+                        <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
+                        <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
+                            <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
+                        </button>
+                    </div>  
+                </div>
             </div>
-            <div class="shop__content">
-                <h2>{{ $shop->name }}</h2>
-                <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-                <div class="shop__buttons">
-                    <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
-                    <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
-                        <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
-                    </button>
-                </div>  
-            </div>
-        </div>
         @endforeach
     </div>
 </div>
