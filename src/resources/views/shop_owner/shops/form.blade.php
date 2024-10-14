@@ -29,11 +29,11 @@
                 <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image</label>
                 <select id="image_url" name="image_url" required>
                     <option value="">画像を選択してください</option>
-                    @foreach ($imageFiles as $file)
-                        <option value="{{ $file }}" {{ old('image_url', session('shop_inputs.image_url', '')) == $file ? 'selected' : '' }}>
-                            {{ basename($file) }}
-                        </option>
-                    @endforeach
+                        <option value="{{ asset('storage/images/italian.jpg') }}" {{ old('image_url', session('shop_inputs.image_url', '')) == asset('storage/images/italian.jpg') ? 'selected' : '' }}>italian.jpg</option>
+                        <option value="{{ asset('storage/images/izakaya.jpg') }}" {{ old('image_url', session('shop_inputs.image_url', '')) == asset('storage/images/izakaya.jpg') ? 'selected' : '' }}>izakaya.jpg</option>
+                        <option value="{{ asset('storage/images/ramen.jpg') }}" {{ old('image_url', session('shop_inputs.image_url', '')) == asset('storage/images/ramen.jpg') ? 'selected' : '' }}>ramen.jpg</option>
+                        <option value="{{ asset('storage/images/sushi.jpg') }}" {{ old('image_url', session('shop_inputs.image_url', '')) == asset('storage/images/sushi.jpg') ? 'selected' : '' }}>sushi.jpg</option>
+                        <option value="{{ asset('storage/images/yakiniku.jpg') }}" {{ old('image_url', session('shop_inputs.image_url', '')) == asset('storage/images/yakiniku.jpg') ? 'selected' : '' }}>yakiniku.jpg</option>
                 </select>
                 @error('image_url')
                     <div class="invalid-feedback">{{ $message }}</div>

@@ -18,7 +18,7 @@
 <body>
 <main>
   <div class="menu">
-    <div class="menu-title"><strong><u>{{ Auth::user()->name }}さん</u></strong>こんにちわ！</div>
+    <div class="menu-title"><strong>{{ Auth::user()->name }}さん</strong>管理ページ</div>
     <nav class="nav__content">
         <ul class="nav__list" style="margin: 0; padding: 0;">
             <li class="nav__item">
