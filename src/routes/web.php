@@ -91,3 +91,7 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::post('/send-bulk-email', [ShopOwnerController::class, 'sendBulkEmail'])->name('send.bulk.email');
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });
+
+Route::middleware('auth')->prefix('booking')->group(function () {
+    Route::get('/qrcode/{id}', [BookingController::class, 'generateQRCode'])->name('qrcode.generate');
+});

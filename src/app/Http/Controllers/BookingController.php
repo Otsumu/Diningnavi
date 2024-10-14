@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BookingController extends Controller
 {
@@ -37,5 +38,12 @@ class BookingController extends Controller
       $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
 
       return view('user.users.mypage', compact('bookings'));
+  }
+
+  public function generateQRCode($bookingId) {
+    $url = route('shop_owner.shops.bookings', ['id' => $bookingId]); 
+    $qrCode = QrCode::size(300)->generate($url);
+
+    return view('booking.qrcode', compact('qrCode'));
   }
 }
