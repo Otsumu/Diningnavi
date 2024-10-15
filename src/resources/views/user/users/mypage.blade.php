@@ -53,6 +53,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">キャンセル</button>
                                 </form>
+                                <a href="{{ route('payment.create') }}" class="btn btn-success border-success">先に決済する</a>
                                 @endif
                             </div>
                         </div>

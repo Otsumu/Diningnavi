@@ -9,8 +9,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,4 +95,8 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::get('/booking/{id}', [BookingController::class, 'showBooking'])->name('booking.show');
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });
+
+Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+
 
