@@ -20,7 +20,7 @@ class BookingsTableSeeder extends Seeder
         $shops = Shop::all();
 
         foreach ($users as $user) {
-            Booking::factory()->count(3)->create([
+            Booking::factory()->create([
                 'user_id' => $user->id,
                 'shop_id' => $shops->random()->id,
                 'booking_date' => now()->addDays(rand(1, 30)),

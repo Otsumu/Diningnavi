@@ -89,9 +89,8 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::post('/shops/save_image', [ShopOwnerController::class, 'saveImageFromUrl'])->name('shop_owner.shops.save_image');
     Route::get('/emails/user_send_mail', [ShopOwnerController::class, 'showEmailForm'])->name('emails.user_send_mail');
     Route::post('/send-bulk-email', [ShopOwnerController::class, 'sendBulkEmail'])->name('send.bulk.email');
+    Route::get('/booking/qrcode/{id}', [BookingController::class, 'generateQRCode'])->name('qrcode.generate');
+    Route::get('/booking/{id}', [BookingController::class, 'showBooking'])->name('booking.show');
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });
 
-Route::middleware('auth')->prefix('booking')->group(function () {
-    Route::get('/qrcode/{id}', [BookingController::class, 'generateQRCode'])->name('qrcode.generate');
-});
