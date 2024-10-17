@@ -78,7 +78,7 @@ select:focus {
     right: 20px;
 }
 
-.btn-primary, .btn-cancel {
+.btn-primary, .btn-cancel, .btn-secondary {
     background-color: rgb(63, 90, 242);
     color: white;
     padding: 10px 10px;
@@ -98,7 +98,7 @@ select:focus {
     background-color: rgb(53, 80, 232);
 }
 
-.btn-cancel {
+.btn-cancel, .btn-secondary {
     background-color: #ccc;
     text-decoration: none;
 }

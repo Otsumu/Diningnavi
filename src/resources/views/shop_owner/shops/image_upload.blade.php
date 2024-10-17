@@ -52,7 +52,7 @@
     @csrf
     <input type="text" name="image_url" placeholder="画像のURLを入力" required>
     <button type="submit">画像を保存</button>
-    <a class="back" style="display: block; text-align: center; font-size: 12px;" href="{{ route('shop_owner.shops.menu') }}">メニューに戻る</a>
+    <a class="back" style="display: block; text-align: center; font-size: 12px;" href="{{ url()->previous() }}">戻る</a>
 </form>
 </body>
 </html>

@@ -24,6 +24,9 @@
             <div class="form-group">
                 <label for="image_url"><i class="fa-regular fa-image"></i>&nbsp;Image URL</label>
                 <input type="url" id="image_url" name="image_url" value="{{ old('image_url', $shop->image_url) }}" >
+            </div>    
+            <div class="image_upload-link" style="font-size: 12px; text-align: right; margin-top: -20px; padding-bottom:10px;">
+                <a href="{{ route('shop_owner.shops.image_upload') }}">画像を追加する</a>
             </div>
 
             <div class="form-group">

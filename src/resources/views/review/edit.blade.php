@@ -7,7 +7,7 @@
 @section('content')
 <div class="review-content">
     <h2>レビュー投稿</h2>
-    <p class="edit-message">内容を変更しますか？</p> 
+    <p class="edit-message" style="text-align: center; font-size: 20px; font-weight: bold;">内容を変更しますか？</p>
     <div class="shop-info">
         <p style="font-size: 16px; margin-right: 10px;">
             <strong>ご利用店 :</strong> {{ $shop_name ?? '不明' }}
@@ -42,6 +42,7 @@
         </div>
     
         <div class="button-group">
+            <a href="{{ url()->previous() }}" class="btn btn-secondary border-secondary">戻る</a>
             <button type="submit" class="btn btn-review">更新する</button>
         </div>
     </form>

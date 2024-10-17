@@ -45,6 +45,8 @@ class ReviewController extends Controller
         
         $review->save();
 
+        $request->session()->forget("reviews_inputs.{$validated['booking_id']}");
+
         return redirect()->route('user.users.mypage')->with('success-review', 'レビューが投稿されました');
     }
 

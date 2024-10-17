@@ -41,6 +41,7 @@
         </div>
     
         <div class="button-group">
+            <a href="{{ url()->previous() }}" class="btn btn-secondary border-secondary">戻る</a>
             <button type="submit" class="btn btn-review">確認する</button>
         </div>
     </form>

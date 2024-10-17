@@ -27,8 +27,8 @@
       </div>
 
       <div class="button-group">
-          <a href="{{ route('admin.form') }}" class="btn-back">戻る</a>
-          <button class="register-btn" type="submit">登録</button>
+        <button type="button" class="btn-back" onclick="window.location='{{ route('admin.form') }}';">戻る</button>
+        <button class="register-btn" type="submit">登録</button>
       </div>
   </div>
   </form>

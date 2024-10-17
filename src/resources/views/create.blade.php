@@ -35,6 +35,7 @@
 
                         <div id="card-errors" class="text-danger"></div>
 
+                        <a href="{{ route('user.users.mypage') }}" class="mt-3 btn btn-secondary" style="padding: 10px 20px;">戻る</a>
                         <button class="mt-3 btn btn-primary" style="padding: 10px 20px;">支払い</button>
                     </form>
                 </div>

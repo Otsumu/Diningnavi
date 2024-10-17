@@ -33,16 +33,19 @@ class UserController extends Controller
     }
 
     public function loginForm() {
-        return view('user.login');
+        $loginData = $request->session()->get('login_data', []);
+        return view('user.login', ['loginData' => $loginData]);
     }
 
     public function login(LoginRequest $request) {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $request->session()->forget('login_data');
             return redirect()->route('user.users.menu1');
         }
-        return redirect()->back();
+        $request->session()->put('login_data', $request->only('email', 'password'));
+        return redirect()->back()->withInput();
     }
 
     public function showMenu2() {

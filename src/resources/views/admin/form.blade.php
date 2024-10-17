@@ -12,7 +12,7 @@
       <h2 class="auth-title">ShopOwner Registration</h2>
       <div class="input-group">
           <i class="fa-solid fa-user"></i>
-          <input type="text" id="name" name="name" placeholder="Username" value="{{ old('name') }}">
+          <input type="text" id="name" name="name" placeholder="Username" value="{{ old('name', session('register_data.name')) }}">
       </div>
       <div class="error-message">
           @error('name')
@@ -28,7 +28,7 @@
     
       <div class="input-group">
           <i class="fa-solid fa-envelope"></i>
-          <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+          <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email', session('register_data.email'))  }}">
       </div>  
       <div class="error-message">
           @error('email')
@@ -45,8 +45,7 @@
           <p class="auth-form__error-message">{{ $message }}</p>
           @enderror
       </div>
-
-      <button class="register-admin-btn" type="submit">確認</button>
+        <button class="register-admin-btn" type="submit">確認</button>
     </div>
   </form>
 </main>

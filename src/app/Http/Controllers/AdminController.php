@@ -49,7 +49,8 @@ class AdminController extends Controller
     }
 
     public function showRegisterForm() {
-        return view('admin.form');
+        $registerData = session('register_data', []);
+        return view('admin.form')->withInput($registerData);
     }
 
     public function ownerRegister(RegisterRequest $request) {
@@ -70,7 +71,10 @@ class AdminController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'role' => 'shop_owner',
-        ]);  
+        ]);
+
+        $request->session()->forget('register_data');
+
         return redirect()->route('admin.shop_owners')->with('success','ShopOwner情報が登録されました');
     }
 

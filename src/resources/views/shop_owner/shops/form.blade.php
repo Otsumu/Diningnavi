@@ -40,7 +40,7 @@
                 @enderror
             </div>
             <div class="image_upload-link" style="font-size: 12px; text-align: right; margin-top: -20px; padding-bottom:10px;">
-                <a href="{{ route('shop_owner.shops.image_upload') }}">画像をダウンロードする</a>
+                <a href="{{ route('shop_owner.shops.image_upload') }}">画像を追加する</a>
             </div>
 
             <div class="form-group">
@@ -70,6 +70,7 @@
             </div>
             
             <div class="button-group">
+                <a href="{{ route('shop_owner.shops.menu') }}" class="btn btn-secondary border-secondary">戻る</a>
                 <button type="submit" class="btn btn-primary">確認する</button>
             </div>
         </form>
