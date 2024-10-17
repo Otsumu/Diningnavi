@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
-use Stripe\Exception\CardException;
 
 class PaymentController extends Controller
 {

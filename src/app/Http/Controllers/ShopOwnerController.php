@@ -9,7 +9,6 @@ use App\Mail\UserSendMail;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Booking;
-use App\Models\Review;
 use App\Models\Genre;
 use App\Models\Area;
 use Illuminate\Http\Request;
