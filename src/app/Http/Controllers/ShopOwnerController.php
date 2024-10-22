@@ -134,6 +134,8 @@ class ShopOwnerController extends Controller
         $shopData['shop_owner_id'] = Auth::id();
         $shop = Auth::user()->shops()->create($shopData);
 
+        session()->forget('shop_inputs');
+
         return redirect()->route('shop_owner.shops.index')->with('success', '新規店舗を登録しました');
     }
 
