@@ -34,9 +34,9 @@ http://15.168.189.188
    - **ストレージ** : お店の画像をストレージに保存可能。  
      [ストレージ機能](http://localhost/shop_owner/shops/image_upload.blade.php)  
    - **メール送信** : 登録顧客にお知らせメールを送信。  
-     [メール配信機能](http://locahost/emails/user_send_mail.blade.php)  
+     [メール配信機能](http://localhost/emails/user_send_mail.blade.php)  
    - **リマインダー** : 予約当日AM9:00にお知らせメールを送信。  
-     [リマインダー機能](http://emails/reminder.blade.php)  
+     [リマインダー機能](http://localhost/emails/reminder.blade.php)  
      ※`php artisan reminder:send`コマンドを実行するとテストが可能です。
 
 - **メール機能のテスト** : MailHogを使用して、ローカル環境でメール送信のテストが可能です。  
