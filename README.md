@@ -15,32 +15,32 @@
 http://15.168.189.188
 
 ## 機能一覧
-- **管理画面** : ユーザー、管理者、店舗代表者の3つの権限でそれぞれ異なる機能にアクセス可能。  
-   - **ユーザー** : [会員登録](http://localhost/user/register)  
-   - ※メール認証を通じて安全なログイン・ログアウト機能を提供。  
-   - **管理者** : [管理者ログイン](http://localhost/admin/login)  
-   - **店舗代表者** : [店舗代表者登録](http://localhost/shop_owner/register)  
+- **管理画面** : ユーザー、管理者、店舗代表者の3つの権限でそれぞれ異なる機能にアクセス可能。
+   - **ユーザー** : [会員登録](http://localhost/user/register)
+   - ※メール認証を通じて安全なログイン・ログアウト機能を提供。
+   - **管理者** : [管理者ログイン](http://localhost/admin/login)
+   - **店舗代表者** : [店舗代表者登録](http://localhost/shop_owner/register)
      ※管理者が登録する場合と自分自身で登録する場合の2パターンが想定されます。
 
 - **飲食店情報** : 飲食店の一覧や詳細表示、ログインユーザーはそこからお気に入りへの追加や予約が可能。
 
-- **ユーザー機能** : お気に入りの飲食店や予約情報をマイページにてまとめて表示。  
-   - 予約日時や人数を簡単に変更できる予約変更機能。  
+- **ユーザー機能** : お気に入りの飲食店や予約情報をマイページにてまとめて表示。
+   - 予約日時や人数を簡単に変更できる予約変更機能。
    - 利用したお店を5段階で評価し、コメントを投稿することが可能。
 
 - **管理者機能** : 店舗代表者の登録・管理・削除ができる機能を実装。
 
-- **店舗代表者機能** : 店舗情報の作成・更新・削除が可能。予約情報をまとめて表示し、利便性を向上。  
-   - **ストレージ** : お店の画像をストレージに保存可能。  
-     [ストレージ機能](http://localhost/shop_owner/shops/image_upload) 
-   - **メール送信** : 登録顧客にお知らせメールを送信。  
-     [メール配信機能](http://localhost/emails/user_send_mail.blade.php)  
-   - **リマインダー** : 予約当日AM9:00にお知らせメールを送信。  
-     [リマインダー機能](http://localhost/emails/reminder.blade.php)  
+- **店舗代表者機能** : 店舗情報の作成・更新・削除が可能。予約情報をまとめて表示し、利便性を向上。
+   - **ストレージ** : お店の画像をストレージに保存可能。
+     [ストレージ機能](http://localhost/shop_owner/shops/image_upload)
+   - **メール送信** : 登録顧客にお知らせメールを送信。
+     [メール配信機能](http://localhost/emails/user_send_mail.blade.php)
+   - **リマインダー** : 予約当日AM9:00にお知らせメールを送信。
+     [リマインダー機能](http://localhost/emails/reminder.blade.php)
      ※`php artisan reminder:send`コマンドを実行するとテストが可能です。
 
-- **メール機能のテスト** : MailHogを使用して、ローカル環境でメール送信のテストが可能です。  
-   - メールの送信内容は、ブラウザで以下のURLから確認できます。  
+- **メール機能のテスト** : MailHogを使用して、ローカル環境でメール送信のテストが可能です。
+   - メールの送信内容は、ブラウザで以下のURLから確認できます。
      [MailHogインターフェース](http://localhost:8025)
 
 - **QRコード機能** : 予約成立時に確認メールを送信し、QRコードを貼付。店舗側に見せて照合が可能。
@@ -62,11 +62,11 @@ http://15.168.189.188
 
 ## 使用技術
   - Laravel Framework :Ver 8.83.27
-  
+
   - PHP :Ver 8.3.12
-  
+
   - mysql :Ver 8.0.26
-  
+
   - HTML、CSS
 
   - JavaScript
@@ -78,13 +78,14 @@ http://15.168.189.188
 ![ER図](README/images/ER.png)
 
 ## 環境構築　
-このプロジェクトをローカルで動作させるための手順です。<br>
-　1.　リポジトリのクローン　https://github.com/Otsumu/Diningnavi.git<br>
-　2.　ディレクトリに移動　cd Diningnavi<br>
-　3.　依存関係のインストール　composer install<br>
-　4.　環境ファイルの作成　cp .env.example .env<br>
-　5.　データーベースの設定　nano .env<br>
-　6.　アプリケーションキーの生成　php artisan key.generate<br>
-　7.　データーベースのマイグレーション　php artisan migrate<br>
-　8.　アプリケーションの起動　php artisan serve<br>
-　9.　アプリケーションへのアクセス　http://localhost
+このプロジェクトをDockerを使用し、ローカルで動作させるための手順です。<br>
+　1.　リポジトリのクローン git clone https://github.com/Otsumu/Diningnavi.git<br>
+　2.　ディレクトリに移動 cd Diningnavi<br>
+　3.　Dockerコンテナのビルドと起動 docker-compose up --build -d<br>
+　4.　PHPコンテナ内に入る docker-compose exec php bash
+　5.　依存関係のインストール composer install<br>
+　6.　環境ファイルの作成 cp .env.example .env<br>
+　7.　データーベースの設定 nano .env<br>
+　8.　アプリケーションキーの生成 php artisan key:generate<br>
+　9.　データーベースのマイグレーション php artisan migrate<br>
+　10.　アプリケーションへのアクセス http://localhost

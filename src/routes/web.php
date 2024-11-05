@@ -12,6 +12,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::post('/shop_owner/confirm', [ShopOwnerController::class, 'store'])->name(
 Route::get('/shop_owner/login', [ShopOwnerController::class, 'loginForm'])->name('shop_owner.login');
 Route::post('/shop_owner/login', [ShopOwnerController::class, 'login']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/user/users/menu1', [UserController::class, 'showMenu1'])->name('user.users.menu1');
     Route::post('/shop/{shop}/booking', [BookingController::class, 'createBooking'])->name('shop.booking');
     Route::get('/booking/done', [BookingController::class, 'done'])->name('booking.done');
@@ -96,7 +97,7 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
     Route::post('/logout', [ShopOwnerController::class, 'destroy'])->name('shop_owner.logout');
 });
 
-Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+Route::get('/payment/create/{bookingId}', [PaymentController::class, 'create'])->name('payment.create');
 Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
 
 

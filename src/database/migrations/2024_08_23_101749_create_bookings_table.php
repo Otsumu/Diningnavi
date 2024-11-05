@@ -19,7 +19,8 @@ class CreateBookingsTable extends Migration
             $table->foreignId('shop_id')->constrained()->cascadeOnDelete();
             $table->date('booking_date');
             $table->time('booking_time');
-            $table->integer('number'); 
+            $table->integer('number');
+            $table->boolean('payment_status')->default(false);
             $table->timestamps();
         });
     }

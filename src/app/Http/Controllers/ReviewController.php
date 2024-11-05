@@ -25,12 +25,22 @@ class ReviewController extends Controller
         $booking = Booking::with('shop')->findOrFail($validated['booking_id']);
         $validated['shop_name'] = $booking->shop->name;
         $validated['booking_date'] = $booking->booking_date;
-    
+
         return view('review.confirm', compact('validated'));
     }
 
     public function store(ReviewRequest $request) {
         $validated = $request->validated();
+
+        $existingReview = Review::where('booking_id', $validated['booking_id'])
+                            ->where('user_id', Auth::id())
+                            ->first();
+
+        if ($existingReview) {
+            return redirect()->route('user.users.mypage')->withErrors([
+                'review' => 'この予約に対するレビューは既に投稿されています。'
+            ]);
+        }
 
         $review = new Review();
         $review->title = $validated['title'] ?? null;
@@ -41,7 +51,6 @@ class ReviewController extends Controller
 
         $booking = Booking::find($validated['booking_id']);
         $review->shop_id = $booking ? $booking->shop_id : null;
-        
         $review->save();
 
         $request->session()->forget("reviews_inputs.{$validated['booking_id']}");

@@ -68,7 +68,7 @@
                         <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
                             <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
                         </button>
-                    </div>  
+                    </div>
                 </div>
             </div>
         @endforeach

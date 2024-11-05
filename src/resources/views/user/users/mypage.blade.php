@@ -53,7 +53,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">キャンセル</button>
                                 </form>
-                                <a href="{{ route('payment.create') }}" class="btn btn-success border-success">先に決済する</a>
+                                <a href="{{ route('payment.create', $booking->id)  }}" class="btn btn-success border-success">先に決済する</a>
                                 @endif
                             </div>
                         </div>
@@ -88,13 +88,18 @@
                 </div>
             @endif
         </div>
-    
+
         <div class="review-content">
         <h3 class="reviews-title">レビュー一覧</h3>
+        @if($errors->has('review'))
+            <div class="alert alert-danger" style="color: red; font-weight: bold; margin-bottom: 10px;">
+                {{ $errors->first('review') }}
+            </div>
+        @endif
         @if($reviews->isEmpty())
             <p style="font-size: 16px; padding: 5px;">レビューはありません</p>
         @else
-        
+
             @if(session('success-review'))
                 <div class="alert alert-success">
                     {{ session('success-review') }}
