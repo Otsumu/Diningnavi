@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\Shop;
-use App\Models\Favorite;
 use App\Models\Review;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;

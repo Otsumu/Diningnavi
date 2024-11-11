@@ -7,7 +7,6 @@ use App\Models\Genre;
 use App\Models\Area; 
 use App\Http\Requests\ShopRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller {
 
