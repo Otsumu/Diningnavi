@@ -9,15 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/shop_owner-menu.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     @yield('css')
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
 </head>
 <body>
 <main>
-  <div class="menu">
+<div class="menu">
     <div class="menu-title"><strong>{{ Auth::user()->name }}さん</strong>管理ページ</div>
     <nav class="nav__content">
         <ul class="nav__list" style="margin: 0; padding: 0;">
@@ -49,28 +44,12 @@
             </li>
         </ul>
     </nav>
-  </div>
+</div>
 </main>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function (event) {
-                event.preventDefault();
-                const subList = this.nextElementSibling;
-
-                console.log('Dropdown clicked'); 
-
-                if (subList) {
-                    subList.classList.toggle('hidden');
-                    console.log('Sublist visibility:', !subList.classList.contains('hidden'));
-                }
-            });
-        });
-    });
-</script>
+@section('js')
+<script src="{{ asset('js/shop_owner_menu.js') }}"></script>
+@endsection
 
 </body>
 </html>

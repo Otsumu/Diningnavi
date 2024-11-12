@@ -2,18 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
+<link rel="stylesheet" href="{{ asset('css/reminder.css') }}">
 @endsection
-
-<style>
-.reminder {
-    margin-bottom: 20px;
-}
-    
-.reminder p {
-    margin-top: 15px;
-    font-size: 20px;
-}
-</style>
 
 @section('content')
 <main>

@@ -23,7 +23,7 @@
                     {{ session('menu2-error') }}
                 </div>
             @endif
-    
+
             <nav class="nav__content">
                 <ul class="nav__list">
                     <li class="nav__item"><a class="nav__item-link" href="/">Home</a></li>
@@ -33,15 +33,7 @@
             </nav>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const closeButton = document.getElementById('closeButton');
-
-                closeButton.addEventListener('click', function() {
-                    window.location.href = '/';
-                });
-            });
-        </script>
+        <script src="{{ asset('js/menu2.js') }}"></script>
     </main>
 </body>
 </html>

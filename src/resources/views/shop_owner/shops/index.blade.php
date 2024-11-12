@@ -13,13 +13,13 @@
 <body>
 <main>
     <h2 class="page-title">Index</h2>
-    
+
     @if (session('success'))
         <div style="background-color: #cce5ff; color: #004085; padding: 7px; font-size: 12px; border-radius: 5px; border: 1px solid #b8daff; margin-bottom: 5px;">
             {{ session('success') }}
         </div>
     @endif
-    
+
     <div class="container">
         <a href="{{ route('shop_owner.shops.menu') }}" class="page-back">戻る</a>
         <table class="table">
@@ -54,7 +54,7 @@
                     </tr>
                     @empty
                         <tr>
-                           <td colspan="6">ショップが見つかりませんでした。</td>
+                            <td colspan="6">ショップが見つかりませんでした。</td>
                         </tr>
                     @endforelse
             </tbody>
@@ -65,12 +65,12 @@
                         <li class="page-item {{ $shops->onFirstPage() ? 'disabled' : '' }}">
                             <a class="page-link" href="{{ $shops->previousPageUrl() }}" rel="prev">&laquo;</a>
                         </li>
-    
+
                         @foreach ($shops->links()->elements as $element)
                             @if (is_string($element))
                                 <li class="disabled page-item"><span class="page-link">{{ $element }}</span></li>
                             @endif
-    
+
                             @if (is_array($element))
                                 @foreach ($element as $page => $url)
                                     <li class="page-item {{ $page == $shops->currentPage() ? 'active' : '' }}">
@@ -79,14 +79,14 @@
                                 @endforeach
                             @endif
                         @endforeach
-    
+
                         <li class="page-item {{ $shops->hasMorePages() ? '' : 'disabled' }}">
                             <a class="page-link" href="{{ $shops->nextPageUrl() }}" rel="next">&raquo;</a>
                         </li>
                     </ul>
                 </nav>
             @endif
-    
+
     </div>
 </main>
 </html>

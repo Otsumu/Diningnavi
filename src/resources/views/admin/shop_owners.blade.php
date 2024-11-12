@@ -20,7 +20,7 @@
         </div>
     @endif
     <div class="container">
-        <a href="{{ route('admin.menu') }}" class="page-back">戻る</a> 
+        <a href="{{ route('admin.menu') }}" class="page-back">戻る</a>
     <table class="table">
         <thead>
             <tr>

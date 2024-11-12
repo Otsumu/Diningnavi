@@ -1,19 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<style>
-    body {
-        margin: 15px;
-        text-align: center ;
-    }
-
-    p {
-        margin-top: 50px;
-        font-size: 20px;
-        font-weight: bold;
-        line-height: 3px;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('css/show.css') }}">
 @endsection
 
 @section('content')

@@ -23,13 +23,13 @@
           @error('name')
           <p class="auth-form__error-message">{{ $message }}</p>
           @enderror
-      </div> 
-    
+      </div>
+
 
       <div class="input-group">
           <i class="fa-solid fa-envelope"></i>
           <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
-      </div>  
+      </div>
       <div class="error-message">
           @error('email')
           <p class="auth-form__error-message">{{ $message }}</p>

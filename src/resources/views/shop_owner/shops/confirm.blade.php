@@ -6,9 +6,9 @@
 
 @section('content')
     <div class="container">
-      <h2 class="form-title">入力内容確認</h2>
-      <p class="form-message" style="font-size: 16px; font-weight: bold; text-align: center;">
-        こちらで登録してよろしいですか？</p>
+        <h2 class="form-title">入力内容確認</h2>
+        <p class="form-message" style="font-size: 16px; font-weight: bold; text-align: center;">
+            こちらで登録してよろしいですか？</p>
         <form action="{{ route('shop_owner.shops.index') }}" method="post">
             @csrf
             <div class="form-group">
@@ -60,7 +60,7 @@
                     @endforeach
                 </select>
             </div>
-            
+
             <div class="button-group">
                 <a href="{{ route('shop_owner.shops.form') }}" class="btn btn-cancel">戻る</a>
                 <button type="submit" class="btn btn-primary">登録する</button>

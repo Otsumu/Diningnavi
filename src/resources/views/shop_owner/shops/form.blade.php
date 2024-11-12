@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-      <h2 class="form-title">新規店舗登録</h2>
+        <h2 class="form-title">新規店舗登録</h2>
         <form action="{{ route('shop_owner.shops.confirm') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -68,7 +68,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <div class="button-group">
                 <a href="{{ route('shop_owner.shops.menu') }}" class="btn btn-secondary border-secondary">戻る</a>
                 <button type="submit" class="btn btn-primary">確認する</button>

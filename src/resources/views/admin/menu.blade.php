@@ -12,7 +12,7 @@
 </head>
 <body>
 <main>
-  <div class="menu">
+<div class="menu">
     <nav class="nav__content">
         <ul class="nav__list">
             <li class="nav__item" ><a class="nav__item-link" href="/admin/form">Registration</a></li>
@@ -27,21 +27,9 @@
             </li>
         </ul>
     </nav>
-  </div>
+</div>
 </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const closeButton = document.getElementById('closeButton');
-        const menu = document.querySelector('.nav__content');
-        
-        if (closeButton && menu) {
-            closeButton.addEventListener('click', function() {
-                menu.classList.add('hidden');
-                window.location.href = '/';
-            });
-        }
-    });
-  </script>
+<script src="{{ asset('js/menu.js') }}"></script>
 </body>
 </html>

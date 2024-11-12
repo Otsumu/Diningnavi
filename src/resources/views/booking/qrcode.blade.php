@@ -2,17 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
-<style>
-    body {
-        margin: 15px;
-        text-align: center ;
-    }
-
-    p {
-        font-size: 16px;
-        font-weight: bold;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('css/qrcode.css') }}">
 @endsection
 
 @section('content')

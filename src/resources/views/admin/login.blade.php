@@ -20,20 +20,20 @@
                 <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
             </div>
             <div class="error-message">
-                @error('email') 
+                @error('email')
                 <p class="auth-form__error-message">{{ $message }}</p>
                 @enderror
             </div>
-      
-            <div class="input-group"> 
+
+            <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" id="password" name="password" placeholder="Password">
-            </div>  
+            </div>
             <div class="error-message">
-                @error('password') 
+                @error('password')
                 <p class="auth-form__error-message">{{ $message }}</p>
                 @enderror
-            </div> 
+            </div>
             <button class="login-btn" type="submit">ログイン</button>
         </div>
     </form>
