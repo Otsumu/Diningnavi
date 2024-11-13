@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Models\Genre; 
-use App\Models\Area; 
+use App\Models\Genre;
+use App\Models\Area;
 use App\Http\Requests\ShopRequest;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class ShopController extends Controller {
         $genreId = $request->input('genre');
         $areaId = $request->input('area');
         $keyword = $request->input('keyword');
-        
+
         $shops = Shop::query()
             ->genre($genreId)
             ->area($areaId)
@@ -27,7 +27,7 @@ class ShopController extends Controller {
 
         $areas = Area::all();
         $genres = Genre::all();
-        
+
         return view('shop.index', compact('shops','areas','genres'));
     }
 
@@ -35,7 +35,7 @@ class ShopController extends Controller {
         $shop = Shop::findOrFail($shop_id);
         $backRoute = route('home');
         $bookingData = session('booking_data', []);
-    
+
         return view('shop.detail', compact('shop', 'backRoute', 'bookingData'));
     }
 

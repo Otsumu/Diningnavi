@@ -11,45 +11,42 @@
     @yield('css')
 </head>
 <body>
-<main>
-<div class="menu">
-    <div class="menu-title"><strong>{{ Auth::user()->name }}さん</strong>管理ページ</div>
-    <nav class="nav__content">
-        <ul class="nav__list" style="margin: 0; padding: 0;">
-            <li class="nav__item">
-                <a class="nav__item-link" href="/shop_owner/shops/bookings">Booking List</a>
-            </li>
-            <li class="nav__item">
-                <a class="nav__item-link dropdown-toggle" href="#">Shop Operations</a>
-                <ul class="nav__sub-list hidden" style="list-style: none;">
-                    <p>▼ メニューを選択して下さい</p>
-                    <li class="nav__sub-item">
-                        <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/form">Create 新規店舗登録</a>
+    <main>
+    <div class="menu">
+        <div class="menu-title"><strong>{{ Auth::user()->name }}さん</strong>管理ページ</div>
+            <nav class="nav__content">
+                <ul class="nav__list" style="margin: 0; padding: 0;">
+                    <li class="nav__item">
+                        <a class="nav__item-link" href="/shop_owner/shops/bookings">Booking List</a>
                     </li>
-                    <li class="nav__sub-item">
-                        <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/index">ShopList 登録店一覧</a>
+                    <li class="nav__item">
+                        <input type="checkbox" id="shop-operation-toggle" class="nav__toggle">
+                        <label for="shop-operation-toggle" class="nav__item-link">Shop Operations</label>
+                        <ul class="nav__sub-list">
+                            <p>▼ メニューを選択して下さい</p>
+                            <li class="nav__sub-item">
+                                <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/form">Create 新規店舗登録</a>
+                            </li>
+                            <li class="nav__sub-item">
+                                <a class="nav__sub-item-link" style="text-decoration: none;" href="/shop_owner/shops/index">ShopList 登録店一覧</a>
+                            </li>
+                            <li class="nav__sub-item">
+                                <a class="nav__sub-item-link" style="text-decoration: none;" href="{{ route('emails.user_send_mail') }}">SendMail メール送信</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav__sub-item">
-                        <a class="nav__sub-item-link" style="text-decoration: none;" href="{{ route('emails.user_send_mail') }}">SendMail メール送信</a>
+                    <li class="nav__item">
+                        <form action="{{ route('shop_owner.logout') }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            <button type="submit" class="nav__item-link nav__item-link-button">
+                                Logout
+                            </button>
+                        </form>
                     </li>
                 </ul>
-            </li>
-            <li class="nav__item">
-                <form action="{{ route('shop_owner.logout') }}" method="POST" style="display: inline-block;">
-                    @csrf
-                    <button type="submit" class="nav__item-link nav__item-link-button">
-                        Logout
-                    </button>
-                </form>
-            </li>
-        </ul>
-    </nav>
-</div>
-</main>
-
-@section('js')
-<script src="{{ asset('js/shop_owner_menu.js') }}"></script>
-@endsection
-
+            </nav>
+        </div>
+    </main>
 </body>
 </html>
+

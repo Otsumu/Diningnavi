@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller {
-    
+
     public function index() {
         return view('user.register');
     }
@@ -23,11 +23,11 @@ class RegisterController extends Controller {
 
     public function confirm() {
         $registerData = session('register_data');
-    
+
         if (!$registerData) {
             return redirect()->route('user.register');
         }
-    
+
         return view('user.confirm', ['data' => $registerData]);
     }
 

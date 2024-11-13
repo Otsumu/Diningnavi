@@ -28,15 +28,20 @@ class PaymentController extends Controller
 
         Stripe::setApiKey(config('stripe.stripe_secret_key'));
 
-        Charge::create([
-            'source' => $request->stripeToken,
-            'amount' => 5000,
-            'currency' => 'jpy',
-        ]);
+        try {
+            $charge = \Stripe\Charge::create([
+                'source' => $request->stripeToken,
+                'amount' => 5000,
+                'currency' => 'jpy',
+            ]);
 
         $booking->payment_status = 1;
         $booking->save();
 
         return back()->with('status', '決済が完了しました！');
+        }
+    catch (\Stripe\Exception\CardException $e) {
+        return back()->withErrors(['payment' => $e->getMessage()]);
+        }
     }
 }

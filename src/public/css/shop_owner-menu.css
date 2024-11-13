@@ -29,7 +29,7 @@ body {
     position: relative;
     z-index: 9999999;
     font-size: 30px;
-    padding: 15px; 
+    padding: 15px;
     margin-top: 20px;
 }
 
@@ -38,11 +38,20 @@ body {
     height: 100%;
     position: fixed;
     top: 5%;
-    right: 0;  
+    right: 0;
     background: #fff;
     transition: 0.5s;
     display: block;
     z-index: 1000;
+}
+
+.nav__toggle {
+    display: none;
+}
+
+.nav__toggle:checked + label + .nav__sub-list {
+    display: block;
+    left: 105%;
 }
 
 .nav__list {
@@ -92,17 +101,19 @@ body {
 .nav__sub-list {
     position: absolute;
     top: 0;
-    right: -250px;
+    left: 100%;
+    margin-left: 20px;
     z-index: 1000;
-    display: block;
-
+    display: none;
+    transition: left 0.3s ease;
+    width: 300px;
 }
 
 .nav__sub-item-link {
-    display: block; 
+    display: block;
     padding: 2px 4px;
     font-size: 16px;
-    color: #1835f1; 
+    color: #1835f1;
     text-decoration: none;
 }
 
@@ -119,4 +130,11 @@ body {
 
 .hidden {
     display: none;
+}
+
+.nav__list,
+.nav__sub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

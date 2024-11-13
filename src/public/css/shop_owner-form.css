@@ -48,12 +48,12 @@ label {
     margin-bottom: 0;
     margin-right: 15px;
     white-space: nowrap;
-    padding-right: 10px; 
-    width: 100px; 
+    padding-right: 10px;
+    width: 100px;
 }
 
 input[type="text"],
-input[type="url"], 
+input[type="url"],
 textarea,
 select {
     width: 80%;
@@ -81,21 +81,22 @@ select:focus {
 .btn-primary, .btn-cancel, .btn-secondary {
     background-color: rgb(63, 90, 242);
     color: white;
-    padding: 10px 10px;
+    padding: 10px 25px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100px;
+    width: 150px;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
+    margin-top: 15px;
 }
 
 .btn-primary:hover {
-    background-color: rgb(53, 80, 232);
+    background-color: rgb(113, 133, 250);
 }
 
 .btn-cancel, .btn-secondary {

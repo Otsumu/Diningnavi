@@ -24,7 +24,8 @@
             </div>
 
             <div class="button-group">
-                <button type="submit" class="btn btn-primary">全顧客にメール送信</button>
+                <a href="{{ route('shop_owner.shops.menu') }}" class="btn btn-secondary border-secondary">戻る</a>
+                <button type="submit" class="btn btn-primary">メール送信</button>
             </div>
         </form>
     </div>

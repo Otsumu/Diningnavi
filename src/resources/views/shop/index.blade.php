@@ -7,14 +7,14 @@
 @section('header')
 <form class="header__right" action="/" method="get">
     <div class="header__search">
-       <div class="select-box">
+        <div class="select-box">
             <label class="select-box-label"></label>
             <select name="area" class="select-box-item">
                 <option value="">All Areas</option>
                     @if(isset($areas))
-                       @foreach($areas as $area)
-                           <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>
-                               {{ $area->name }}
+                        @foreach($areas as $area)
+                            <option value="{{ $area->id }}" {{ request('area') == $area->id ? 'selected' : '' }}>
+                                {{ $area->name }}
                             </option>
                         @endforeach
                     @endif
@@ -75,27 +75,6 @@
     </div>
 </div>
 @if ($shops->hasPages())
-<style>
-    .pagination {
-        font-size: 18px;
-        margin-top: 20px;
-    }
-    .pagination .page-item {
-        margin: 0 5px;
-    }
-    .pagination .page-link {
-        padding: 10px 15px;
-        font-weight: bold;
-    }
-    .pagination .page-link:hover {
-        background-color: #f0f0f0;
-    }
-    .pagination .active .page-link {
-        background-color: rgb(63, 90, 242);
-        color: white;
-        border-color: rgb(63, 90, 242);
-    }
-</style>
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item {{ $shops->onFirstPage() ? 'disabled' : '' }}">

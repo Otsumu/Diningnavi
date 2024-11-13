@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
-class ShopOwnerController extends Controller
-{   
+class ShopOwnerController extends Controller {
     public function __construct() {
         $this->middleware(function ($request, $next) {
             if (!Auth::check() || !Auth::user()->isShopOwner()) {
@@ -36,17 +35,17 @@ class ShopOwnerController extends Controller
     public function register(RegisterRequest $request) {
         $validated = $request->validated();
         $request->session()->put('register_data', $validated);
-    
+
         return redirect()->route('shop_owner.confirm');
     }
 
     public function confirm() {
         $registerData = session('register_data');
-    
+
         if (!$registerData) {
             return redirect()->route('shop_owner.register');
         }
-    
+
         return view('shop_owner.confirm', ['data' => $registerData]);
     }
 
@@ -61,7 +60,7 @@ class ShopOwnerController extends Controller
             'name' => $registerData['name'],
             'email' => $registerData['email'],
             'password' => Hash::make($registerData['password']),
-            'role' => 'shop_owner', 
+            'role' => 'shop_owner',
         ]);
 
         Auth::login($user);
@@ -92,21 +91,21 @@ class ShopOwnerController extends Controller
         $shopOwnerId = Auth::id();
         $bookings = Booking::whereHas('shop', function($query) use ($shopOwnerId) {
             $query->where('shop_owner_id', $shopOwnerId);
-        })->with('user', 'shop')->paginate(10); 
-    
+        })->with('user', 'shop')->paginate(10);
+
         return view('shop_owner.shops.bookings', compact('bookings'));
     }
 
     public function showForm() {
-        $inputs = session('shop_inputs', []); 
+        $inputs = session('shop_inputs', []);
         $areas = Area::all();
         $genres = Genre::all();
         $imageFiles = Storage::disk('public')->files('images');
-    
+
         $imageFiles = array_map(function($file) {
             return asset($file);
         }, $imageFiles);
-    
+
         return view('shop_owner.shops.form', compact('areas', 'genres', 'imageFiles'))->withInput($inputs);
     }
 
@@ -116,10 +115,10 @@ class ShopOwnerController extends Controller
         $genres = Genre::all();
         return view('shop_owner.shops.confirm', compact('inputs', 'areas','genres'));
     }
-    
+
     public function confirmForm(ShopRequest $request) {
         $inputs = $request->all();
-        session(['shop_inputs' => $inputs]); 
+        session(['shop_inputs' => $inputs]);
 
         return redirect()->route('shop_owner.shops.confirm.view');
     }
@@ -142,8 +141,8 @@ class ShopOwnerController extends Controller
     public function edit($id) {
         $shop = Auth::user()->shops()->findOrFail($id);
         $genres = Genre::all();
-        $areas = Area::all(); 
-    
+        $areas = Area::all();
+
         return view('shop_owner.shops.edit', compact('shop', 'genres', 'areas'));
     }
 
@@ -164,11 +163,11 @@ class ShopOwnerController extends Controller
     public function showImageUploadForm() {
         return view('shop_owner.shops.image_upload');
     }
-    
+
     public function saveImageFromUrl(Request $request) {
         $imageUrl = $request->input('image_url');
         $response = Http::get($imageUrl);
-    
+
         if ($response->successful()) {
             $fileName = basename($imageUrl);
             Storage::disk('public')->put("images/{$fileName}", $response->body());
@@ -187,20 +186,20 @@ class ShopOwnerController extends Controller
         Mail::to($email)->send(new UserSendMail($subject, $body));
     }
 
-    
+
     public function sendBulkEmail(Request $request) {
         $request->validate([
             'body' => 'required|string|max:1000',
         ]);
-    
+
         $subject = 'イベント、キャンペーンのご案内';
         $body = $request->input('body');
         $users = User::where('role', 'user')->get(); 
-    
+
         foreach ($users as $user) {
             $this->sendUserMail($user->email, $subject, $body);
         }
-    
+
         return redirect()->back()->with('success', '全顧客にメールを送信しました。');
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function __construct() {
         $this->middleware(function ($request, $next) {
             if (!Auth::check() || !Auth::user()->isAdmin()) {
-                return redirect()->route('admin.login'); 
+                return redirect()->route('admin.login');
             }
             return $next($request);
         })->except(['loginForm', 'login']);
@@ -26,7 +26,7 @@ class AdminController extends Controller
 
     public function login(LoginRequest $request) {
         $credentials = $request->only('email', 'password');
-    
+
         if (Auth::attempt($credentials)) {
             if (Auth::user()->isAdmin()) {
                 $request->session()->regenerate();
@@ -38,7 +38,7 @@ class AdminController extends Controller
                 ]);
             }
         }
-    
+
         return back()->withErrors([
             'email' => 'メールアドレスまたはパスワードが正しくありません',
         ]);
@@ -60,12 +60,12 @@ class AdminController extends Controller
 
     public function confirm() {
         $registerData = session('register_data');
-       return view('admin.confirm', ['data' => $registerData]);
+        return view('admin.confirm', ['data' => $registerData]);
     }
 
     public function ownerConfirm(RegisterRequest $request) {
         $validatedData = $request->validated();
-        
+
         User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
@@ -88,35 +88,35 @@ class AdminController extends Controller
         $data = [
             'name' => $shopOwner->name,
             'email' => $shopOwner->email,
-            'password' => '', 
+            'password' => '',
         ];
         return view('admin.edit', compact('shopOwner','data'));
     }
-    
+
     public function updateShopOwner(Request $request, $id) {
         $shopOwner = User::findOrFail($id);
-        
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8',
         ]);
-    
+
         $shopOwner->name = $validatedData['name'];
         $shopOwner->email = $validatedData['email'];
-    
+
         if (!empty($validatedData['password'])) {
             $shopOwner->password = Hash::make($validatedData['password']);
         }
-    
+
         $shopOwner->save();
-    
+
         return redirect()->route('admin.shop_owners')->with('success', '情報が更新されました');
     }
 
     public function deleteShopOwner($id) {
         $shopOwner = User::findOrFail($id);
-        $shopOwner->shops()->delete(); 
+        $shopOwner->shops()->delete();
         $shopOwner->delete();
 
         return redirect()->route('admin.shop_owners')->with('success', '情報を削除しました');

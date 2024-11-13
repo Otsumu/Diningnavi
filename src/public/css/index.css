@@ -176,6 +176,29 @@
     color: red;
 }
 
+.pagination {
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.pagination .page-item {
+    margin: 0 3px;
+}
+
+.pagination .page-link {
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .active .page-link {
+    background-color: rgb(63, 90, 242);
+    color: white;
+    border-color: rgb(63, 90, 242);
+}
 
 @media (max-width: 768px) {
     .header__right {
@@ -185,7 +208,7 @@
         width: 80%;
         margin-left: 10px;
     }
-    
+
     .header__search {
         width: auto;
         padding: 10px;

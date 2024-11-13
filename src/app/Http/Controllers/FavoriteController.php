@@ -18,20 +18,20 @@ class FavoriteController extends Controller
         ->with('area', 'genre')
         ->get();
 
-    
+
         return view('user.users.mypage', compact('shops'));
     }
 
     public function add(Request $request, $shopId) {
         $user = Auth::user();
-        
+
         Favorite::create([
             'user_id' => $user->id,
             'shop_id' => $shopId,
         ]);
-        
+
         return response()->json([]);
-    } 
+    }
 
     public function remove(Request $request, $shopId) {
         $user = Auth::user();
