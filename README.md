@@ -75,14 +75,14 @@ http://15.168.189.188
 ![テーブル](README/images/table.png)
 
 ## ER図
-![ER図](README/images/ER.png)
+![ER図](README/images/DiningNaviER.png)
 
 ## 環境構築　
 このプロジェクトをDockerを使用し、ローカルで動作させるための手順です。<br>
 　1.　リポジトリのクローン git clone https://github.com/Otsumu/Diningnavi.git<br>
 　2.　ディレクトリに移動 cd Diningnavi<br>
 　3.　Dockerコンテナのビルドと起動 docker-compose up --build -d<br>
-　4.　PHPコンテナ内に入る docker-compose exec php bash
+　4.　PHPコンテナ内に入る docker-compose exec php bash<br>
 　5.　依存関係のインストール composer install<br>
 　6.　環境ファイルの作成 cp .env.example .env<br>
 　7.　データーベースの設定 nano .env<br>
