@@ -75,7 +75,7 @@ http://15.168.189.188
 ![テーブル](README/images/table.png)
 
 ## ER図
-![ER図](README/images/DiningNaviER.png)
+![ER図](README/images/ER.png)
 
 ## 環境構築　
 このプロジェクトをDockerを使用し、ローカルで動作させるための手順です。<br>

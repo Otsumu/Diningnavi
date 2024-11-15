@@ -58,15 +58,15 @@ class UserController extends Controller
     public function showMenu1() {
         return view('user.users.menu1');
     }
-    
+
     public function myPage() {
         $user = Auth::user();
         $bookings = Booking::where('user_id', $user->id)->with('shop')->get();
         $favorites = $user->favorites;
-    
+
         $bookingId = $bookings->isNotEmpty() ? $bookings->last()->id : null;
         $reviews = Review::where('user_id', $user->id)->with('booking.shop')->get();
-    
+
         return view('user.users.mypage', compact('bookings', 'favorites', 'reviews'));
     }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
             return redirect()->route('user.users.mypage')->with('error', '予約が見つかりませんでした。');
         }
 
-        $shop = Shop::findOrFail($booking->shop_id); 
+        $shop = Shop::findOrFail($booking->shop_id);
 
         return view('user.users.form', compact('booking', 'shop'));
     }

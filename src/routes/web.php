@@ -10,6 +10,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -62,6 +63,12 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::get('/shop/{shop}/createComment', [CommentController::class, 'create'])->name('comments.create');
+    Route::post('/shop/{shop}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('/shop/{shop}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('/shop/{shop}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::get('/shops/{shop}/detailComment', [ShopController::class, 'showComment'])->name('shop.detailComment');
 });
 
 Route::middleware('auth')->prefix('admin')->group(function () {

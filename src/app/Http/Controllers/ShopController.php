@@ -77,4 +77,14 @@ class ShopController extends Controller {
         return redirect()->route('shop.detail', $id)->with('success', '店舗情報を更新しました');
     }
 
+    public function createComment(Shop $shop) {
+        return view('shop.createComment', compact('shop'));
+    }
+
+    public function showComment($shopId) {
+        session(['shopId' => $shop->id]);
+        $shop = Shop::findOrFail($shopId);
+        return view('shop.detail', compact('shop'));
+    }
+
 }

@@ -59,6 +59,10 @@ class User extends Authenticatable
         return $this->hasMany(Shop::class,'user_id');
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function scopeAdmin($query) {
         return $query->where('role', 'admin');
     }

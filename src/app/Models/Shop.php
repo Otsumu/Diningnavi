@@ -47,6 +47,10 @@ class Shop extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function scopeGenre($query, $genreId) {
         if ($genreId) {
             return $query->where('genre_id', $genreId);

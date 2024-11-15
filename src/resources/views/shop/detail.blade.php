@@ -20,6 +20,9 @@
         <div class="shop__intro">
             <p>{{ $shop->intro }}</p>
         </div>
+        @auth
+        <a href="{{ route('comments.create', ['shop' => $shop->id]) }}" class="create-comment">口コミを投稿する</a>
+        @endauth
     </div>
 
     <div class="shop__right-content">
@@ -29,7 +32,7 @@
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <div class="form-group">
                 <input type="date" id="booking_date" name="booking_date" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
-                <select id="booking_time" name="booking_time" 
+                <select id="booking_time" name="booking_time"
                 style="padding: 5px 10px; border: 1px solid white; border-radius: 5px; box-sizing: border-box;
                 height: 30px; font-family: 'Arial', sans-serif; font-size: 14px; line-height: 30px;" required>
                     <option value="">時刻を選択してください</option>
@@ -49,7 +52,7 @@
                     <div class="booking_row">
                         <div class="booking_item booking_label">Time</div>
                         <div class="booking_item booking_value" data-type="time">{{ $bookingData['booking_time'] ?? '未設定' }}</div>
-                    </div> <!-- ここに閉じタグを追加 -->
+                    </div>
                     <div class="booking_row">
                         <div class="booking_item booking_label">Number</div>
                         <div class="booking_item booking_value" data-type="number">{{ $bookingData['number'] ?? '未設定' }}人</div>

@@ -1,15 +1,15 @@
 header {
-    height: 60px; 
+    height: 60px;
 }
 
 .shop__content {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 16px; 
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
 .shop__left-content {
-    flex: 1; 
+    flex: 1;
     padding: 20px;
     margin-top: 30px;
 }
@@ -20,7 +20,7 @@ header {
     background-color: white;
     border: 1px solid white;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px gray; 
+    box-shadow: 2px 2px 5px gray;
     font-size: 12px;
     font-weight: bold;
     padding: 5px;
@@ -34,7 +34,7 @@ header {
 .shop-name {
     font-size: 24px;
     font-weight: bold;
-    margin-left: 15px; 
+    margin-left: 15px;
 }
 
 .shop__img {
@@ -126,7 +126,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .booking_detail {
     display: grid;
     grid-template-columns: auto 1fr;
-    background-color: #4981f1; 
+    background-color: #4981f1;
     border-radius: 5px;
     gap: 8px;
     align-items: start;
@@ -135,7 +135,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .booking_row {
-    display: contents; 
+    display: contents;
 }
 
 
@@ -150,7 +150,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .btn-booking {
-    background-color: rgb(4, 21, 214); 
+    background-color: rgb(4, 21, 214);
     color: white;
     padding: 10px;
     border: none;
@@ -160,15 +160,24 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     height: 50px;
     box-sizing: border-box;
-    position: absolute; 
+    position: absolute;
     bottom: 0;
-    left: 0; /* 左から0 */
-    margin: 0; 
+    left: 0;
+    margin: 0;
     transition: opacity 0.3s ease;
 }
 
 .btn-booking:hover {
-    opacity: 0.7; 
+    opacity: 0.7;
+}
+
+.create-comment {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: black;
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
