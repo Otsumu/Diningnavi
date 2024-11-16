@@ -1,41 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #e9e8e8;
+    margin: 0;
+    padding: 30px;
+}
+
 header {
     height: 60px;
 }
 
 .shop__content {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 16px;
-    width: 100%;
     position: relative;
+    width: 1280px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.shop__left-content {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    width: 500px;
+    padding: 30px;
+}
+
+.shop__right-content {
+    position: absolute;
+    top: 10px;
+    left: 500px;
+    width: calc(100% - 500px);
+    margin: 10px auto;
+    max-height: 600px;
 }
 
 .shop__content::before {
     content: "";
     position: absolute;
-    top: 10%;
-    bottom: 0;
+    top: 15%;
+    bottom: 10%;
     left: 40%;
     width: 1px;
     background-color: #d7d5d5;
     transform: translateX(-50%);
 }
 
-.shop__left-content {
-    padding: 10px;
-}
-
 .left-comment-title {
     font-size: 45px;
     font-weight: normal;
     margin-top: 30px;
-}
-
-.shop__img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
 }
 
 .shop__item {
@@ -46,7 +65,7 @@ header {
     border-radius: 5px;
     box-shadow: 2px 2px 5px gray;
     text-align: left;
-    margin: 30px 0 0 30px;
+    margin: 50px 0 0 30px;
 }
 
 .shop__img {
@@ -57,25 +76,22 @@ header {
 }
 
 .shop__detail {
-    display: block;
+    padding: 5px 10px;
 }
 
 .shop__detail h2 {
     font-size: 16px;
     font-weight: bold;
     margin-top: 8px;
-    padding-left: 10px;
 }
 
 .shop__detail p {
     font-size: 12px;
     margin-top: 5px;
-    padding-left: 10px;
 }
 
 .shop__buttons a {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    display: inline-block;
     text-decoration: none;
     color: #fff;
     background-color: rgb(63, 90, 242);
@@ -84,62 +100,105 @@ header {
     padding: 5px 10px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.shop__buttons a:hover {
+    background-color: #354dcf;
 }
 
 .shop__right-content {
-    min-height: calc(100vh - 60px);
-    margin-left: 50px;
-    position: relative;
+    flex: 1.5;
+    min-width: 400px;
+    margin-left: 55px;
 }
 
 .right-comment-title {
     font-size: 30px;
-    font-weight: normal;
-    margin-top: 5px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .form-group {
     display: flex;
-    gap: 10px;
     flex-direction: column;
-    width: auto;
-    max-width: 100%;
-    padding: 20px;
+    width: 100%;
+    padding: 30px 0 0 60px;
+    position: relative;
 }
 
-.comment textarea  {
-    width: 40%;
-    max-width: 40%;
-    box-sizing: border-box;
+#rating .star {
+    font-size: 50px;
+    margin-top: 5px;
+    margin-right: 8px;
+    cursor: pointer;
+    color: lightgray;
+    transition: color 0.2s ease;
 }
 
-.comment textarea  {
-    width: 40%;
-    max-width: 40%;
-    box-sizing: border-box;
+#rating .star.selected {
+    color: rgb(63, 90, 242);
 }
 
-.form-control textarea {
-    width: 40%;
-    max-width: 40%;
+textarea {
+    width: 80%;
+    height: 150px;
+    resize: vertical;
     box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.form-group .form-control {
+    width: 80%;
+    height: 150px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+#comment::placeholder {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #888;
+}
+
+.max-words {
+    position: absolute;
+    right: 170px;
+    bottom: -35px;
+    font-size: 14px;
+}
+
+#image {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid white;
+    text-align: center;
+}
+
+#image::placeholder {
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    line-height: 100px;
 }
 
 .btn-comment {
-    background-color: rgb(4, 21, 214);
-    color: white;
-    padding: 10px;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    font-size: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 14px;
-    width: 100%;
-    height: 50px;
+    width: 50%;
+    height: 60px;
     box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
+    position: relative;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
     transition: opacity 0.3s ease;
 }
 
@@ -149,20 +208,10 @@ header {
 
 @media (max-width: 768px) {
     .shop__content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .shop__left-content,
-    .shop__right-content {
-        width: 100%;
-        margin-left: 0;
+        grid-template-columns: 1fr;
     }
 
     .shop__content::before {
         display: none;
     }
 }
-

@@ -40,20 +40,23 @@
 
             <div class="form-group">
             <h2 class=right-comment-title>口コミを投稿</h2>
-                <textarea name="comment" id="comment" rows="5" required>{{ old('comment', session("comments_inputs.$bookingId.comment", '')) }}</textarea>
+                <textarea name="comment" id="comment" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
+                required>{{ old('comment', session("comments_inputs.$bookingId.comment", '')) }}</textarea>
                 <p class="max-words">0/400(最大文字数)</p>
             </div>
 
             <div class="form-group">
             <h2 class="right-comment-title">画像の追加</h2>
-                <textarea id="image" name="image" rows="5" placeholder="クリックして写真を追加 またはドロップアンドドロップ" class="form-control"></textarea>
+                <textarea id="image" name="image" rows="5" placeholder="クリックして写真を追加またはドロップアンドドロップ" class="form-control"></textarea>
             </div>
-                <button type="submit" class="btn btn-comment">口コミを投稿</button>
         </form>
+    </div>
+    <div class="shop__buttons">
+        <button type="button" class="btn btn-comment" id="submit-comment">口コミを投稿</button>
     </div>
 </div>
 @endsection
 
 @section('js')
-<script src="{{ asset('js/detail.js') }}"></script>
+<script src="{{ asset('js/detailComment.js') }}"></script>
 @endsection
