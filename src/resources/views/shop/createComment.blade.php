@@ -7,6 +7,12 @@
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
+        @if(session('error'))
+            <div class="alert alert-danger" style="color: red; font-weight: bold; margin-bottom: 10px;">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <h1 class="left-comment-title">今回のご利用はい<br>かがでしたか？</h1>
             <div class="shop__item">
                 <div class="shop__img">
@@ -18,6 +24,9 @@
                 </div>
                 <div class="shop__buttons">
                     <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
+                    <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
+                        <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -35,7 +44,7 @@
                     <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="4">★</span>
                     <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="5">★</span>
                 </div>
-                    <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', session("comments_inputs.$bookingId.rating", '')) }}" required>
+                <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', session("comments_inputs.$bookingId.rating", '')) }}" required>
             </div>
 
             <div class="form-group">
@@ -49,13 +58,13 @@
             <h2 class="right-comment-title">画像の追加</h2>
                 <textarea id="image" name="image" rows="5" placeholder="クリックして写真を追加またはドロップアンドドロップ" class="form-control"></textarea>
             </div>
+
+            <div class="shop__buttons">
+                <button type="submit" class="btn btn-comment" id="submit-comment">口コミを投稿</button>
+            </div>
         </form>
     </div>
-    <div class="shop__buttons">
-        <button type="button" class="btn btn-comment" id="submit-comment">口コミを投稿</button>
-    </div>
-</div>
-@endsection
+    @endsection
 
 @section('js')
 <script src="{{ asset('js/detailComment.js') }}"></script>

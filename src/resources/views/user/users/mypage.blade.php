@@ -14,9 +14,9 @@
         <div class="left-content">
             <h3 class="booking-title">予約状況</h3>
             @if (session('success'))
-              <div class="alert alert-success">
-                {{ session('success') }}
-              </div>
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
             @if($bookings->isEmpty())
                 <p style="font-size: 16px; padding: 5px;">ご予約はありません</p>
@@ -61,7 +61,7 @@
                 @endforeach
             @endif
         </div>
-        
+
         <div class="right-content">
             <h3 class="favorites-title">お気に入り店舗</h3>
             @if($favorites->isEmpty())
@@ -81,7 +81,7 @@
                                     <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="true">
                                         <i class="fa-solid fa-heart heart-icon active"></i>
                                     </button>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                     @endforeach

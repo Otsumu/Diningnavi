@@ -7,9 +7,8 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.5;
-    background-color: #e9e8e8;
+    background-color: #f4f1f1;
     margin: 0;
-    padding: 30px;
 }
 
 header {
@@ -26,7 +25,7 @@ header {
 .shop__left-content {
     position: absolute;
     top: 30px;
-    left: 50px;
+    left: 10px;
     width: 500px;
     padding: 30px;
 }
@@ -36,7 +35,8 @@ header {
     top: 10px;
     left: 500px;
     width: calc(100% - 500px);
-    margin: 10px auto;
+    margin: 20px auto;
+    padding-left: 30px;
     max-height: 600px;
 }
 
@@ -45,7 +45,7 @@ header {
     position: absolute;
     top: 15%;
     bottom: 10%;
-    left: 40%;
+    left: 35%;
     width: 1px;
     background-color: #d7d5d5;
     transform: translateX(-50%);
@@ -90,6 +90,13 @@ header {
     margin-top: 5px;
 }
 
+.shop__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+}
+
 .shop__buttons a {
     display: inline-block;
     text-decoration: none;
@@ -106,6 +113,29 @@ header {
 
 .shop__buttons a:hover {
     background-color: #354dcf;
+}
+
+.favorite-shop {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: lightgray;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.favorite-shop:focus {
+    outline: none;
+}
+
+.heart-icon {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.heart-icon.active {
+    color: red;
 }
 
 .shop__right-content {
@@ -147,6 +177,7 @@ textarea {
     resize: vertical;
     box-sizing: border-box;
     margin-top: 5px;
+    font-size: 16px;
 }
 
 .form-group .form-control {
@@ -192,12 +223,12 @@ textarea {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    width: 50%;
+    width: 60%;
     height: 60px;
     box-sizing: border-box;
     position: relative;
     bottom: -30px;
-    left: 50%;
+    left: 10%;
     transform: translateX(-50%);
     transition: opacity 0.3s ease;
 }

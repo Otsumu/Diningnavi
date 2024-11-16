@@ -15,17 +15,41 @@ class CommentController extends Controller
         return view('shop.createComment', compact('shop', 'bookingId'));
     }
 
+    public function __construct() {
+        $this->middleware('auth')->only('store');
+    }
+
     public function store(CommentRequest $request, Shop $shop) {
         if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'ログインが必要です');
+            session()->flash('error', 'ログインが必要です');
+            return redirect()->route('login')->withErrors([
+                'error' => 'ログインしてください'
+            ]);
         }
+    
+        if (auth()->user()->role !== 'user') {
+            return redirect()->route('shop.createComment')->withErrors([
+                'error' => 'ご利用者でないと投稿できません'
+            ]);
+        }
+    
+        $hasBooked = Booking::where('shop_id', $shop->id)
+                            ->where('user_id', auth()->id())
+                            ->exists();
+
+        if (!$hasBooked) {
+            return redirect()->route('shop.createComment')->withErrors([
+                'error' => 'ご利用者でないと投稿できません'
+            ]);
+        }
+
         Comment::create([
             'shop_id' => $shop->id,
             'user_id' => auth()->id(),
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('shop.show', $shop)->with('success', '口コミを投稿しました');
+        return redirect()->route('shop.detailComment', $shop)->with('success', '口コミを投稿しました');
     }
 
     public function edit(Shop $shop, Comment $comment) {
