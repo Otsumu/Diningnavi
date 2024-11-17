@@ -49,7 +49,7 @@ http://15.168.189.188
     -  intro: 店舗の紹介文（例: 「イタリア料理を提供するお店」）
     -  url: 店舗の代表画像のURL（例: /storage/images/italian.jpg）
    #### CSVインポート方法
-     [CVSインポート](http://localhost/admin/create) ※admin管理者でのログインが必要です。
+   - admin管理者でのログインが必要です。 [CVSインポート](http://localhost/admin/create)
 
 - **店舗代表者機能** : 店舗情報の作成・更新・削除が可能。予約情報をまとめて表示し、利便性を向上。
    - **ストレージ** : お店の画像をストレージに保存可能。
@@ -57,7 +57,7 @@ http://15.168.189.188
    - **メール送信** : 登録顧客にお知らせメールを送信。
      [メール配信機能](http://localhost/emails/user_send_mail.blade.php)
    - **リマインダー** : 予約当日AM9:00にお知らせメールを送信。
-     [リマインダー機能](http://localhost/emails/reminder.blade.php)
+     [リマインダー機能](http://localhost/emails/reminder.blade.php)<br>
      ※`php artisan reminder:send`コマンドを実行するとテストが可能です。
 
 - **メール機能のテスト** : MailHogを使用して、ローカル環境でメール送信のテストが可能です。
