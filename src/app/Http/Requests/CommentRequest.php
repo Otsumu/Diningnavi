@@ -24,22 +24,9 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => [
-                'required',
-                'string',
-                'max:400',
-            ],
-
-            'rating' => [
-                'required',
-                'integer',
-                'between:1,5',
-            ],
-
-            'image' => [
-                'nullable',
-                'mimes:jpeg,png',
-            ],
+            'content' => 'required|string|max:400',
+            'rating' => 'required|integer|between:1,5',
+            'image' => 'nullable|mimes:jpeg,png',
         ];
     }
 
@@ -51,11 +38,11 @@ class CommentRequest extends FormRequest
     public function messages()
     {
         return [
-            'content.required' => '口コミ内容は必須です。',
-            'content.max' => '口コミ内容は最大400文字までです。',
-            'rating.required' => '評価は必須です。',
-            'rating.between' => '1から5の間で選んでください。',
-            'image.mimes' => '画像はjpegまたはpng形式でアップロードしてください。',
+            'content.required' => '口コミ内容は必須です',
+            'content.max' => '口コミ内容は最大400文字までです',
+            'rating.required' => '評価は必須です',
+            'rating.between' => '1から5の間で選んでください',
+            'image.mimes' => '画像はjpegまたはpng形式でアップロードしてください',
         ];
     }
 }

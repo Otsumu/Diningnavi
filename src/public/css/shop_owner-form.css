@@ -107,3 +107,25 @@ select:focus {
 .btn-cancel:hover {
     background-color: #b0b0b0;
 }
+
+.alert {
+    padding: 10px;
+    margin: 20px 50px 0 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}

@@ -7,12 +7,15 @@
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
-        @if(session('error'))
-            <div class="alert alert-danger" style="color: red; font-weight: bold; margin-bottom: 10px;">
-                {{ session('error') }}
-            </div>
-        @endif
-
+    @if ($errors->any())
+        <div class="custom-error-message">
+            <ul>
+                @foreach ($errors->get('custom_error') as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <h1 class="left-comment-title">今回のご利用はい<br>かがでしたか？</h1>
             <div class="shop__item">
                 <div class="shop__img">
@@ -55,8 +58,16 @@
             </div>
 
             <div class="form-group">
-            <h2 class="right-comment-title">画像の追加</h2>
-                <textarea id="image" name="image" rows="5" placeholder="クリックして写真を追加またはドロップアンドドロップ" class="form-control"></textarea>
+                <h2 class="right-comment-title">画像の追加</h2>
+                <div class="file-upload">
+                    <input type="file" name="image" id="image" accept="image/*" style="display: none;">
+                    <span class="file-upload-placeholder">
+                        クリックして写真を追加またはドロップアンドドロップ
+                    </span>
+                    <div id="image-preview" style="margin-top: 10px; display: none;">
+                        <img id="preview-image" src="#" alt="Selected Image" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
             </div>
 
             <div class="shop__buttons">

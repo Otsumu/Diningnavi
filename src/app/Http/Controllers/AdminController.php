@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
@@ -133,4 +140,83 @@ class AdminController extends Controller
 
         return redirect()->route('admin.login');
     }
+
+    public function createShop() {
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('admin.shopCreate', compact('areas', 'genres'));
+    }
+
+    public function storeShop(Request $request) {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'intro' => 'required|string|max:400',
+            'area_id' => 'required|exists:areas,id',
+            'genre_id' => 'required|exists:genres,id',
+            'image_url' => 'required|url',
+        ]);
+
+        if (auth()->user() && auth()->user()->role === 'admin') {
+            Shop::create([
+                'name' => $validated['name'],
+                'intro' => $validated['intro'],
+                'area_id' => $validated['area_id'],
+                'genre_id' => $validated['genre_id'],
+                'image_url' => $request->input('image_url'),
+                'user_id' => auth()->id(),
+                'shop_owner_id' => auth()->id(),
+            ]);
+
+        return redirect()->route('admin.shop.create')->with('success', '新規店舗を登録しました');
+        }
+    }
+
+    public function imageUpload() {
+        return view('admin.image_upload');
+    }
+
+    public function storeImage(Request $request) {
+        $imageUrl = $request->input('image_url');
+        $response = Http::get($imageUrl);
+
+        if ($response->successful()) {
+            $fileName = basename($imageUrl);
+            Storage::disk('public')->put("images/{$fileName}", $response->body());
+        }
+            return response()->json(['message' => '画像を保存しました']);
+    }
+
+    public function exportCsv()
+{
+    $response = new StreamedResponse(function () {
+
+        $header = ['店舗名', '地域', 'ジャンル', '店舗概要', '画像URL'];
+
+        $handle = fopen('php://output', 'w');
+
+        fputcsv($handle, $header);
+
+        $shops = DB::table('shops')->get();
+
+        foreach ($shops as $shop) {
+            $row = [
+                $shop->name,
+                $shop->area_id,
+                $shop->genre_id,
+                $shop->intro,
+                $shop->image_url,
+            ];
+
+            fputcsv($handle, $row);
+        }
+
+        fclose($handle);
+    });
+
+    $response->headers->set('Content-Type', 'text/csv');
+    $response->headers->set('Content-Disposition', 'attachment; filename="shops.csv"');
+
+    return $response;
+}
 }

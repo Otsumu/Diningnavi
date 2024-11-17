@@ -22,6 +22,27 @@ header {
     margin: 0 auto;
 }
 
+.custom-error-message {
+    background-color: #ffcccc;
+    color: #990000;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ff6666;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.custom-error-message ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.custom-error-message li {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
 .shop__left-content {
     position: absolute;
     top: 30px;
@@ -180,20 +201,6 @@ textarea {
     font-size: 16px;
 }
 
-.form-group .form-control {
-    width: 80%;
-    height: 150px;
-    resize: vertical;
-    box-sizing: border-box;
-    margin-top: 5px;
-}
-
-#comment::placeholder {
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    color: #888;
-}
-
 .max-words {
     position: absolute;
     right: 170px;
@@ -201,14 +208,39 @@ textarea {
     font-size: 14px;
 }
 
-#image {
-    background-color: white;
-    padding: 10px;
-    border: 1px solid white;
-    text-align: center;
+.file-upload {
+    display: none;
 }
 
-#image::placeholder {
+.form-group .file-upload {
+    display: block;
+    width: 80%;
+    height: 150px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    border: 1px solid white;
+    background-color: white;
+}
+
+.file-upload:hover {
+    cursor: pointer;
+}
+
+#image-preview {
+    display: none;
+    margin-top: 10px;
+}
+
+#preview-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.file-upload-placeholder  {
     text-align: center;
     color: black;
     font-size: 16px;

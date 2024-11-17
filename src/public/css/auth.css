@@ -132,3 +132,22 @@
     margin-bottom: 15px;
     color: #333;
 }
+
+.csv-import-container {
+    text-align: center;
+}
+
+.csv-import-container input[type="file"] {
+    margin-top: 10px;
+}
+
+.csv-import-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.csv-import-container button:hover {
+    background-color: #45a049;
+}

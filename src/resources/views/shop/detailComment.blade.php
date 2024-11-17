@@ -8,7 +8,6 @@
 <div class="shop__content">
     <div class="shop__left-content">
         <div class="shop__detail">
-            <a href="{{ $backRoute }}" class="page-back"></a>
             <span class="shop-name">{{ $shop->name }}</span>
         </div>
         <div class="shop_image">
@@ -24,8 +23,15 @@
 
         <div class="comments-section">
             <div class="comment-actions">
-                <a href="{{ route('shop.editComment') }}">口コミを編集</a>
-                <a here="{{ route'#' }}">口コミを削除</a>
+                <a href="{{ route('comments.edit', ['shop' => $shop->id, 'comment' => $comment->id]) }}">口コミを編集</a>
+                <a href="{{ route('comments.destroy', ['shop' => $shop->id, 'comment' => $comment->id]) }}">
+                    口コミを削除
+                </a>
+                <form id="delete-form" action="{{ route('comments.destroy', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </div>
             @foreach($shop->comments as $comment)
                 <div class="comment">
                     <div id="rating">

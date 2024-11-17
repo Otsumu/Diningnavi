@@ -62,14 +62,11 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('review.edit');
     Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
-    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
-    Route::get('/shop/{shop}/createComment', [CommentController::class, 'create'])->name('comments.create');
+
+    Route::get('/shop/{shop}/createComment', [CommentController::class, 'create'])->name('shop.createComment');
     Route::post('/shop/{shop}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::get('/shop/{shop}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
-    Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-    Route::delete('/shop/{shop}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-    Route::get('/shops/{shop}/detailComment', [ShopController::class, 'showComment'])->name('shop.detailComment');
-});
+    Route::get('/shop/{shop}/comments/{comment}/detailComment', [CommentController::class, 'detailComment'])->name('shop.detailComment');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.delete');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');
@@ -82,6 +79,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::patch('/shop_owners/{id}', [AdminController::class, 'updateShopOwner'])->name('admin.update');
     Route::delete('/shop_owners/{id}', [AdminController::class, 'deleteShopOwner'])->name('admin.delete');
     Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/create', [AdminController::class, 'createShop'])->name('admin.shop.create');
+    Route::post('/shops', [AdminController::class, 'storeShop'])->name('admin.store');
+    Route::get('/image-upload', [AdminController::class, 'imageUpload'])->name('admin.image_upload');
+    Route::post('/image-upload', [AdminController::class, 'storeImage'])->name('admin.store_image');
+    Route::get('/admin/csv-export', [AdminController::class, 'exportCsv'])->name('admin.csv_export');
 });
 
 Route::middleware('auth')->prefix('shop_owner')->group(function () {
@@ -108,3 +110,8 @@ Route::get('/payment/create/{bookingId}', [PaymentController::class, 'create'])-
 Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
 
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
+        ->name('comments.delete');
+    });
+});

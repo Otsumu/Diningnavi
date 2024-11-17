@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
@@ -16,67 +17,46 @@ class CommentController extends Controller
     }
 
     public function __construct() {
-        $this->middleware('auth')->only('store');
+        $this->middleware('auth')->only('store', 'edit', 'delete');
+        $this->middleware(function ($request, $next) {
+            if ($request->routeIs('comments.delete') && auth()->user()->role !== 'admin' && auth()->id() !== $request->route('comment')->user_id) {
+                return redirect()->route('shop.createComment', $request->route('comment')->shop_id)
+                    ->withErrors('この口コミを削除する権限がありません');
+            }
+            return $next($request);
+        })->only('delete');
     }
 
-    public function store(CommentRequest $request, Shop $shop) {
-        if (!auth()->check()) {
-            session()->flash('error', 'ログインが必要です');
-            return redirect()->route('login')->withErrors([
-                'error' => 'ログインしてください'
-            ]);
-        }
-    
-        if (auth()->user()->role !== 'user') {
+    public function store(CommentRequest $request) {
+        $validated = $request->validated();
+
+        $existingComment = Comment::where('booking_id', $validated['booking_id'])
+                            ->where('user_id', Auth::id())
+                            ->first();
+
+        if ($existingComment) {
             return redirect()->route('shop.createComment')->withErrors([
-                'error' => 'ご利用者でないと投稿できません'
-            ]);
-        }
-    
-        $hasBooked = Booking::where('shop_id', $shop->id)
-                            ->where('user_id', auth()->id())
-                            ->exists();
-
-        if (!$hasBooked) {
-            return redirect()->route('shop.createComment')->withErrors([
-                'error' => 'ご利用者でないと投稿できません'
+                'content' => '口コミはすでに投稿されています。'
             ]);
         }
 
-        Comment::create([
-            'shop_id' => $shop->id,
-            'user_id' => auth()->id(),
-            'comment' => $request->comment,
-        ]);
+        $comment = new Comment();
+        $comment->content = $validated['content'];
+        $comment->rating = $validated['rating'];
+        $comment->booking_id = $validated['booking_id'];
+        $comment->user_id = Auth::id();
 
-        return redirect()->route('shop.detailComment', $shop)->with('success', '口コミを投稿しました');
+        $booking = Booking::find($validated['booking_id']);
+        $comment->shop_id = $booking ? $booking->shop_id : null;
+        $comment->save();
+
+        $request->session()->forget("comments_inputs.{$validated['booking_id']}");
+
+        return redirect()->route('shop.detailComment', ['shop' => $comment->shop_id, 'comment' => $comment->id])
+            ->with('success', 'レビューが投稿されました');
     }
 
-    public function edit(Shop $shop, Comment $comment) {
-        if ($comment->user_id !== auth()->id()) {
-            return redirect()->route('shop.show', $shop)->with('error', 'このコメントは編集できません');
-        }
-        return view('comments.edit', compact('shop', 'comment'));
-    }
-
-    public function update(Request $request, Shop $shop, Comment $comment) {
-        $request->validate([
-            'comment' => 'required|string|max:1000',
-        ]);
-
-        $comment->update([
-            'comment' => $request->comment,
-        ]);
-
-        return redirect()->route('shop.show', $shop)->with('success', '口コミを更新しました');
-    }
-
-    public function destroy(Shop $shop, Comment $comment) {
-        if ($comment->user_id !== auth()->id()) {
-            return redirect()->route('shop.show', $shop)->with('error', 'このコメントは削除できません');
-        }
-        $comment->delete();
-
-        return redirect()->route('shop.show', $shop)->with('success', '口コミを削除しました');
+    public function detailComment(Shop $shop, Comment $comment) {
+        return view('comments.detail', compact('shop', 'comment'));
     }
 }

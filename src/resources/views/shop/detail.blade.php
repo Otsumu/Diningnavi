@@ -20,7 +20,7 @@
         <div class="shop__intro">
             <p>{{ $shop->intro }}</p>
         </div>
-        <a href="{{ route('comments.create', ['shop' => $shop->id]) }}" class="create-comment">口コミを投稿する</a>
+        <a href="{{ route('shop.createComment', ['shop' => $shop->id]) }}" class="create-comment">口コミを投稿する</a>
     </div>
 
     <div class="shop__right-content">
