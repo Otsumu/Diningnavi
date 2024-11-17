@@ -18,17 +18,38 @@ class ShopController extends Controller {
         $genreId = $request->input('genre');
         $areaId = $request->input('area');
         $keyword = $request->input('keyword');
+        $sort = $request->get('sort', 'random');
 
         $shops = Shop::query()
             ->genre($genreId)
             ->area($areaId)
-            ->keyword($keyword)
-            ->paginate(20);
+            ->keyword($keyword);
 
+        if ($sort === 'high_rating') {
+            $shops->selectRaw('shops.*, IFNULL(MAX(comments.rating), 0) as max_rating')
+                ->leftJoin('comments', 'comments.shop_id', '=', 'shops.id')
+                ->withCount('comments')
+                ->groupBy('shops.id')
+                ->orderByRaw('max_rating DESC')
+                ->orderByDesc('comments_count')
+                ->orderByDesc('created_at');
+        } elseif ($sort === 'low_rating') {
+            $shops->selectRaw('shops.*, IFNULL(MIN(comments.rating), 0) as min_rating')
+                ->leftJoin('comments', 'comments.shop_id', '=', 'shops.id')
+                ->withCount('comments')
+                ->groupBy('shops.id')
+                ->orderByRaw('min_rating ASC')
+                ->orderByDesc('comments_count')
+                ->orderByDesc('created_at');
+        } elseif ($sort === 'random') {
+            $shops->inRandomOrder();
+        }
+
+        $shops = $shops->paginate(20);
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('shop.index', compact('shops','areas','genres'));
+        return view('shop.index', compact('shops', 'areas', 'genres'));
     }
 
     public function show($shop_id) {

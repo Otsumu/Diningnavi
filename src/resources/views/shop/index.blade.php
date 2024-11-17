@@ -6,6 +6,17 @@
 
 @section('header')
 <form class="header__right" action="/" method="get">
+    <div class="header__center__search">
+        <div class="select-box">
+            <label class="select-box-label">並び替え：</label>
+            <select name="sort" class="select-box-item" style="padding: 13px 40px 0 0; margin-left: 0;" onchange="this.form.submit()">
+                <option value="random" {{ request('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
+                <option value="high_rating" {{ request('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
+                <option value="low_rating" {{ request('sort') == 'low_rating' ? 'selected' : '' }}>評価は低い順</option>
+            </select>
+        </div>
+    </div>
+
     <div class="header__search">
         <div class="select-box">
             <label class="select-box-label"></label>
