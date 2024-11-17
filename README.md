@@ -38,19 +38,18 @@ http://15.168.189.188
 
    #### CSVフォーマットの例
    - name,area,genre,intro,url
-    - **「イタリアンレストラン」,"東京","イタリアン","イタリア料理を提供するお店",/storage/images/italian.jpg<br>
-    - **「居酒屋さくら」,"大阪","居酒屋","日本料理とお酒が楽しめる居酒屋",/storage/images/izakaya.jpg<br>
-    - **「ラーメン博物館」,"福岡","ラーメン","こだわりのラーメンが楽しめる専門店",/storage/images/ramen.jpg<br>
+    - 「イタリアンレストラン」,"東京","イタリアン","イタリア料理を提供するお店",/storage/images/italian.jpg<br>
+    - 「居酒屋さくら」,"大阪","居酒屋","日本料理とお酒が楽しめる居酒屋",/storage/images/izakaya.jpg<br>
+    - 「ラーメン博物館」,"福岡","ラーメン","こだわりのラーメンが楽しめる専門店",/storage/images/ramen.jpg<br>
     ※必ずコンマで区切ること、画像URLは、サーバーにアップロードした画像へのパスを記入。
    - フィールドの説明
-    - ** name: 店舗名（例: 「イタリアンレストラン」）
-    - ** area: 店舗が所在するエリア（例: 「東京」）
+    -  name: 店舗名（例: 「イタリアンレストラン」）
+    -  area: 店舗が所在するエリア（例: 「東京」）
     - ** genre: 店舗のジャンル（例: 「イタリアン」、「居酒屋」、「ラーメン」など）
-    - ** intro: 店舗の紹介文（例: 「イタリア料理を提供するお店」）
-    - * url: 店舗の代表画像のURL（例: /storage/images/italian.jpg）
+    -  intro: 店舗の紹介文（例: 「イタリア料理を提供するお店」）
+    -  url: 店舗の代表画像のURL（例: /storage/images/italian.jpg）
    - CSVインポート方法
-   [CVSインポート](http://localhost/admin/create)
-   ※admin管理者でのログインが必要です。
+   [CVSインポート](http://localhost/admin/create) ※admin管理者でのログインが必要です。
 
 - **店舗代表者機能** : 店舗情報の作成・更新・削除が可能。予約情報をまとめて表示し、利便性を向上。
    - **ストレージ** : お店の画像をストレージに保存可能。
