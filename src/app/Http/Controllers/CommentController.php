@@ -16,12 +16,6 @@ class CommentController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'ログインしてください');
         }
-        $existingComment = Comment::where('user_id', auth()->id())
-            ->where('shop_id', $shop->id)
-            ->exists();
-        if ($existingComment) {
-            return redirect()->route('shop.detailComment', $shop)->with('error', 'すでに口コミされています');
-        }
         return view('shop.createComment', compact('shop'));
     }
 
@@ -65,7 +59,7 @@ class CommentController extends Controller
 
     public function edit(Shop $shop, Comment $comment) {
         if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
-            return redirect()->route('shop.detailComment', ['shop' => $shop, 'comment' => $comment])
+            return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
                 ->withErrors('このコメントは編集できません');
         }
 
@@ -73,27 +67,27 @@ class CommentController extends Controller
     }
 
     public function update(CommentRequest $request, Shop $shop, Comment $comment) {
-        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'user') {
-        return redirect()->route('shop.detailComment', ['shop' => $shop, 'comment' => $comment])
-            ->withErrors('このコメントは編集できません');
+        if (auth()->id() !== $comment->user_id) {
+            return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
+                ->withErrors('このコメントは編集できません');
         }
 
         $comment->content = $request->content;
         $comment->rating = $request->rating;
         $comment->save();
 
-        return redirect()->route('shop.detailComment', ['shop' => $shop, 'comment' => $comment])
+        return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
             ->with('success', '口コミが更新されました');
     }
 
     public function delete(Shop $shop, Comment $comment) {
-        if ($comment) {
-            $comment->delete();
+        if (auth()->id() !== $comment->user_id) {
             return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
-                ->with('success', '口コミが削除されました');
+                ->withErrors('このコメントは削除できません');
         }
-        return redirect()->route('shop.detailComment', ['shop' => $shop->id])
-            ->withErrors('口コミの削除に失敗しました');
-    }
+        $comment->delete();
 
+        return redirect()->route('shop.detailComment', ['shop' => $shop->id])
+            ->with('success', '口コミが削除されました');
+    }
 }

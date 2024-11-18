@@ -4,7 +4,7 @@ const stars = document.querySelectorAll('.star');
     let currentRating = parseInt(ratingInput.value) || 0;
 
     stars.forEach(star => {
-        star.style.color = star.getAttribute('data-value') <= currentRating ? 'gold' : 'lightgray';
+        star.style.color = star.getAttribute('data-value') <= currentRating ? 'rgb(63, 90, 242)' : 'lightgray';
 
         star.addEventListener('click', () => {
             const value = parseInt(star.getAttribute('data-value'));
@@ -13,7 +13,7 @@ const stars = document.querySelectorAll('.star');
                 currentRating = 0;
                 ratingInput.value = '';
             } else {
-                currentRating = value; 
+                currentRating = value;
                 ratingInput.value = value;
             }
 

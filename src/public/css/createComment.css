@@ -52,6 +52,16 @@ header {
     padding: 10px;
 }
 
+.shop__left-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 1px;
+    height: 85%;
+    background-color: lightgray;
+}
+
 .shop__right-content {
     position: absolute;
     top: 10px;
@@ -180,6 +190,10 @@ header {
 }
 
 #rating .star.selected {
+    color: rgb(63, 90, 242);
+}
+
+#rating .star:hover {
     color: rgb(63, 90, 242);
 }
 

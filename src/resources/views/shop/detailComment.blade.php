@@ -25,6 +25,10 @@
                     onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
                     口コミを削除
                 </a>
+                <form id="update-form" action="{{ route('comments.update', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('PATCH')
+                </form>
                 <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')
@@ -34,7 +38,7 @@
                 <div class="comment">
                     <div id="rating">
                         @for ($i = 1; $i <= 5; $i++)
-                        <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'gold' : 'lightgray' }}">★</span>
+                        <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>
                         @endfor
                     </div>
                     <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $comment->rating) }}" required>

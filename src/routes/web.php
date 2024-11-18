@@ -68,7 +68,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/shop/{shop}/comments/{comment}/detailComment', [CommentController::class, 'detailComment'])->name('shop.detailComment');
     Route::get('/shop/{shop}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
     Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-    Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
+    Route::delete('/shop/{shop}/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
 
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');

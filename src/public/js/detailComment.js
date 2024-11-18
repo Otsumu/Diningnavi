@@ -16,6 +16,12 @@ document.querySelectorAll('#rating .star').forEach(function(star) {
     });
 });
 
+function updateCharCount() {
+    var content = document.getElementById('content').value;
+    var charCount = content.length;
+    document.getElementById('word-count').textContent = charCount + '/400(最大文字数)';
+}
+
 document.querySelector(".file-upload-placeholder").addEventListener("click", function() {
     document.getElementById("image").click();
 });
