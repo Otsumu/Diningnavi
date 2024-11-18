@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f4f1f1;
+    margin: 0;
+}
+
+header {
+    height: 60px;
+}
+
+.custom-error-message {
+    background-color: #ffcccc;
+    color: #990000;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ff6666;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.custom-error-message ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.custom-error-message li {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.shop__content {
+    position: relative;
+    width: 1280px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.shop__left-content {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    width: 450px;
+    height: 600px;
+    padding: 10px;
+}
+
+.shop__right-content {
+    position: absolute;
+    top: 10px;
+    left: 500px;
+    width: calc(100% - 500px);
+    margin: 20px auto;
+    padding-left: 30px;
+    max-height: 600px;
+}
+
+
+.left-comment-title {
+    font-size: 45px;
+    font-weight: normal;
+    margin-top: 30px;
+}
+
+.shop__item {
+    width: 60%;
+    max-width: 60%;
+    flex: 0 0 calc(25% - 20px);
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    text-align: left;
+    margin: 50px 0 0 30px;
+}
+
+.shop__img {
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+    display: block;
+}
+
+.shop__detail {
+    padding: 5px 10px;
+}
+
+.shop__detail h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.shop__detail p {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.shop__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.shop__buttons a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(63, 90, 242);
+    font-size: 14px;
+    border: 1px solid #3f5af2;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.shop__buttons a:hover {
+    background-color: #354dcf;
+}
+
+.favorite-shop {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: lightgray;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.favorite-shop:focus {
+    outline: none;
+}
+
+.heart-icon {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.heart-icon.active {
+    color: red;
+}
+
+.shop__right-content {
+    flex: 1.5;
+    min-width: 400px;
+    margin-left: 55px;
+}
+
+.right-comment-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 0 0 60px;
+    position: relative;
+}
+
+#rating .star {
+    font-size: 50px;
+    margin-top: 5px;
+    margin-right: 8px;
+    cursor: pointer;
+    color: lightgray;
+    transition: color 0.2s ease;
+}
+
+#rating .star.selected {
+    color: rgb(63, 90, 242);
+}
+
+textarea {
+    width: 80%;
+    height: 150px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.max-words {
+    position: absolute;
+    right: 170px;
+    bottom: -35px;
+    font-size: 14px;
+}
+
+.file-upload {
+    display: none;
+}
+
+.form-group .file-upload {
+    display: block;
+    width: 80%;
+    height: 150px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    border: 1px solid white;
+    background-color: white;
+}
+
+.file-upload:hover {
+    cursor: pointer;
+}
+
+#image-preview {
+    display: none;
+    margin-top: 10px;
+}
+
+#preview-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.file-upload-placeholder  {
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    line-height: 100px;
+}
+
+.btn-comment {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 60%;
+    height: 60px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: -30px;
+    left: 10%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease;
+}
+
+.btn-comment:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .shop__content {
+        grid-template-columns: 1fr;
+    }
+
+    .shop__content::before {
+        display: none;
+    }
+}

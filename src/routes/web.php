@@ -66,7 +66,12 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/shop/{shop}/createComment', [CommentController::class, 'create'])->name('shop.createComment');
     Route::post('/shop/{shop}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/shop/{shop}/comments/{comment}/detailComment', [CommentController::class, 'detailComment'])->name('shop.detailComment');
-    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.delete');
+    Route::get('/shop/{shop}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
+
+
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');

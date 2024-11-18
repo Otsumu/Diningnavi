@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/detailComment.css') }}">
 @endsection
 
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
-        <div class="shop__detail">
-            <span class="shop-name">{{ $shop->name }}</span>
-        </div>
         <div class="shop_image">
             <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
         </div>
@@ -24,10 +21,11 @@
         <div class="comments-section">
             <div class="comment-actions">
                 <a href="{{ route('comments.edit', ['shop' => $shop->id, 'comment' => $comment->id]) }}">口コミを編集</a>
-                <a href="{{ route('comments.destroy', ['shop' => $shop->id, 'comment' => $comment->id]) }}">
+                <a href="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}"
+                    onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
                     口コミを削除
                 </a>
-                <form id="delete-form" action="{{ route('comments.destroy', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
+                <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')
                 </form>
@@ -36,13 +34,14 @@
                 <div class="comment">
                     <div id="rating">
                         @for ($i = 1; $i <= 5; $i++)
-                        <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $review->rating) ? 'gold' : 'lightgray' }}">★</span>
+                        <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'gold' : 'lightgray' }}">★</span>
                         @endfor
                     </div>
-                    <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $review->rating) }}" required>
-                    <p>{{ $comment->comment }}</p>
+                    <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $comment->rating) }}" required>
+                    <p>{{ $comment->content }}</p>
                 </div>
             @endforeach
+        </div>
     </div>
 
     <div class="shop__right-content">

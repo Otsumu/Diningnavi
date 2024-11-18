@@ -17,7 +17,6 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('booking_id')->constrained()->cascadeOnDelete();
             $table->text('content');
             $table->integer('rating')->unsigned();
             $table->string('image')->nullable();

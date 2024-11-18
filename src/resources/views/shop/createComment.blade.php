@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detailComment.css') }}">
+<link rel="stylesheet" href="{{ asset('css/createComment.css') }}">
 @endsection
 
 @section('content')
 <div class="shop__content">
     <div class="shop__left-content">
-    @if ($errors->any())
+        @if ($errors->any())
         <div class="custom-error-message">
             <ul>
-                @foreach ($errors->get('custom_error') as $error)
+                @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
-    @endif
+        @endif
         <h1 class="left-comment-title">今回のご利用はい<br>かがでしたか？</h1>
             <div class="shop__item">
                 <div class="shop__img">
@@ -37,23 +37,25 @@
 
     <div class="shop__right-content">
         <form action="{{ route('comments.store', ['shop' => $shop->id]) }}" method="POST">
-        @csrf
+            @csrf
+            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+
             <div class="form-group">
             <h2 class=right-comment-title>体験を評価してください</h2>
                 <div id="rating">
-                    <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="1">★</span>
-                    <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="2">★</span>
-                    <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="3">★</span>
-                    <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="4">★</span>
-                    <span class="star @if(old('rating', session("comments_inputs." . $bookingId . ".rating")) == 1) selected @endif" data-value="5">★</span>
+                    <span class="star @if(old('rating') == 1) selected @endif" data-value="1">★</span>
+                    <span class="star @if(old('rating') == 2) selected @endif" data-value="2">★</span>
+                    <span class="star @if(old('rating') == 3) selected @endif" data-value="3">★</span>
+                    <span class="star @if(old('rating') == 4) selected @endif" data-value="4">★</span>
+                    <span class="star @if(old('rating') == 5) selected @endif" data-value="5">★</span>
                 </div>
-                <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', session("comments_inputs.$bookingId.rating", '')) }}" required>
+                <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', '') }}" required>
             </div>
 
             <div class="form-group">
             <h2 class=right-comment-title>口コミを投稿</h2>
-                <textarea name="comment" id="comment" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
-                required>{{ old('comment', session("comments_inputs.$bookingId.comment", '')) }}</textarea>
+                <textarea name="content" id="content" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
+                required>{{ old('content') }}</textarea>
                 <p class="max-words">0/400(最大文字数)</p>
             </div>
 
@@ -75,7 +77,8 @@
             </div>
         </form>
     </div>
-    @endsection
+</div>
+@endsection
 
 @section('js')
 <script src="{{ asset('js/detailComment.js') }}"></script>
