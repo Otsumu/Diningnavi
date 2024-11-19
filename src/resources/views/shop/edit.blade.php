@@ -38,7 +38,8 @@
     <div class="shop__right-content">
         <form action="{{ route('comments.update', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST">
             @csrf
-            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+            @method('PATCH')
+            <input type="hidden" name="shop_id" value="{{ $shop->id, $comment->id }}">
 
             <div class="form-group">
             <h2 class=right-comment-title>体験を評価してください</h2>

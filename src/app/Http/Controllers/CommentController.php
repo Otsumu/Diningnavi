@@ -19,17 +19,6 @@ class CommentController extends Controller
         return view('shop.createComment', compact('shop'));
     }
 
-    public function __construct() {
-        $this->middleware('auth')->only('store', 'edit', 'delete');
-        $this->middleware(function ($request, $next) {
-            if ($request->routeIs('comments.delete') && auth()->user()->role !== 'admin' && auth()->id() !== $request->route('comment')->user_id) {
-                return redirect()->route('shop.createComment', $request->route('comment')->shop_id)
-                    ->withErrors('口コミを削除できません');
-            }
-            return $next($request);
-        });
-    }
-
     public function store(CommentRequest $request) {
         $validated = $request->validated();
         $shopId = $request->input('shop_id');
@@ -58,7 +47,7 @@ class CommentController extends Controller
     }
 
     public function edit(Shop $shop, Comment $comment) {
-        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
+        if (auth()->id() !== $comment->user_id ) {
             return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
                 ->withErrors('このコメントは編集できません');
         }
@@ -82,12 +71,12 @@ class CommentController extends Controller
 
     public function delete(Shop $shop, Comment $comment) {
         if (auth()->id() !== $comment->user_id) {
-            return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
-                ->withErrors('このコメントは削除できません');
+            return redirect()->route('shop.detailComment',['shop' => $shop->id, 'comment' => $comment->id])
+                ->withErrors('このコメントを削除できません');
         }
-        $comment->delete();
 
-        return redirect()->route('shop.detailComment', ['shop' => $shop->id])
+        $comment->delete();
+        return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
             ->with('success', '口コミが削除されました');
     }
 }

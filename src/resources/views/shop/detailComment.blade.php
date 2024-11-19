@@ -21,17 +21,10 @@
         <div class="comments-section">
             <div class="comment-actions">
                 <a href="{{ route('comments.edit', ['shop' => $shop->id, 'comment' => $comment->id]) }}">口コミを編集</a>
-                <a href="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}"
-                    onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
-                    口コミを削除
-                </a>
-                <form id="update-form" action="{{ route('comments.update', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
-                    @csrf
-                    @method('PATCH')
-                </form>
-                <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: none;">
+                <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
+                    <button type="submit">口コミを削除</button>
                 </form>
             </div>
             @foreach($shop->comments as $comment)

@@ -70,7 +70,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('/shop/{shop}/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
 
-
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
@@ -115,8 +114,4 @@ Route::get('/payment/create/{bookingId}', [PaymentController::class, 'create'])-
 Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
-        ->name('comments.delete');
-    });
 });
