@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             BookingsTableSeeder::class,
         ]);
+
+        Comment::factory(20)->create();
     }
 }

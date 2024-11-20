@@ -39,7 +39,7 @@ class CommentController extends Controller
         $comment->save();
 
         return redirect()->route('shop.detailComment', ['shop' => $comment->shop_id, 'comment' => $comment->id])
-            ->with('success', '口コミが投稿されました。');
+            ->with('success', '口コミが投稿されました');
     }
 
     public function detailComment(Shop $shop, Comment $comment) {
@@ -69,6 +69,10 @@ class CommentController extends Controller
             ->with('success', '口コミが更新されました');
     }
 
+    public function __construct() {
+        $this->middleware('auth')->only('delete');
+    }
+
     public function delete(Shop $shop, Comment $comment) {
         if (auth()->id() !== $comment->user_id) {
             return redirect()->route('shop.detailComment',['shop' => $shop->id, 'comment' => $comment->id])
@@ -76,7 +80,32 @@ class CommentController extends Controller
         }
 
         $comment->delete();
-        return redirect()->route('shop.detailComment', ['shop' => $shop->id, 'comment' => $comment->id])
+        return redirect()->route('shop.detail', ['shop_id' => $shop->id])
             ->with('success', '口コミが削除されました');
+    }
+
+    public function index(Request $request) {
+        $sort = $request->get('sort', 'newest');
+        $comments = Comment::query();
+        switch ($sort) {
+            case 'newest':
+                $comments->orderBy('created_at', 'desc');
+                break;
+            case 'oldest':
+                $comments->orderBy('created_at', 'asc');
+                break;
+            case 'highest_rating':
+                $comments->orderBy('rating', 'desc');
+                break;
+            case 'lowest_rating':
+                $comments->orderBy('rating', 'asc');
+                break;
+            default:
+                $comments->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $comments = $comments->paginate(10);
+        return view('shop.commentsIndex', compact('comments', 'sort'));
     }
 }

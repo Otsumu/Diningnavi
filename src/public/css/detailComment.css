@@ -119,6 +119,17 @@ header {
     background-color: lightgray;
 }
 
+.link-button {
+    all: unset;
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
 .shop__right-content {
     background-color: rgb(34, 84, 250);
     color: white;

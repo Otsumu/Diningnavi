@@ -6,21 +6,29 @@
 
 @section('content')
 <div class="shop__content">
-    <div class="shop__left-content">
-        <div class="shop__detail">
-            <a href="{{ $backRoute }}" class="page-back"></a>
-            <span class="shop-name">{{ $shop->name }}</span>
+    <div class="homepage">
+    @if (session('success'))
+        <div class="alert alert-success"
+        style="background-color: #cce5ff; color: #004085; padding: 7px; font-size: 12px; border-radius: 5px; border: 1px solid #b8daff; margin-bottom: 5px;">
+            {{ session('success') }}
         </div>
-        <div class="shop_image">
-            <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
+    @endif
+        <div class="shop__left-content">
+            <div class="shop__detail">
+                <a href="{{ $backRoute }}" class="page-back"></a>
+                <span class="shop-name">{{ $shop->name }}</span>
+            </div>
+            <div class="shop_image">
+                <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
+            </div>
+            <div class="shop__tag">
+                <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+            </div>
+            <div class="shop__intro">
+                <p>{{ $shop->intro }}</p>
+            </div>
+            <a href="{{ route('shop.createComment', ['shop' => $shop->id]) }}" class="create-comment">口コミを投稿する</a>
         </div>
-        <div class="shop__tag">
-            <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-        </div>
-        <div class="shop__intro">
-            <p>{{ $shop->intro }}</p>
-        </div>
-        <a href="{{ route('shop.createComment', ['shop' => $shop->id]) }}" class="create-comment">口コミを投稿する</a>
     </div>
 
     <div class="shop__right-content">

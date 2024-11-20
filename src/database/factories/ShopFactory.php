@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
-use App\Models\User; 
+use App\Models\User;
 
 class ShopFactory extends Factory
 {

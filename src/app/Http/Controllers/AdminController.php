@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -187,8 +188,7 @@ class AdminController extends Controller
             return response()->json(['message' => '画像を保存しました']);
     }
 
-    public function exportCsv()
-{
+    public function exportCsv() {
     $response = new StreamedResponse(function () {
 
         $header = ['店舗名', '地域', 'ジャンル', '店舗概要', '画像URL'];
@@ -214,9 +214,22 @@ class AdminController extends Controller
         fclose($handle);
     });
 
-    $response->headers->set('Content-Type', 'text/csv');
-    $response->headers->set('Content-Disposition', 'attachment; filename="shops.csv"');
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="shops.csv"');
 
-    return $response;
-}
+        return $response;
+    }
+
+    public function commentsIndex() {
+        $comments = Comment::with('shop', 'user')->paginate(10);
+
+        return view('admin.commentsIndex', compact('comments'));
+    }
+
+    public function deleteComment($id) {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->route('admin.commentsIndex')->with('success', '口コミが削除されました');
+    }
 }

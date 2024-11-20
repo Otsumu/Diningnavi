@@ -16,37 +16,37 @@ class ShopsTableSeeder extends Seeder
     public function run() {
 
         $user1 = User::firstOrCreate(
-            ['email' => 'ichiro@tenpo.com'], 
+            ['email' => 'ichiro@tenpo.com'],
             ['name' => '店舗一郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user2 = User::firstOrCreate(
-            ['email' => 'jiro@tenpo.com'], 
+            ['email' => 'jiro@tenpo.com'],
             ['name' => '店舗二郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user3 = User::firstOrCreate(
-            ['email' => 'saburo@tenpo.com'], 
+            ['email' => 'saburo@tenpo.com'],
             ['name' => '店舗三郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user4 = User::firstOrCreate(
-            ['email' => 'shiro@tenpo.com'], 
+            ['email' => 'shiro@tenpo.com'],
             ['name' => '店舗四郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user5 = User::firstOrCreate(
-            ['email' => 'satsuki@tenpo.com'], 
+            ['email' => 'satsuki@tenpo.com'],
             ['name' => '店舗五月', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user6 = User::firstOrCreate(
-            ['email' => 'rokuro@tenpo.com'], 
+            ['email' => 'rokuro@tenpo.com'],
             ['name' => '店舗六郎', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 
         $user7 = User::firstOrCreate(
-            ['email' => 'nanako@tenpo.com'], 
+            ['email' => 'nanako@tenpo.com'],
             ['name' => '店舗七子', 'password' => bcrypt('password'),'role' => 'shop_owner']
         );
 

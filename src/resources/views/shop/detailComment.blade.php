@@ -6,38 +6,46 @@
 
 @section('content')
 <div class="shop__content">
-    <div class="shop__left-content">
-        <div class="shop_image">
-            <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
-        </div>
-        <div class="shop__tag">
-            <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-        </div>
-        <div class="shop__intro">
-            <p>{{ $shop->intro }}</p>
-        </div>
-        <a href="{{ route('shop.createComment', $shop) }}" class="create-comment">すべての口コミ情報</a>
-
-        <div class="comments-section">
-            <div class="comment-actions">
-                <a href="{{ route('comments.edit', ['shop' => $shop->id, 'comment' => $comment->id]) }}">口コミを編集</a>
-                <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">口コミを削除</button>
-                </form>
+    <div class="homepage">
+        @if (session('success'))
+            <div class="alert alert-success"
+            style="background-color: #cce5ff; color: #004085; padding: 7px; font-size: 12px; border-radius: 5px; border: 1px solid #b8daff; margin-bottom: 5px;">
+                {{ session('success') }}
             </div>
-            @foreach($shop->comments as $comment)
-                <div class="comment">
-                    <div id="rating">
-                        @for ($i = 1; $i <= 5; $i++)
-                        <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>
-                        @endfor
-                    </div>
-                    <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $comment->rating) }}" required>
-                    <p>{{ $comment->content }}</p>
+        @endif
+        <div class="shop__left-content">
+                <div class="shop_image">
+                    <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->name }}" class="shop__img">
                 </div>
-            @endforeach
+                <div class="shop__tag">
+                    <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+                </div>
+                <div class="shop__intro">
+                    <p>{{ $shop->intro }}</p>
+                </div>
+                <a href="{{ route('shop.commentsIndex', $shop) }}" class="create-comment">すべての口コミ情報</a>
+
+            <div class="comments-section">
+                <div class="comment-actions">
+                    <a href="{{ route('comments.edit', ['shop' => $shop->id, 'comment' => $comment->id]) }}" class="button">口コミを編集</a>
+                    <form id="delete-form" action="{{ route('comments.delete', ['shop' => $shop->id, 'comment' => $comment->id]) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="link-button">口コミを削除</button>
+                    </form>
+                </div>
+                    @foreach($shop->comments as $comment)
+                    <div class="comment">
+                        <div id="rating">
+                            @for ($i = 1; $i <= 5; $i++)
+                            <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>
+                            @endfor
+                        </div>
+                        <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $comment->rating) }}" required>
+                            <p>{{ $comment->content }}</p>
+                    </div>
+                    @endforeach
+            </div>
         </div>
     </div>
 

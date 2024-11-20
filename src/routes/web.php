@@ -69,7 +69,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/shop/{shop}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
     Route::patch('/shop/{shop}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::delete('/shop/{shop}/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
-
+    Route::get('/shop/comments', [CommentController::class, 'index'])->name('shop.commentsIndex');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
@@ -88,6 +88,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/image-upload', [AdminController::class, 'imageUpload'])->name('admin.image_upload');
     Route::post('/image-upload', [AdminController::class, 'storeImage'])->name('admin.store_image');
     Route::get('/admin/csv-export', [AdminController::class, 'exportCsv'])->name('admin.csv_export');
+    Route::get('/commentsIndex', [AdminController::class, 'commentsIndex'])->name('admin.commentsIndex');
+    Route::delete('/comments/{id}', [AdminController::class, 'deleteComment'])->name('admin.comments.delete');
 });
 
 Route::middleware('auth')->prefix('shop_owner')->group(function () {

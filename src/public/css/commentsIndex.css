@@ -1,0 +1,99 @@
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.title  {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sort-options {
+    display: flex;
+    justify-content: flex-end; /* 右端に配置 */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sort-options label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.sort-options select {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 200px;
+    display: block;
+    margin-left: 10px;
+}
+
+.comment {
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.shop__img {
+    max-width: 12%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.comment p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-right: 5px 0;
+}
+
+.comment strong {
+    font-weight: bold;
+}
+
+
+.comment::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: underline;
+    color: blue  !important;
+    font-size: 16px  !important;
+}
+
+.star[data-value="1"]:checked,
+.star[data-value="2"]:checked,
+.star[data-value="3"]:checked,
+.star[data-value="4"]:checked,
+.star[data-value="5"]:checked {
+    color: rgb(63, 90, 242);
+}
+
+.pagination .page-link {
+    padding: 15px 20px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .active .page-link {
+    background-color: rgb(63, 90, 242);
+    color: white;
+    border-color: rgb(147, 162, 247);
+}
