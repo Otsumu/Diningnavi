@@ -55,7 +55,7 @@
             <div class="form-group">
             <h2 class=right-comment-title>口コミを投稿</h2>
                 <textarea name="content" id="content" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
-                required>{{ old('content') }}</textarea>
+                required oninput="updateCharCount()">{{ old('content') }}></textarea>
                 <p class="max-words" id="word-count">0/400(最大文字数)</p>
             </div>
 

@@ -19,6 +19,13 @@ document.querySelectorAll('#rating .star').forEach(function(star) {
 function updateCharCount() {
     var content = document.getElementById('content').value;
     var charCount = content.length;
+
+    if (charCount > 400) {
+        content = content.substring(0, 400);
+        document.getElementById('content').value = content;
+        charCount = 400;
+    }
+
     document.getElementById('word-count').textContent = charCount + '/400(最大文字数)';
 }
 
