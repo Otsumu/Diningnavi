@@ -36,6 +36,13 @@ class CommentController extends Controller
         $comment->rating = $validated['rating'];
         $comment->user_id = Auth::id();
         $comment->shop_id = $shopId;
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public');
+            $comment->image = $imagePath;
+        }
+
         $comment->save();
 
         return redirect()->route('shop.detailComment', ['shop' => $comment->shop_id, 'comment' => $comment->id])

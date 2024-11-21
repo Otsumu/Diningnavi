@@ -34,19 +34,33 @@
                         <button type="submit" class="link-button">口コミを削除</button>
                     </form>
                 </div>
+                @if(request('all'))
                     @foreach($shop->comments as $comment)
+                    <div class="comment">
+                        <div id="rating">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>
+                            @endfor
+                        </div>
+                        <p>{{ $comment->content }}</p>
+                    </div>
+                    @endforeach
+                @else
+                    @foreach($shop->comments->take(2) as $comment)
                     <div class="comment">
                         <div id="rating">
                             @for ($i = 1; $i <= 5; $i++)
                             <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>
                             @endfor
                         </div>
-                        <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $comment->rating) }}" required>
-                            <p>{{ $comment->content }}</p>
+                        <p>{{ $comment->content }}</p>
                     </div>
                     @endforeach
+                @endif
             </div>
         </div>
+            <a href="{{ request()->fullUrlWithQuery(['all' => true]) }}" style="display: block; margin-left: 30px; font-size: 14px; font-weight: bold;">
+                この店舗の口コミを全て見る</a>
     </div>
 
     <div class="shop__right-content">

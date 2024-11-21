@@ -36,7 +36,7 @@
     </div>
 
     <div class="shop__right-content">
-        <form action="{{ route('comments.store', ['shop' => $shop->id]) }}" method="POST">
+        <form action="{{ route('comments.store', ['shop' => $shop->id]) }}" method="POST" accept="image/jpeg, image/png"  enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
 
@@ -55,17 +55,15 @@
             <div class="form-group">
             <h2 class=right-comment-title>口コミを投稿</h2>
                 <textarea name="content" id="content" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
-                required oninput="updateCharCount()">{{ old('content') }}></textarea>
+                required oninput="updateCharCount()">{{ old('content') }}</textarea>
                 <p class="max-words" id="word-count">0/400(最大文字数)</p>
             </div>
 
             <div class="form-group">
                 <h2 class="right-comment-title">画像の追加</h2>
                 <div class="file-upload">
-                    <input type="file" name="image" id="image" accept="image/*" style="display: none;">
-                    <span class="file-upload-placeholder">
-                        クリックして写真を追加またはドロップアンドドロップ
-                    </span>
+                    <input type="file" name="image" id="image" style="display: none;" enctype="multipart/form-data">
+                    <span class="file-upload-placeholder">クリックして写真を追加またはドロップアンドドロップ</span>
                     <div id="image-preview" style="margin-top: 10px; display: none;">
                         <img id="preview-image" src="#" alt="Selected Image" style="max-width: 100%; height: auto;">
                     </div>

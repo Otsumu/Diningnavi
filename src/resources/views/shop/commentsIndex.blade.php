@@ -22,7 +22,7 @@
             <div class="comment">
                 <p><strong>投稿日: </strong>{{ ($comment->created_at->format('Y年m月d日')) }}
                 <p><strong>ご利用店: </strong>{{ $comment->shop->name }} <a href="/detail/{{ $comment->shop->id }}" class="btn btn-details">店舗詳細</a>
-                <p><img src="{{ asset($comment->shop->image_url) }}" alt="{{ $comment->shop->name }}" class="shop__img"></p>
+                <p><img src="{{ asset($comment->image_url ?? $comment->shop->image_url ) }}" alt="{{ $comment->shop->name }}" class="shop__img"></p>
                 <p id="rating"><strong>評価:</strong>
                         @for ($i = 1; $i <= 5; $i++)
                         <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $comment->rating) ? 'rgb(63, 90, 242);' : 'lightgray' }}">★</span>

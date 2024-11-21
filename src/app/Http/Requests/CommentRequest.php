@@ -26,7 +26,7 @@ class CommentRequest extends FormRequest
         return [
             'content' => 'required|string|max:400',
             'rating' => 'required|integer|between:1,5',
-            'image' => 'nullable|mimes:jpeg,png',
+            'image' => 'nullable|mimes:jpeg,jpg,png',
         ];
     }
 
