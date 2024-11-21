@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="KIRK0UBRWsrmZqzKQ7eU" name="ページ1">
-        <mxGraphModel dx="1195" dy="855" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="973" dy="757" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -879,16 +879,10 @@
                         <mxPoint x="723" y="26" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="378" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+                <mxCell id="378" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="534" y="510" as="sourcePoint"/>
                         <mxPoint x="714" y="510" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="379" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToOne;startArrow=ERmandOne;" edge="1" parent="1">
-                    <mxGeometry width="100" height="100" relative="1" as="geometry">
-                        <mxPoint x="448" y="-10" as="sourcePoint"/>
-                        <mxPoint x="998" y="-28" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>

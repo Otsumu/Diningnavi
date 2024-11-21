@@ -62,7 +62,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('review.edit');
     Route::patch('/review/{id}', [ReviewController::class, 'updateReview'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('review.delete');
-
     Route::get('/shop/{shop}/createComment', [CommentController::class, 'create'])->name('shop.createComment');
     Route::post('/shop/{shop}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/shop/{shop}/comments/{comment}/detailComment', [CommentController::class, 'detailComment'])->name('shop.detailComment');
@@ -114,6 +113,4 @@ Route::middleware('auth')->prefix('shop_owner')->group(function () {
 
 Route::get('/payment/create/{bookingId}', [PaymentController::class, 'create'])->name('payment.create');
 Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
-
-
 });

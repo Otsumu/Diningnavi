@@ -24,8 +24,4 @@ class Comment extends Model
     public function shop() {
         return $this->belongsTo(Shop::class);
     }
-
-    public function booking() {
-        return $this->belongsTo(Booking::class);
-    }
 }

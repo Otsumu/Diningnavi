@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Models\Booking;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
-use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {

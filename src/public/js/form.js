@@ -18,7 +18,7 @@ const stars = document.querySelectorAll('.star');
             }
 
             stars.forEach(s => {
-                s.style.color = s.getAttribute('data-value') <= currentRating ? 'gold' : 'lightgray';
+                s.style.color = s.getAttribute('data-value') <= currentRating ? 'rgb(63, 90, 242)'  : 'lightgray';
             });
         });
     });

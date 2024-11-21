@@ -1,7 +1,7 @@
 function changeColor(element) {
     const heartIcon = element.querySelector('.fa-heart');
     const isFavorited = heartIcon.classList.contains('active');
-    
+
     if (isFavorited) {
         heartIcon.classList.remove('active');
         element.setAttribute('data-favorited', 'false');

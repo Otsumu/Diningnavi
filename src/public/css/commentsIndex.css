@@ -13,7 +13,7 @@
 
 .sort-options {
     display: flex;
-    justify-content: flex-end; /* 右端に配置 */
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 20px;
 }
