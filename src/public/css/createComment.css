@@ -276,10 +276,40 @@ textarea {
 
 @media (max-width: 768px) {
     .shop__content {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+        justify-items: start !important;
     }
 
-    .shop__content::before {
-        display: none;
+    .shop__left-content {
+        margin: 0 auto !important;
+        width: 100%;
+    }
+
+    .shop__right-content {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .shop__right-content {
+        position: static !important;
+        top: auto !important;
+    }
+
+    .shop__left-content::after {
+        content: none;
+    }
+
+    .btn-comment {
+        left: 45%;
+    }
+
+    .file-upload-placeholder {
+        font-size: 14px !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        text-align: center !important;
     }
 }

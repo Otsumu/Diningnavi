@@ -97,3 +97,43 @@ a {
     color: white;
     border-color: rgb(147, 162, 247);
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 0 10px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .sort-options select {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .comment {
+        margin-bottom: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .shop__img {
+        width: 100%;
+        height: auto;
+    }
+
+    .pagination {
+        justify-content: center;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .pagination .page-item {
+        padding: 0 2px;
+    }
+
+    .pagination .page-link {
+        padding: 3px 6px;
+        font-size: 8px;
+    }
+}

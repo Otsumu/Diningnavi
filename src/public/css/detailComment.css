@@ -240,3 +240,36 @@ input[type="number"]::-webkit-inner-spin-button {
 .btn-booking:hover {
     opacity: 0.7;
 }
+
+@media (max-width: 768px) {
+    .shop__content {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .shop__left-content,
+    .shop__right-content {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .shop__right-content {
+        position: relative;
+        top: auto !important;
+        margin-top: 20px;
+        min-height: 100%;
+        padding-bottom: 200px;
+    }
+
+    .btn-booking {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        padding-top: 20px;
+    }
+}
