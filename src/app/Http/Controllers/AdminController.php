@@ -156,7 +156,7 @@ class AdminController extends Controller
 
         $file = $request->file('csv_file');
         if (!$file) {
-            return redirect('/admin/csv_import')->withErrors(['file' => 'ファイルがアップロードされていません。']);
+            return redirect('/admin/csv_import')->withErrors(['file' => 'ファイルがアップロードされていません']);
         }
 
         Excel::import(new ShopImport, $file);
