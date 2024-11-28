@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\User; 
+use App\Models\User;
 
 class ShopsTableSeeder extends Seeder
 {

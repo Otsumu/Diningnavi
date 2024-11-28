@@ -17,7 +17,7 @@
         <ul class="nav__list">
             <li class="nav__item" ><a class="nav__item-link" href="/admin/form">Registration</a></li>
             <li class="nav__item" ><a class="nav__item-link" href="/admin/shop_owners">ShopOwner List</a></li>
-            <li class="nav__item" ><a class="nav__item-link" href="{{ route('admin.shop.create') }}">NewShop Create</a></li>
+            <li class="nav__item" ><a class="nav__item-link" href="{{ route('admin.csv_import') }}">CSV Import</a></li>
             <li class="nav__item" ><a class="nav__item-link" href="/admin/commentsIndex">Delete Comment</a></li>
             <li class="nav__item">
                 <form action="{{ route('admin.logout') }}" method="POST" style="display: inline-block;">
