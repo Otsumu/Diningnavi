@@ -243,23 +243,29 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        width: 80%;
+        width: 100%;
         margin-left: 10px;
     }
 
-    .header__search {
-        width: auto;
+    .header__center__search {
+        width: 60%;
         padding: 10px;
     }
 
+    .header__search {
+        width: 100%;
+        margin-left: -5px;
+        padding: 5px;
+    }
+
     .select-box {
-        width: 50%;
-        margin-right: 15px;
+        width: 35%;
+        margin-right: 0;
     }
 
     .search__item {
-        width: 85%;
-        margin-left: auto;
+        width: 100px;
+        margin-left: 10px;
     }
 
     .shop__list {
