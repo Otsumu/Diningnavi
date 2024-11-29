@@ -37,25 +37,24 @@ http://15.168.189.188
    - **area_id** : 店舗が属するエリアのID（「東京都」「大阪府」「福岡県」のいずれか）
    - **genre_id** : 店舗が属するジャンルのID（「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか）
 
-  | name      | intro                   | image_url                                   | area_id   | genre_id   |
+  | name      | intro                   | image_url                                   | area      | genre   |
   |-----------|-------------------------|---------------------------------|-----------|-----------|
-  | イタリアンC | 美味しいパスタが人気です    | https://localhost/storage/images/Italian.jpg | 福岡県    | イタリアン   |
-  | 居酒屋D    | お酒が豊富です            | https://localhost/storage/images/izakaya.jpg  | 東京都    | 居酒屋      |
-  | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司       |
-  | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉       |
+  | イタリアンC | 美味しいパスタが人気です    | https://localhost/storage/images/Italian.jpg | 福岡県    | イタリアン |
+  | 居酒屋D    | お酒が豊富です            | https://localhost/storage/images/izakaya.jpg  | 東京都    | 居酒屋    |
+  | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司      |
+  | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
 
    ##### CSVファイルの保存方法
 
-  1. **ExcelまたはGoogle Sheetsを使用**して上記のように**表データ**にして入力する
+  1. **ExcelまたはGoogle Sheetsを使用**して上記のように**表データ**にして入力する。
   2. **CSV形式で保存**。
    - **Excelの場合**: 「ファイル」→「名前を付けて保存」→「CSV UTF-8（カンマ区切り）(*.csv)」
    - **Google Sheetsの場合**: 「ファイル」→「ダウンロード」→「カンマ区切りの値（.csv）」
 
-  保存したCSVファイル（例: `shops.csv`）をインポート画面にアップロードし、店舗情報を一括で登録することが可能。
+  保存したCSVファイル(例: `shops.csv`)をインポート画面にアップロードし、店舗情報を一括で登録することが可能。
 
   ##### 注意事項
 - **エンコード**: CSVファイルは**UTF-8エンコード**で保存。エンコードが異なる場合、インポート時にエラーが発生することもあり。
-- **IDの一致**: `area_id`と`genre_id`には、システムで定義されたエリアとジャンルのIDを入力、エリアとジャンルは事前に管理画面などで確認可能。
 - **画像URL**: 画像URLには、オンラインでアクセス可能な画像のURLを記載する。
 
 
