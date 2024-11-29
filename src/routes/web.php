@@ -84,7 +84,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     Route::get('/create', [AdminController::class, 'createShop'])->name('admin.shop.create');
     Route::post('/shops', [AdminController::class, 'storeShop'])->name('admin.store');
-    Route::get('/image-upload', [AdminController::class, 'imageUpload'])->name('admin.image_upload');
     Route::post('/image-upload', [AdminController::class, 'storeImage'])->name('admin.store_image');
     Route::get('/csv_import', [AdminController::class, 'showForm'])->name('admin.csv_import');
     Route::post('/csv_import', [AdminController::class, 'import'])->name('admin.csv_import.process');

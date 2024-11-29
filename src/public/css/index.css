@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 10px;
+    gap: 5px;
 }
 
 .header__center__search .select-box-label {

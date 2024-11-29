@@ -33,21 +33,20 @@ http://15.168.189.188
    ##### CSVファイルの記述方法
    - **name** : 店舗名（最大50字）
    - **intro** : 店舗紹介文（最大400字）
-   - **image_url** : URLを入力しアップロード
+   - **image_url** : URLを入力し画像をアップロード
    - **area_id** : 店舗が属するエリアのID（「東京都」「大阪府」「福岡県」のいずれか）
    - **genre_id** : 店舗が属するジャンルのID（「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか）
 
-   ##### CSVファイルの記述方法
   | name      | intro                   | image_url                                   | area_id   | genre_id   |
   |-----------|-------------------------|---------------------------------|-----------|-----------|
   | イタリアンC | 美味しいパスタが人気です    | https://localhost/storage/images/Italian.jpg | 福岡県    | イタリアン   |
   | 居酒屋D    | お酒が豊富です            | https://localhost/storage/images/izakaya.jpg  | 東京都    | 居酒屋      |
   | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司       |
   | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉       |
-  
+
    ##### CSVファイルの保存方法
 
-  1. **ExcelまたはGoogle Sheetsを使用**して上記のように表データにして入力。
+  1. **ExcelまたはGoogle Sheetsを使用**して上記のように**表データ**にして入力する
   2. **CSV形式で保存**。
    - **Excelの場合**: 「ファイル」→「名前を付けて保存」→「CSV UTF-8（カンマ区切り）(*.csv)」
    - **Google Sheetsの場合**: 「ファイル」→「ダウンロード」→「カンマ区切りの値（.csv）」
