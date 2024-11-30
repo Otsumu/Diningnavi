@@ -39,8 +39,8 @@ http://15.168.189.188
 - **area** : 「東京都」「大阪府」「福岡県」のいずれか
 - **genre** : 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか を下記２パターンのどちらかの形式で入力する。
 
-- **1.ExcelやGoogle Sheetsで**「表形式」**に入力し、CSVとして保存**
-- **2.テキストエディタ（VSCodeなど）で**「カンマ区切り形式」**を直接記述して保存**
+- **1.ExcelやGoogle Sheetsで「表形式」に入力し、CSVとして保存**
+- **2.テキストエディタ（VSCodeなど）で「カンマ区切り形式」を直接記述して保存**
 
 ##### 1.ExcelやGoogle Sheetsで作成した「表データ」の場合
 | name      | intro                   | image_url                                   | area      | genre   |
@@ -50,8 +50,7 @@ http://15.168.189.188
 | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司      |
 | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
 
-
-###### 2.テキストエディタで「カンマ区切り形式」(手動入力）の場合
+##### 2.テキストエディタで「カンマ区切り形式」(手動入力）の場合
 name,area,genre,intro,image_url<br>
 イタリアンC,福岡県,イタリアン,美味しいパスタが人気です,https://localhost/storage/images/Italian.jpg<br>
 居酒屋D,東京都,居酒屋,お酒が豊富です,https://localhost/storage/images/izakaya.jpg<br>
