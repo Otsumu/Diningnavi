@@ -40,10 +40,10 @@ http://15.168.189.188
 - **genre** : 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか
 
 CSVファイルは以下の形式で作成：
-- **ExcelやGoogle Sheetsで表形式に入力し、CSVとして保存**
-- **テキストエディタ（VS Codeなど）でカンマ区切り形式を直接記述して保存**
+- **①ExcelやGoogle Sheetsで表形式に入力し、CSVとして保存**
+- **②テキストエディタ（VS Codeなど）でカンマ区切り形式を直接記述して保存**
 
-##### CSVファイル例
+##### ①CSVファイル例
 ##### ExcelやGoogle Sheetsで作成した表データの場合（例: `Book1.csv`）
 | name      | intro                   | image_url                                   | area      | genre   |
 |-----------|-------------------------|---------------------------------------------|-----------|-----------|
@@ -52,7 +52,8 @@ CSVファイルは以下の形式で作成：
 | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司      |
 | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
 
-###### カンマ区切り形式（テキストエディタで手動入力）場合（例: `Book1.csv`）
+
+###### ②カンマ区切り形式（テキストエディタで手動入力）の場合（例: `Book1.csv`）
 name,area,genre,intro,image_url
 イタリアンC,福岡県,イタリアン,美味しいパスタが人気です,https://localhost/storage/images/Italian.jpg
 居酒屋D,東京都,居酒屋,お酒が豊富です,https://localhost/storage/images/izakaya.jpg
