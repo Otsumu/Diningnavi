@@ -29,35 +29,48 @@ http://15.168.189.188
    - 利用したお店を5段階で評価し、コメントを投稿することが可能。
    - レビュー評価とは別に「口コミ」機能を追加、表示中の店舗だけでなく全店舗の口コミを閲覧可能に。
 
-#### 管理者機能 : 管理者は店舗代表者の登録、管理、削除が行え、CSVファイルを使って店舗情報を一度に登録が可能。
-   ##### CSVファイルの記述方法
-   [csvインポート](http://localhost/admin/csv_import)<br>
-   - **name** : 店舗名（最大50字）
-   - **intro** : 店舗紹介文（最大400字）
-   - **image_url** : アップロードしたい画像のURL
-   - **area** : 「東京都」「大阪府」「福岡県」のいずれか
-   - **genre** : 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか を下記のように**表データ**にして入力する。
+### 管理者機能 : 管理者は店舗代表者の登録、管理、削除が行え、CSVファイルを使って店舗情報を一度に登録が可能。
 
-  | name      | intro                   | image_url                                   | area      | genre   |
-  |-----------|-------------------------|---------------------------------|-----------|-----------|
-  | イタリアンC | 美味しいパスタが人気です    | https://localhost/storage/images/Italian.jpg | 福岡県    | イタリアン |
-  | 居酒屋D    | お酒が豊富です            | https://localhost/storage/images/izakaya.jpg  | 東京都    | 居酒屋    |
-  | 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司      |
-  | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
+### CSVファイルの記述方法
+[CSVインポート](http://localhost/admin/csv_import)<br>
+- **name** : 店舗名（最大50字）
+- **intro** : 店舗紹介文（最大400字）
+- **image_url** : アップロードしたい画像のURL
+- **area** : 「東京都」「大阪府」「福岡県」のいずれか
+- **genre** : 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか
 
-   ##### CSVファイルの保存方法
+CSVファイルは以下の形式で作成：
+- **ExcelやGoogle Sheetsで表形式に入力し、CSVとして保存**
+- **テキストエディタ（VS Codeなど）でカンマ区切り形式を直接記述して保存**
 
-  1. **表データはExcelまたはGoogle Sheetsの使用を使用**。
-  2. **CSV形式で保存**。
-   - **Excelの場合**: 「ファイル」→「名前を付けて保存」→「CSV UTF-8（カンマ区切り）(*.csv)」
+### CSVファイル例
+#### ExcelやGoogle Sheetsで作成した表データの場合（例: `Book1.csv`）
+| name      | intro                   | image_url                                   | area      | genre   |
+|-----------|-------------------------|---------------------------------------------|-----------|-----------|
+| イタリアンC | 美味しいパスタが人気です    | https://localhost/storage/images/Italian.jpg | 福岡県    | イタリアン |
+| 居酒屋D    | お酒が豊富です            | https://localhost/storage/images/izakaya.jpg  | 東京都    | 居酒屋    |
+| 魚の宝     | 新鮮な魚を提供する寿司店    | http://localhost/storage/images/sushi.jpg     | 東京都    | 寿司      |
+| 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
+
+#### カンマ区切り形式（テキストエディタで手動入力）場合（例: `Book1.csv`）
+name,area,genre,intro,image_url
+イタリアンC,福岡県,イタリアン,美味しいパスタが人気です,https://localhost/storage/images/Italian.jpg
+居酒屋D,東京都,居酒屋,お酒が豊富です,https://localhost/storage/images/izakaya.jpg
+魚の宝,東京都,寿司,新鮮な魚を提供する寿司店,http://localhost/storage/images/sushi.jpg
+焼肉大将,大阪府,焼肉,美味しい焼肉が楽しめるお店,http://localhost/storage/images/yakiniku.jpg
+
+### CSVファイルの保存方法
+1. **ExcelやGoogle Sheetsの場合**:
+   - 「ファイル」→「名前を付けて保存」→「CSV UTF-8（カンマ区切り）(*.csv)」
    - **Google Sheetsの場合**: 「ファイル」→「ダウンロード」→「カンマ区切りの値（.csv）」
+2. **テキストエディタ（VS Codeなど）を使用する場合**:
+   - カンマ区切り形式でデータを記述後、**UTF-8エンコード**で保存。
 
-  保存したCSVファイル(例: `shops.csv`)をインポート画面にアップロードし、店舗情報を一括で登録することが可能。
+保存したCSVファイル（例: `Book1.csv`）をインポート画面にアップロードすることで、店舗情報を一括で登録できます。
 
-  ##### 注意事項
-- **エンコード**: CSVファイルは**UTF-8エンコード**で保存。エンコードが異なる場合、インポート時にエラーが発生することもあり。
-- **画像URL**: 画像URLには、オンラインでアクセス可能な画像のURLを記載する。
-
+### 注意事項
+- **エンコード**: CSVファイルは**UTF-8エンコード**で保存。異なるエンコードの場合、インポート時にエラーが発生する可能性があり。
+- **画像URL**: 画像URLには、オンラインでアクセス可能な画像のURLを記載すること。
 
 #### 店舗代表者機能 : 店舗情報の作成・更新・削除が可能。予約情報をまとめて表示し、利便性を向上。
    - **ストレージ** : お店の画像をストレージに保存可能。
