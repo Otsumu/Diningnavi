@@ -50,15 +50,15 @@
 .auth-form input[type="text"],
 .auth-form input[type="email"],
 .auth-form input[type="password"] {
-  margin-bottom: 5px;
-  width: 100%;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .auth-form__error-message {
     color: red;
     margin-top: 5px;
     margin-left: 20px;
-    text-align: left; 
+    text-align: left;
     font-size: 14px;
 }
 
@@ -116,15 +116,15 @@
 .login-btn {
     background-color: rgb(73, 99, 246);
     color: #ffffff;
-    padding: 4px 8px; 
+    padding: 4px 8px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center; 
+    text-align: center;
     display: block;
     margin-left: 76%;
     margin-top: 25px;
-    font-size: 12px; 
+    font-size: 12px;
 }
 
 .confirm-message {
