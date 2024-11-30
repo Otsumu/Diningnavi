@@ -40,10 +40,10 @@ http://15.168.189.188
 - **genre** : 「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれか
 
 CSVファイルは以下の形式で作成：
-- **①ExcelやGoogle Sheetsで表形式に入力し、CSVとして保存**
-- **②テキストエディタ（VS Codeなど）でカンマ区切り形式を直接記述して保存**
+- **1.ExcelやGoogle Sheetsで表形式に入力し、CSVとして保存**
+- **2.テキストエディタ（VS Codeなど）でカンマ区切り形式を直接記述して保存**
 
-##### ①CSVファイル例
+##### 1.CSVファイル例
 ##### ExcelやGoogle Sheetsで作成した表データの場合（例: `Book1.csv`）
 | name      | intro                   | image_url                                   | area      | genre   |
 |-----------|-------------------------|---------------------------------------------|-----------|-----------|
@@ -53,11 +53,11 @@ CSVファイルは以下の形式で作成：
 | 焼肉大将   | 美味しい焼肉が楽しめるお店   | http://localhost/storage/images/yakiniku.jpg  | 大阪府    | 焼肉     |
 
 
-###### ②カンマ区切り形式（テキストエディタで手動入力）の場合（例: `Book1.csv`）
-name,area,genre,intro,image_url
-イタリアンC,福岡県,イタリアン,美味しいパスタが人気です,https://localhost/storage/images/Italian.jpg
-居酒屋D,東京都,居酒屋,お酒が豊富です,https://localhost/storage/images/izakaya.jpg
-魚の宝,東京都,寿司,新鮮な魚を提供する寿司店,http://localhost/storage/images/sushi.jpg
+###### 2.カンマ区切り形式（テキストエディタで手動入力）の場合（例: `Book1.csv`）
+name,area,genre,intro,image_url<br>
+イタリアンC,福岡県,イタリアン,美味しいパスタが人気です,https://localhost/storage/images/Italian.jpg<br>
+居酒屋D,東京都,居酒屋,お酒が豊富です,https://localhost/storage/images/izakaya.jpg<br>
+魚の宝,東京都,寿司,新鮮な魚を提供する寿司店,http://localhost/storage/images/sushi.jpg<br>
 焼肉大将,大阪府,焼肉,美味しい焼肉が楽しめるお店,http://localhost/storage/images/yakiniku.jpg
 
 ##### CSVファイルの保存方法
@@ -67,7 +67,7 @@ name,area,genre,intro,image_url
 2. **テキストエディタ（VS Codeなど）を使用する場合**:
    - カンマ区切り形式でデータを記述後、**UTF-8エンコード**で保存。
 
-保存したCSVファイル（例: `Book1.csv`）をインポート画面にアップロードすることで、店舗情報を一括で登録できます。
+保存したCSVファイル（例: `Book1.csv`）をインポート画面にアップロードすることで、店舗情報を一括で登録が可能。
 
 ##### 注意事項
 - **エンコード**: CSVファイルは**UTF-8エンコード**で保存。異なるエンコードの場合、インポート時にエラーが発生する可能性があり。
