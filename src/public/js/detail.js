@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     continue;
                 }
                 const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-                
+
                 if (isToday) {
                     const selectedTime = new Date(selectedDate.setHours(hour, minute));
                     if (selectedTime < now) {
@@ -109,15 +109,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const deleteButton = document.querySelector('form#delete-form button');
-
-    if (deleteButton) {
-        deleteButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (confirm('本当に削除しますか？')) {
-                document.getElementById('delete-form').submit();
-            }
-        });
-    }
-});

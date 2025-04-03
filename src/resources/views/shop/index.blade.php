@@ -76,7 +76,7 @@
                     <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
                     <div class="shop__buttons">
                         <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
-                        <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
+                        <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">
                             <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
                         </button>
                     </div>
