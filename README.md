@@ -119,6 +119,13 @@ name,area,genre,intro,image_url<br>
 
 ## 環境構築　
 このプロジェクトをDockerを使用し、ローカルで動作させるための手順です。<br>
+**Dockerビルド**<br>
+1. `git clone git@github.com:Otsumu/Diningnavi.git`<br>
+2. DockerDesktopアプリを立ち上げる<br>
+3. `docker-compose up -d --build`<br>
+
+**Laravel環境構築**<br>
+このプロジェクトをDockerを使用し、ローカルで動作させるための手順です。<br>
 　1.　リポジトリのクローン git clone https://github.com/Otsumu/Diningnavi.git<br>
 　2.　ディレクトリに移動 cd Diningnavi<br>
 　3.　Dockerコンテナのビルドと起動 docker-compose up --build -d<br>
