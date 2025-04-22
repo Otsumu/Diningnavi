@@ -2,17 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const drawerInput = document.getElementById('drawer__input');
 
-    if (!menuToggle || !drawerInput) {
-        console.error('Menu toggle or drawer input not found.');
-        return;
-        }
+    if(!menuToggle) {
+        console.error('お探しのメニューが見つかりません');
+    }
+    if(!drawerInput) {
+        console.error('お探しのメニューが見つかりません');
+    }
 
-    menuToggle.addEventListener('click', function() {
-        console.log('Menu toggle clicked. Checked:', drawerInput.checked);
-        if (drawerInput.checked) {
-            window.location.href = '/user/users/menu1';
-        } else {
-            window.location.href = '/user/menu2';
-        }
-        });
-    });
+    menuToggle.addEventListener('click',function() {
+        const isLoggedIn = drawerInput.checked;
+        console.log('メニューがクリックされました ログイン状態：isLoggedIn');
+        window.location.href = isLoggedIn ? '/user/users/menu1':'/user/menu2';
+    })
+});

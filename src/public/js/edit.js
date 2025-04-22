@@ -15,8 +15,8 @@ const stars = document.querySelectorAll('.star');
                 ratingInput.value = value;
             }
 
-            stars.forEach(s => {
-                s.style.color = s.getAttribute('data-value') <= currentRating ? 'rgb(63, 90, 242)' : 'lightgray';
+            stars.forEach(star => {
+                star.style.color = s.getAttribute('data-value') <= currentRating ? 'rgb(63, 90, 242)' : 'lightgray';
             });
         });
     });

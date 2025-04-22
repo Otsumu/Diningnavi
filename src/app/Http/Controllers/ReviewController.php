@@ -59,7 +59,7 @@ class ReviewController extends Controller
     }
 
     public function editReview($id) {
-        $review = Review::findOrFail($id);
+        $review = Review::with('booking')->findOrFail($id);
         $shop_name = $review->booking->shop->name;
         $booking_date = $review->booking->booking_date;
 

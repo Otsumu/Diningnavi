@@ -33,14 +33,14 @@
             <li class="nav__item"><a class="nav__item-link" href="/user/users/mypage">Mypage</a></li>
         </ul>
     </nav>
-  </div>
+    </div>
 </main>
 
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         const closeButton = document.getElementById('closeButton');
         const menu = document.querySelector('.nav__content');
-        
+
         if (closeButton && menu) {
             closeButton.addEventListener('click', function() {
                 menu.classList.add('hidden');
@@ -48,6 +48,6 @@
             });
         }
     });
-  </script>
+</script>
 </body>
 </html>

@@ -16,14 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let hour = 17; hour <= 21; hour++) {
             for (let minute = 0; minute < 60; minute += 30) {
-                if (hour === 21 && minute === 30) {
-                    continue;
-                }
-                const timeValue = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                const timeValue = `${hour.toString()}:${minute.toString().padStart(2, '0')}`;
 
                 if (isToday) {
-                    const selectedTime = new Date(selectedDate.setHours(hour, minute));
-                    if (selectedTime < now) {
+                    const selectedTime = new Date(selectedDate.setHours(hour,minute));
+                    const oneHourLater = new Date(now.getTime()+ 60* 60* 1000);
+                    if(selectedTime < oneHourLater) {
                         continue;
                     }
                 }
@@ -34,11 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 bookingTimeInput.appendChild(option);
             }
         }
-
-        const lastOrderOption = document.createElement('option');
-        lastOrderOption.value = '21:30';
-        lastOrderOption.textContent = '21:30';
-        bookingTimeInput.appendChild(lastOrderOption);
     }
 
     function updateBookingDetails() {
@@ -56,15 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const [hours, minutes] = inputTime.split(':').map(Number);
         const selectedTime = new Date(selectedDate.setHours(hours, minutes));
-
-        if (selectedDate.toDateString() === now.toDateString()) {
-            const minTime = new Date(now.getTime() + 1 * 60 * 60 * 1000);
-            if (selectedTime < minTime) {
-                alert('予約は現時刻から1時間以降に可能です');
-                bookingTimeInput.value = '';
-                return false;
-            }
-        }
 
         return true;
     }
@@ -94,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     generateTimeOptions();
     updateBookingDetails();
 
-    numberInput.placeholder = '1人';
+    numberInput.placeholder = '1 人';
 
     numberInput.addEventListener('focus', () => {
         numberInput.placeholder = '';

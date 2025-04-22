@@ -27,7 +27,7 @@
                 </div>
                 <div class="shop__buttons">
                     <a href="/detail/{{ $shop->id }}" class="btn btn-details">詳しくみる</a>
-                    <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">  
+                    <button class="favorite-shop" type="button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavorited ? 'true' : 'false' }}" onclick="changeColor(this)">
                         <i class="fa-solid fa-heart {{ $shop->isFavorited ? 'active' : '' }} heart-icon"></i>
                     </button>
                 </div>
@@ -55,7 +55,7 @@
             <div class="form-group">
             <h2 class=right-comment-title>口コミを投稿</h2>
                 <textarea name="content" id="content" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット"
-                required oninput="updateCharCount()">{{ old('content') }}</textarea>
+                required >{{ old('content') }}</textarea>
                 <p class="max-words" id="word-count">0/400(最大文字数)</p>
             </div>
 

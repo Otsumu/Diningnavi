@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/review-form.css') }}">
+<link rel ="stylesheet" href="{{ asset('css/review-form.css') }}">
 @endsection
 
 @section('content')
 <div class="review-content">
     <h2>レビュー投稿</h2>
-    <p class="edit-message" style="text-align: center; font-size: 20px; font-weight: bold;">内容を変更しますか？</p>
+    <p message ="edit-message" style="text-align: center; font-size: 20px; font-weight: bold;">
+        内容を変更しますか？</p>
     <div class="shop-info">
         <p style="font-size: 16px; margin-right: 10px;">
             <strong>ご利用店 :</strong> {{ $shop_name ?? '不明' }}
@@ -16,29 +17,29 @@
             <strong>ご利用日 :</strong> {{ $booking_date ?? '不明' }}
         </p>
     </div>
-    <form action="{{ route('review.update', $review->id) }}" method="POST">
+    <form action="{{ route('review.update', $review->id ) }}" method="POST">
         @csrf
         @method('PATCH')
         <input type="hidden" name="booking_id" value="{{ $review->booking->id }}">
 
         <div class="form-group">
             <label for="title">タイトル</label>
-            <input type="text" name="title" id="title" value="{{ old('title', $review->title) }}" required>
+            <input type="text" name="title" id="title" value="{{ old('title', $review->title ) }}"  required>
         </div>
 
         <div class="form-group">
             <label>評価</label>
             <div id="rating">
-                @for ($i = 1; $i <= 5; $i++)
+                @for($i = 1; $i <= 5; $i++)
                 <span class="star" data-value="{{ $i }}" style="color: {{ $i <= old('rating', $review->rating) ? 'gold' : 'lightgray' }}">★</span>
-                @endfor
+            @endfor
             </div>
             <input type="hidden" name="rating" id="rating-input" value="{{ old('rating', $review->rating) }}" required>
         </div>
 
         <div class="form-group">
             <label for="review">レビュー</label>
-            <textarea name="review" id="review" rows="5" required>{{ old('review',$review->review) }}</textarea>
+            <textarea name="review" id="review" rows="5" required>{{ old('review', $review->review) }}</textarea>
         </div>
 
         <div class="button-group">
@@ -47,6 +48,7 @@
         </div>
     </form>
 </div>
+@endsection
 
 @section('js')
 <script src="{{ asset('js/edit.js') }}"></script>
